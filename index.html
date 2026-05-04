@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cindy's minimal space.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-cover" id="coverLayer">
+        <div class="cover-content">
+            <div class="avatar-placeholder">👤</div>
+            <div class="typing-container">
+                <p class="profile-text">歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。</p>
+            </div>
+            <div class="scroll-down-hint">
+                <i class="fas fa-chevron-down"></i>
+                <span>點擊或下滑解鎖</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="inner-page fade-in" id="innerPage">
+        <div class="container">
+            <div class="inner-header">
+                <h2>CINDY'S FILES</h2>
+                <p>請選擇一個資料夾進入</p>
+            </div>
+
+            <div class="nav-links">
+                <a href="about.html" class="link-btn transition-link">
+                    <i class="fas fa-folder icon"></i> 關於我
+                </a>
+
+                <a href="life.html" class="link-btn transition-link">
+                    <i class="fas fa-folder-open icon"></i> 分享及記錄生活……之類的
+                </a>
+
+                <a href="code.html" class="link-btn transition-link">
+                    <i class="fas fa-code icon"></i> 關於重生後我所製造的程式
+                </a>
+
+                <a href="harmonica.html" class="link-btn transition-link">
+                    <i class="fas fa-music icon"></i> 呼吸的日常
+                </a>
+            </div>
+
+            <div class="footer">© 2026 Cindy. Build with folder concept.</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cover = document.getElementById('coverLayer');
+            const inner = document.getElementById('innerPage');
+            const body = document.querySelector('body');
+
+            // 1. 解鎖開門功能 (點擊封面)
+            cover.addEventListener('click', () => {
+                cover.classList.add('unlock-animation'); // 觸發封面淡出並上移動畫
+                body.style.overflow = 'auto'; // 允許內頁滾動
+                
+                // 動畫結束後隱藏封面層
+                setTimeout(() => {
+                    cover.style.display = 'none';
+                }, 800); // 對應 CSS 動畫時間
+            });
+
+            // 2. 內部連結轉場功能 (淡出)
+            const links = document.querySelectorAll('.transition-link');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    const targetUrl = link.getAttribute('href');
+                    inner.classList.add('fade-out');
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
