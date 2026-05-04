@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cindy's Space</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="fade-in"> <div class="container">
+        <div class="profile-card">
+            <div class="avatar-placeholder">👤</div>
+            <p class="profile-text">歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。</p>
+        </div>
+
+        <div class="nav-links">
+            <a href="about.html" class="link-btn transition-link">
+                <i class="fas fa-palette icon"></i> 興趣愛好
+            </a>
+
+            <a href="life.html" class="link-btn transition-link">
+                <i class="fas fa-book-open icon"></i> 我的大小事
+            </a>
+
+            <a href="code.html" class="link-btn transition-link">
+                <i class="fas fa-code icon"></i> 小小程式
+            </a>
+
+            <a href="harmonica.html" class="link-btn transition-link">
+                <i class="fas fa-music icon"></i> 口琴世界
+            </a>
+        </div>
+
+        <div class="footer">© 2026 Cindy. Minimal Space.</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.transition-link');
+            const body = document.querySelector('body');
+
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // 阻止預設的立刻跳轉
+                    const targetUrl = link.getAttribute('href');
+
+                    // 觸發淡出動畫
+                    body.classList.add('fade-out');
+
+                    // 在動畫結束後 (0.5秒) 進行跳轉
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
