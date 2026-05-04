@@ -19,8 +19,12 @@
         </div>
 
         <div class="nav-links">
+            <a href="about.html" class="link-btn transition-link">
+                <i class="fas fa-palette icon"></i> 興趣愛好
+            </a>
+
             <a href="life.html" class="link-btn transition-link">
-                <i class="fas fa-leaf icon"></i> 分享及記錄生活……之類的
+                <i class="fas fa-book-open icon"></i> 分享及記錄生活……之類的
             </a>
 
             <a href="code.html" class="link-btn transition-link">
@@ -28,11 +32,7 @@
             </a>
 
             <a href="harmonica.html" class="link-btn transition-link">
-                <i class="fas fa-wind icon"></i> 呼吸的日常
-            </a>
-            
-            <a href="mailto:your-email@example.com" class="link-btn">
-                <i class="fas fa-envelope icon"></i> 聯絡我
+                <i class="fas fa-music icon"></i> 呼吸的日常
             </a>
         </div>
 
@@ -43,12 +43,17 @@
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.transition-link');
             const body = document.querySelector('body');
+
             links.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); 
                     const targetUrl = link.getAttribute('href');
+
                     body.classList.add('fade-out');
-                    setTimeout(() => { window.location.href = targetUrl; }, 500);
+
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 500);
                 });
             });
         });
