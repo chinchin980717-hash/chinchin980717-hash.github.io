@@ -104,11 +104,39 @@
         .inner-header h2 { font-size: 14px; color: var(--accent-brown); letter-spacing: 2px; margin-bottom: 5px; }
         .inner-header p { font-size: 13px; color: #a3968b; margin: 0; }
 
-        /* --- 通用基礎樣式 (保留之前設定) --- */
-        .typing-container { display: inline-block; }
-        .profile-text { font-size: 14px; font-weight: 500; line-height: 1.6; margin: 0; display: inline-block; white-space: nowrap; overflow: hidden; border-right: 2px solid var(--accent-brown); width: 0; animation: typing 3s steps(35, end) forwards, blink 0.75s step-end infinite; }
-        @keyframes typing { from { width: 0; } to { width: 100%; } }
-        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--accent-brown); } }
+        /* --- 修正後的打字機樣式 --- */
+.typing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* 兩行字中間的間距 */
+}
+
+.profile-text {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap; /* 每一行自己不換行 */
+    overflow: hidden;    /* 隱藏還沒打出來的字 */
+    width: 0;            /* 初始寬度為 0 */
+    border-right: 2px solid var(--accent-brown); /* 光標 */
+}
+
+/* 第一行先打，花 2 秒 */
+.line1 {
+    animation: typing 2s steps(15, end) forwards;
+}
+
+/* 第二行延遲 2.5 秒再打，也花 2 秒 */
+.line2 {
+    animation: typing 2s steps(15, end) 2.5s forwards;
+}
+
+/* 打字機效果關鍵影格 */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
 
         .nav-links { display: flex; flex-direction: column; gap: 15px; }
         .link-btn { background-color: var(--card-white); padding: 18px 25px; border-radius: 16px; text-decoration: none; color: var(--text-main); font-size: 14px; font-weight: 500; display: flex; align-items: center; transition: all 0.3s ease; box-shadow: 0 4px 15px var(--shadow); border: 1px solid rgba(201, 169, 145, 0.05); }
@@ -138,8 +166,10 @@
             <img src="IMG_20260211_080039.jpg" class="avatar" alt="Cindy's Avatar">
             
             <div class="typing-container">
-                <p class="profile-text">歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。</p>
-            </div>
+    <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
+    <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
+</div>
+
             <div class="scroll-down-hint">
                 <i class="fas fa-chevron-down"></i>
                 <span>點擊解鎖入口</span>
@@ -151,21 +181,21 @@
         <div class="container">
             <div class="inner-header">
                 <h2>CINDY'S FILES</h2>
-                <p>請選擇一個資料夾進入</p>
+                <p>請選擇一個你想了解的Cindy</p>
             </div>
 
             <div class="nav-links">
                 <a href="about.html" class="link-btn transition-link">
-                    <i class="fas fa-folder icon"></i> 關於我
+                    <i class="fas fa-palette icon"></i> 關於我
                 </a>
                 <a href="life.html" class="link-btn transition-link">
-                    <i class="fas fa-folder-open icon"></i> 分享及記錄生活……之類的
+                    <i class="fas fa-book icon"></i> 分享及生活記錄
                 </a>
                 <a href="code.html" class="link-btn transition-link">
-                    <i class="fas fa-code icon"></i> 關於重生後我所製造的程式
+                    <i class="fas fa-code icon"></i> 小小程式
                 </a>
                 <a href="harmonica.html" class="link-btn transition-link">
-                    <i class="fas fa-music icon"></i> 呼吸的日常
+                    <i class="fas fa-music icon"></i> 口琴小世界
                 </a>
             </div>
 
