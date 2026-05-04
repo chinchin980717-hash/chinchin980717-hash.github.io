@@ -1,0 +1,130 @@
+/* --- 奶油大地色調定義 ( image_12.png ) --- */
+:root {
+    --bg-color: #fdfaf5;       /* 淡淡的米奶油背景 */
+    --card-color: #ffffff;    /* 純白卡片/按鈕背景 */
+    --text-main: #4a3f35;     /* 深棕色文字 */
+    --accent-color: #c9a991;  /* 莫蘭迪棕色 (滑過時) */
+    --shadow: rgba(74, 63, 53, 0.03); /* 超淡的棕色陰影 */
+}
+
+/* --- 基礎樣式 --- */
+body {
+    font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    margin: 0;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+/* --- 頁面轉場動畫核心 --- */
+/* 載入時淡入 */
+.fade-in {
+    animation: fadeInAnimation 0.5s ease-in forwards;
+}
+
+/* 點擊時淡出 */
+.fade-out {
+    animation: fadeOutAnimation 0.5s ease-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOutAnimation {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* --- 容器 --- */
+.container {
+    width: 85%;
+    max-width: 420px;
+    margin: 60px 0;
+}
+
+/* --- 關於我卡片樣式 ( image_12.png ) --- */
+.profile-card {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    padding: 30px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px var(--shadow);
+    text-align: center;
+    border: 1px solid rgba(201, 169, 145, 0.1);
+}
+
+.avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #eee;
+    margin: 0 auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #aaa;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.profile-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- 按鈕樣式 ( image_11.png 的長方塊樣式) --- */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* 按鈕之間的間距 */
+}
+
+.link-btn {
+    background-color: var(--card-color);
+    padding: 18px 25px; /* image_11.png 的寬鬆感 */
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(201, 169, 145, 0.05);
+    display: flex;
+    align-items: center; /* 圖示與文字對齊 */
+    justify-content: flex-start; /* 靠左對齊，像 image_11.png */
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+/* 按鈕內的圖示樣式 */
+.link-btn .icon {
+    margin-right: 15px; /* 圖示與文字的間距 */
+    font-size: 18px;
+    color: var(--accent-color); /* 圖示使用莫蘭迪棕 */
+    width: 20px; /* 固定寬度，確保文字對齊 */
+    text-align: center;
+}
+
+/* 按鈕滑過效果 */
+.link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow);
+    border-color: var(--accent-color);
+}
+
+/* --- 頁尾 --- */
+.footer {
+    margin-top: 40px;
+    font-size: 11px;
+    color: #a3968b;
+    text-align: center;
+}
