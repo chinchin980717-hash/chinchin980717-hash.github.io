@@ -3,63 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cindy's FILES</title>
+    <title>Cindy's Files</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-color: #fdfaf5;       /* 妳喜歡的奶油背景色 */
+            --card-white: #ffffff;    /* 純白卡片 */
+            --text-main: #4a3f35;     /* 深棕色文字 */
+            --accent-brown: #c9a991;  /* 莫蘭迪棕 */
+            --icon-color: #bfa393;    /* 圖示淺棕色 */
+            --shadow: rgba(74, 63, 53, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden; /* 防止解鎖前亂捲動 */
+            line-height: 1.5;
+        }
+
+        /* --- 1. 封面層 (蓋在最上面) --- */
+        #cover-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-color);
+            z-index: 2000; /* 確保在最頂層 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.5s;
+            cursor: pointer;
+        }
+
+        .cover-card {
+            background: var(--card-white);
+            width: 85%;
+            max-width: 360px;
+            padding: 50px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px var(--shadow);
+            text-align: center;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: #eee;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .welcome-msg {
+            font-size: 15px;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        .unlock-hint {
+            font-size: 13px;
+            color: var(--accent-brown);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* 解鎖動畫：封面滑上去 */
+        .is-unlocked {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- 2. 內頁層 (藏在下面) --- */
+        #main-content {
+            min-height: 100vh;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0; /* 初始隱藏，解鎖後淡入 */
+            transition: opacity 1s ease;
+        }
+
+        .show-content {
+            opacity: 1 !important;
+        }
+
+        .inner-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .inner-header h1 {
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--accent-brown);
+            margin: 0 0 8px 0;
+        }
+
+        .folder-list {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 檔案按鈕樣式 */
+        .folder-item {
+            background: var(--card-white);
+            padding: 20px 25px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-main);
+            box-shadow: 0 8px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .folder-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px var(--shadow);
+        }
+
+        .folder-icon {
+            width: 35px;
+            font-size: 20px;
+            color: var(--icon-color);
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .folder-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-bottom: 30px;
+            font-size: 11px;
+            color: #ccc;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <section class="hero-section">
-        <div class="profile-card">
-            <div class="avatar-wrapper">👤</div>
-            <div class="typing-box">
-                <p class="profile-text">歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。</p>
+    <div id="cover-layer" onclick="unlockPage()">
+        <div class="cover-card">
+            <div class="avatar">👤</div>
+            <div class="welcome-msg">
+                歡迎來到 Cindy 的個人空間，<br>在這裡你可以了解到真正的我。
+            </div>
+            <div class="unlock-hint">
+                <i class="fas fa-chevron-down"></i><br>
+                <span>點擊或下滑解鎖</span>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="folder-section">
-        <div class="container">
-            <h2 class="section-title">CINDY'S FILES</h2>
-            
-            <div class="nav-links">
-                <a href="about.html" class="folder-item transition-link">
-                    <div class="icon-box"><i class="fas fa-folder"></i></div>
-                    <span class="label">關於我</span>
-                </a>
-
-                <a href="life.html" class="folder-item transition-link">
-                    <div class="icon-box"><i class="fas fa-folder-open"></i></div>
-                    <span class="label">分享及記錄生活……之類的</span>
-                </a>
-
-                <a href="code.html" class="folder-item transition-link">
-                    <div class="icon-box"><i class="fas fa-code"></i></div>
-                    <span class="label">關於重生後我所製造的程式</span>
-                </a>
-
-                <a href="harmonica.html" class="folder-item transition-link">
-                    <div class="icon-box"><i class="fas fa-music"></i></div>
-                    <span class="label">呼吸的日常</span>
-                </a>
-            </div>
+    <main id="main-content">
+        <div class="inner-header">
+            <h1>CINDY'S FILES</h1>
+            <p>請選擇一個資料夾進入</p>
         </div>
-    </section>
 
-    <div class="footer">© 2026 Cindy. Minimal Space.</div>
+        <div class="folder-list">
+            <a href="about.html" class="folder-item">
+                <div class="folder-icon"><i class="fas fa-folder"></i></div>
+                <div class="folder-text">關於我</div>
+            </a>
+
+            <a href="life.html" class="folder-item">
+                <div class="folder-icon"><i class="fas fa-folder-open"></i></div>
+                <div class="folder-text">分享及記錄生活……之類的</div>
+            </a>
+
+            <a href="code.html" class="folder-item">
+                <div class="folder-icon"><i class="fas fa-code"></i></div>
+                <div class="folder-text">關於重生後我所製造的程式</div>
+            </a>
+
+            <a href="harmonica.html" class="folder-item">
+                <div class="folder-icon"><i class="fas fa-music"></i></div>
+                <div class="folder-text">呼吸的日常</div>
+            </a>
+        </div>
+
+        <div class="footer">© 2026 Cindy. Minimal Space.</div>
+    </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const links = document.querySelectorAll('.transition-link');
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.body.classList.add('fade-out');
-                    setTimeout(() => { window.location.href = link.getAttribute('href'); }, 500);
-                });
-            });
+        function unlockPage() {
+            const cover = document.getElementById('cover-layer');
+            const content = document.getElementById('main-content');
+            
+            // 1. 執行封面滑開動畫
+            cover.classList.add('is-unlocked');
+            
+            // 2. 允許頁面滾動
+            document.body.style.overflow = 'auto';
+            
+            // 3. 內頁淡入
+            setTimeout(() => {
+                content.classList.add('show-content');
+            }, 300);
+            
+            // 4. 動畫結束後徹底移除封面，避免擋到按鈕
+            setTimeout(() => {
+                cover.style.display = 'none';
+            }, 850);
+        }
+
+        // 手機版下滑手勢支援
+        let touchstartY = 0;
+        document.addEventListener('touchstart', e => touchstartY = e.changedTouches[0].screenY);
+        document.addEventListener('touchend', e => {
+            if (touchstartY > e.changedTouches[0].screenY + 50) unlockPage();
         });
     </script>
 </body>
 </html>
-
