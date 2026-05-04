@@ -127,4 +127,44 @@ body {
     font-size: 11px;
     color: #a3968b;
     text-align: center;
+    /* --- 打字機動畫設定 --- */
+.typing-container {
+    display: inline-block;
+}
+
+.profile-text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+    white-space: nowrap;      /* 確保文字不換行直到動畫結束 */
+    overflow: hidden;         /* 隱藏未打出的文字 */
+    border-right: 2px solid var(--accent-color); /* 模擬打字機的光標 */
+    width: 0;                 /* 初始寬度為 0 */
+    animation: 
+        typing 2.5s steps(30, end) forwards, /* 打字動畫：2.5秒內完成 */
+        blink-caret 0.75s step-end infinite; /* 光標閃爍動畫 */
+}
+
+/* 打字機動作：將寬度從 0 變到 100% */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+/* 光標閃爍動作 */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent-color) }
+}
+
+/* 針對行動裝置微調：如果字太長，動畫結束後允許換行並隱藏光標 */
+@media (max-width: 480px) {
+    .profile-text {
+        white-space: normal; 
+        animation: typing 2.5s steps(30, end) forwards;
+        border-right: none;
+    }
+}
+
 }
