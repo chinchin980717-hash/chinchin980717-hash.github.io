@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #fdfaf5;       /* 妳喜歡的奶油背景色 */
+            --bg-color: #fdfaf5;       /* 奶油背景色 */
             --card-white: #ffffff;    /* 純白卡片 */
             --text-main: #4a3f35;     /* 深棕色文字 */
             --accent-brown: #c9a991;  /* 莫蘭迪棕 */
@@ -25,19 +25,17 @@
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            overflow: hidden; /* 防止解鎖前亂捲動 */
+            overflow: hidden; /* 防止封面滑開前捲動 */
             line-height: 1.5;
         }
 
-        /* --- 1. 封面層 (蓋在最上面) --- */
+        /* --- 封面層 (釘在最頂層) --- */
         #cover-layer {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-color: var(--bg-color);
-            z-index: 2000; /* 確保在最頂層 */
+            z-index: 2000; /* 層次最高 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -57,16 +55,12 @@
         }
 
         .avatar {
-            width: 90px;
-            height: 90px;
+            width: 90px; height: 90px;
             background: #eee;
             border-radius: 50%;
             margin: 0 auto 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            border: 4px solid white;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 40px; border: 4px solid white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
@@ -88,21 +82,21 @@
             60% {transform: translateY(-5px);}
         }
 
-        /* 解鎖動畫：封面滑上去 */
+        /* 封面滑開動畫 */
         .is-unlocked {
             transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
         }
 
-        /* --- 2. 內頁層 (藏在下面) --- */
+        /* --- 內頁層 (藏在下面) --- */
         #main-content {
             min-height: 100vh;
             padding: 60px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0; /* 初始隱藏，解鎖後淡入 */
+            opacity: 0; /* 初始隱藏 */
             transition: opacity 1s ease;
         }
 
@@ -120,6 +114,12 @@
             letter-spacing: 4px;
             color: var(--accent-brown);
             margin: 0 0 8px 0;
+            font-weight: bold;
+        }
+
+        .inner-header p {
+            font-size: 12px;
+            color: #a3968b;
         }
 
         .folder-list {
@@ -130,17 +130,18 @@
             gap: 15px;
         }
 
-        /* 檔案按鈕樣式 */
+        /* 資料夾項目 (卡片樣式) */
         .folder-item {
             background: var(--card-white);
             padding: 20px 25px;
             border-radius: 20px;
             display: flex;
             align-items: center;
-            text-decoration: none;
+            text-decoration: none; /* 移除藍色底線 */
             color: var(--text-main);
             box-shadow: 0 8px 20px var(--shadow);
             transition: all 0.3s ease;
+            border: 1px solid rgba(201, 169, 145, 0.05);
         }
 
         .folder-item:hover {
@@ -153,8 +154,7 @@
             font-size: 20px;
             color: var(--icon-color);
             margin-right: 15px;
-            display: flex;
-            justify-content: center;
+            display: flex; justify-content: center;
         }
 
         .folder-text {
@@ -181,7 +181,7 @@
             </div>
             <div class="unlock-hint">
                 <i class="fas fa-chevron-down"></i><br>
-                <span>點擊或下滑解鎖</span>
+                <span>點擊解鎖入口</span>
             </div>
         </div>
     </div>
@@ -214,7 +214,7 @@
             </a>
         </div>
 
-        <div class="footer">© 2026 Cindy. Minimal Space.</div>
+        <div class="footer">© 2026 Cindy. Build with folder concept.</div>
     </main>
 
     <script>
@@ -222,29 +222,22 @@
             const cover = document.getElementById('cover-layer');
             const content = document.getElementById('main-content');
             
-            // 1. 執行封面滑開動畫
+            // 封面向上滑開
             cover.classList.add('is-unlocked');
             
-            // 2. 允許頁面滾動
+            // 允許背景滾動
             document.body.style.overflow = 'auto';
             
-            // 3. 內頁淡入
+            // 內頁淡入
             setTimeout(() => {
                 content.classList.add('show-content');
             }, 300);
             
-            // 4. 動畫結束後徹底移除封面，避免擋到按鈕
+            // 完全移除封面防止干擾
             setTimeout(() => {
                 cover.style.display = 'none';
             }, 850);
         }
-
-        // 手機版下滑手勢支援
-        let touchstartY = 0;
-        document.addEventListener('touchstart', e => touchstartY = e.changedTouches[0].screenY);
-        document.addEventListener('touchend', e => {
-            if (touchstartY > e.changedTouches[0].screenY + 50) unlockPage();
-        });
     </script>
 </body>
 </html>
