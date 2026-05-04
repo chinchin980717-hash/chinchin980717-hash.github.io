@@ -1,9 +1,9 @@
 :root {
-    --bg-color: #fdfaf5;
-    --card-color: #ffffff;
-    --text-main: #4a3f35;
-    --accent-color: #c9a991;
-    --shadow: rgba(74, 63, 53, 0.05);
+    --bg-color: #fdfaf5;       /* 淡淡的米奶油背景 */
+    --card-color: #ffffff;    /* 純白卡片/按鈕背景 */
+    --text-main: #4a3f35;     /* 深棕色文字 */
+    --accent-color: #c9a991;  /* 莫蘭迪棕色 */
+    --shadow: rgba(74, 63, 53, 0.05); /* 超淡的棕色陰影 */
 }
 
 body {
@@ -11,36 +11,103 @@ body {
     margin: 0;
     background-color: var(--bg-color);
     min-height: 100vh;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+    overflow: hidden; /* 初始禁止滾動，強迫解鎖 */
+}
+
+/* --- 1. 封面層樣式 --- */
+.main-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-color); /* 封面顏色與背景一致 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* 確保在最上層 */
+    cursor: pointer; /* 滑過時顯示手勢 */
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.cover-content {
+    background-color: var(--card-color);
+    border-radius: 20px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 15px 40px var(--shadow);
+    border: 1px solid rgba(201, 169, 145, 0.1);
+    width: 85%;
+    max-width: 380px;
+}
+
+/* 封面解鎖動畫 (上移並淡出) */
+.unlock-animation {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+/* 下滑提示 */
+.scroll-down-hint {
+    margin-top: 50px;
+    color: var(--accent-color);
+    font-size: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--text-main);
-    letter-spacing: 0.5px;
+    gap: 8px;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
 }
 
-/* 頁面淡入淡出動畫 */
-.fade-in { animation: fadeInAnimation 0.6s ease-in forwards; }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* --- 2. 內部網頁樣式 --- */
+.inner-page {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.fade-in { animation: fadeInAnimation 0.8s ease-in forwards; }
 .fade-out { animation: fadeOutAnimation 0.5s ease-out forwards; }
-@keyframes fadeInAnimation { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeOutAnimation { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-10px); } }
+@keyframes fadeInAnimation { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOutAnimation { from { opacity: 1; } to { opacity: 0; } }
 
 .container {
     width: 85%;
     max-width: 420px;
-    margin: 60px 0;
 }
 
-/* 關於我卡片與打字效果 */
-.profile-card {
-    background-color: var(--card-color);
-    border-radius: 20px;
-    padding: 35px 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 30px var(--shadow);
+/* 內頁標題區 */
+.inner-header {
     text-align: center;
-    border: 1px solid rgba(201, 169, 145, 0.1);
+    margin-bottom: 40px;
 }
 
+.inner-header h2 {
+    font-size: 14px;
+    color: var(--accent-color);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+.inner-header p {
+    font-size: 13px;
+    color: #a3968b;
+    margin: 0;
+}
+
+/* --- 其他通用樣式 (保留之前設定) --- */
 .avatar-placeholder {
     width: 80px;
     height: 80px;
@@ -55,6 +122,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
+.typing-container { display: inline-block; }
 .profile-text {
     font-size: 14px;
     font-weight: 500;
@@ -67,11 +135,9 @@ body {
     width: 0;
     animation: typing 3s steps(35, end) forwards, blink 0.75s step-end infinite;
 }
-
 @keyframes typing { from { width: 0; } to { width: 100%; } }
 @keyframes blink { from, to { border-color: transparent; } 50% { border-color: var(--accent-color); } }
 
-/* 按鈕樣式 */
 .nav-links { display: flex; flex-direction: column; gap: 15px; }
 .link-btn {
     background-color: var(--card-color);
@@ -79,7 +145,7 @@ body {
     border-radius: 16px;
     text-decoration: none;
     color: var(--text-main);
-    font-size: 14.5px;
+    font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -87,13 +153,11 @@ body {
     box-shadow: 0 4px 15px var(--shadow);
     border: 1px solid rgba(201, 169, 145, 0.05);
 }
-
 .link-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--shadow); border-color: var(--accent-color); }
 .link-btn .icon { margin-right: 15px; color: var(--accent-color); width: 20px; text-align: center; }
 
 .footer { margin-top: 50px; font-size: 11px; color: #a3968b; text-align: center; }
 
-/* 手機版適應 */
 @media (max-width: 480px) {
     .profile-text { white-space: normal; border-right: none; width: 100%; animation: none; }
 }
