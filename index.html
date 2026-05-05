@@ -154,7 +154,7 @@
                     <i class="fas fa-folder icon"></i> 關於我
                 </a>
                 <a href="life.html" class="link-btn">
-                    <i class="fas fa-folder-open icon"></i> 分享及生活記錄
+                    <i class="fas fa-book icon"></i> 分享及生活記錄
                 </a>
                 <a href="code.html" class="link-btn">
                     <i class="fas fa-code icon"></i> 小小程式
@@ -167,21 +167,11 @@
             <div class="contact-section">
                 <p class="contact-title">聯絡我</p>
                 <div class="social-icons">
-                    <a href="https://github.com/妳的帳號" target="_blank" class="social-icon-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://instagram.com/" target="_blank" class="social-icon-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://facebook.com/" target="_blank" class="social-icon-link">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="https://discordapp.com/" target="_blank" class="social-icon-link">
-                        <i class="fab fa-discord"></i>
-                    </a>
-                    <a href="mailto:妳的郵件" class="social-icon-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
+                    <a href="https://github.com/妳的帳號" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/" target="_blank" class="social-icon-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/" target="_blank" class="social-icon-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://discordapp.com/" target="_blank" class="social-icon-link"><i class="fab fa-discord"></i></a>
+                    <a href="mailto:妳的郵件" class="social-icon-link"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
@@ -193,7 +183,6 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
-        // 檢查是否有返回暗號 #inner，若有則跳過封面
         window.addEventListener('load', () => {
             if (window.location.hash === '#inner') {
                 cover.style.display = 'none';
@@ -202,7 +191,6 @@
             }
         });
 
-        // 封面點擊開門邏輯
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
             document.body.style.overflow = 'auto';
