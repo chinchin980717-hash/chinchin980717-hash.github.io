@@ -43,7 +43,6 @@
             width: 85%; max-width: 380px;
         }
 
-        /* 修正：頭像顯示邏輯，確保圖片完整居中 */
         .avatar {
             width: 100px;
             height: 100px;
@@ -56,7 +55,6 @@
             object-position: center; 
         }
 
-        /* 修正：打字機動畫邏輯 */
         .typing-container {
             display: block;
             text-align: center;
@@ -81,7 +79,6 @@
             to { width: 15em; } 
         }
 
-        /* 恢復：點擊文字跳動動畫 */
         .bounce-text {
             font-size: 12px;
             color: var(--accent-brown);
@@ -126,12 +123,10 @@
     <div class="main-coverLayer" id="coverLayer">
         <div class="cover-content">
             <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
-            
             <div class="typing-container">
                 <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
                 <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
             </div>
-            
             <p class="bounce-text">點擊解鎖入口</p>
         </div>
     </div>
@@ -163,6 +158,16 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
+        // 🌟 新增邏輯：檢查網址是否有返回暗號 #inner
+        window.addEventListener('load', () => {
+            if (window.location.hash === '#inner') {
+                cover.style.display = 'none'; // 直接隱藏封面
+                inner.classList.add('show-inner'); // 直接顯示選單
+                document.body.style.overflow = 'auto'; // 開放捲動
+            }
+        });
+
+        // 原本的封面點擊動畫
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
             document.body.style.overflow = 'auto';
