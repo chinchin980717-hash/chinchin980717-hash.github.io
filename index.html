@@ -104,50 +104,63 @@
         .inner-header h2 { font-size: 14px; color: var(--accent-brown); letter-spacing: 2px; margin-bottom: 5px; }
         .inner-header p { font-size: 13px; color: #a3968b; margin: 0; }
 
-        /* --- 打字機動畫修正版 --- */
-.typing-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px; /* 兩行字中間的間距 */
-    margin-bottom: 30px;
-}
+        <style>
+    /* --- 絕對能動的打字機樣式 --- */
+    .typing-container {
+        display: block; /* 改回 block，避免 flex 干擾寬度計算 */
+        text-align: center;
+        margin: 20px auto 40px;
+    }
 
-.profile-text {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-main);
-    white-space: nowrap; /* 絕對不換行 */
-    overflow: hidden;    /* 隱藏沒打出的字 */
-    width: 0;            /* 初始寬度為 0 */
-    border-right: 2px solid var(--accent-brown); /* 光標 */
-}
+    .profile-text {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-main);
+        
+        /* 核心設定：鎖定不換行與隱藏 */
+        white-space: nowrap; 
+        overflow: hidden;    
+        border-right: 2px solid var(--accent-brown); /* 光標 */
+        
+        /* 初始狀態 */
+        width: 0;
+        margin: 5px auto; /* 讓每一行自己置中 */
+    }
 
-/* 第一行：設定寬度為 14 個字 (14ch) */
-.line1 {
-    animation: 
-        typing 2s steps(14) forwards,
-        blink 0.75s step-end 3; /* 打完後光標閃3次消失 */
-}
+    /* 第一行：文字長度大約 15em */
+    .line1 {
+        animation: 
+            typing 2s steps(15) forwards;
+    }
 
-/* 第二行：延遲 2.5 秒，寬度同樣設定為 14 個字 (14ch) */
-.line2 {
-    animation: 
-        typing 2s steps(14) 2.5s forwards,
-        blink 0.75s step-end infinite 2.5s; /* 第二行打完光標持續閃爍 */
-}
+    /* 第二行：延遲 2.5 秒，長度也大約 15em */
+    .line2 {
+        animation: 
+            typing 2s steps(15) 2.5s forwards;
+    }
 
-/* 關鍵：使用 ch 讓瀏覽器精確計算字數寬度 */
-@keyframes typing {
-    from { width: 0; }
-    to { width: 14em; } /* 這裡用 em 或固定寬度最保險 */
-}
+    /* 動畫核心：改用具體的 em 數值，這在所有手機瀏覽器都最穩定 */
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 15em; } /* 15em 代表約 15 個字寬 */
+    }
 
-@keyframes blink {
-    from, to { border-color: transparent; }
-    50% { border-color: var(--accent-brown); }
-}
+    /* 光標閃爍 */
+    .profile-text {
+        animation-name: typing, blink; /* 如果妳想要閃爍，可以並列寫 */
+    }
+    
+    @keyframes blink {
+        from, to { border-color: transparent; }
+        50% { border-color: var(--accent-brown); }
+    }
+</style>
 
+<div class="typing-container">
+    <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
+    <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
+</div>
+    
 
 
         .nav-links { display: flex; flex-direction: column; gap: 15px; }
@@ -177,11 +190,6 @@
             
             <img src="IMG_20260211_080039.jpg" class="avatar" alt="Cindy's Avatar">
             
-            <div class="typing-container">
-    <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
-    <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
-</div>
-
 
             <div class="scroll-down-hint">
                 <i class="fas fa-chevron-down"></i>
