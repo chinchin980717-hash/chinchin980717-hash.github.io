@@ -23,7 +23,7 @@
             overflow: hidden; 
         }
 
-        /* --- 封面層邏輯 --- */
+        /* --- 封面層 --- */
         .main-coverLayer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -94,7 +94,7 @@
 
         .unlock-animation { transform: translateY(-100%); opacity: 0; }
 
-        /* --- 內頁層邏輯 --- */
+        /* --- 內頁選單層 --- */
         .inner-page { padding: 60px 20px; text-align: center; opacity: 0; transition: opacity 0.8s; }
         .show-inner { opacity: 1; }
 
@@ -116,10 +116,10 @@
         .link-btn:hover { transform: translateY(-3px); }
         .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
 
-        /* 聯絡我樣式 */
-        .contact-section { margin-top: 45px; }
+        /* 聯絡我區塊樣式 */
+        .contact-section { margin-top: 40px; }
         .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 18px; letter-spacing: 2px; }
-        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icons { display: flex; justify-content: center; gap: 22px; }
         .social-icon-link {
             color: var(--accent-brown);
             font-size: 20px;
@@ -128,7 +128,7 @@
         }
         .social-icon-link:hover { transform: translateY(-3px); color: #a3968b; }
 
-        .footer { margin-top: 40px; font-size: 11px; color: #a3968b; }
+        .footer { margin-top: 45px; font-size: 11px; color: #a3968b; }
     </style>
 </head>
 <body>
@@ -167,11 +167,21 @@
             <div class="contact-section">
                 <p class="contact-title">聯絡我</p>
                 <div class="social-icons">
-                    <a href="mailto:your-email@example.com" class="social-icon-link"><i class="fas fa-envelope"></i></a>
-                    <a href="https://instagram.com/" target="_blank" class="social-icon-link"><i class="fab fa-instagram"></i></a>
-                    <a href="https://facebook.com/" target="_blank" class="social-icon-link"><i class="fab fa-facebook"></i></a>
-                    <a href="https://discordapp.com/" target="_blank" class="social-icon-link"><i class="fab fa-discord"></i></a>
-                    <a href="https://github.com/" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/妳的帳號" target="_blank" class="social-icon-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/" target="_blank" class="social-icon-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/" target="_blank" class="social-icon-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://discordapp.com/" target="_blank" class="social-icon-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="mailto:妳的郵件" class="social-icon-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
 
@@ -183,7 +193,7 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
-        // 自動辨認返回暗號
+        // 檢查是否有返回暗號 #inner，若有則跳過封面
         window.addEventListener('load', () => {
             if (window.location.hash === '#inner') {
                 cover.style.display = 'none';
@@ -192,7 +202,7 @@
             }
         });
 
-        // 點擊解鎖邏輯
+        // 封面點擊開門邏輯
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
             document.body.style.overflow = 'auto';
