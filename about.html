@@ -65,11 +65,13 @@
             margin-bottom: 40px;
         }
 
+        /* 頭像邏輯：與主頁一致，確保不切半 */
         .about-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center;
             border: 4px solid #fff;
             box-shadow: 0 4px 15px var(--shadow);
             margin-bottom: 20px;
@@ -127,7 +129,9 @@
 <body>
 
     <nav class="nav-header">
-        <a href="index.html" class="back-btn"><i class="fas fa-chevron-left"></i> 返回</a>
+        <a href="index.html#inner" class="back-btn">
+            <i class="fas fa-chevron-left"></i> 返回
+        </a>
     </nav>
 
     <div class="container">
@@ -140,23 +144,22 @@
                 <p>嗨！我是 Cindy。目前是一名高一學生。</p>
                 <p>
                     我對這個世界充滿好奇，喜歡透過物理去理解自然的邏輯，也喜歡透過程式去創造屬於自己的小世界。
-                    在課餘時間，我會吹奏半音階口琴，讓旋律成為我呼吸的一部分。
+                    在課餘時間，我會練習半音階口琴，也喜歡觀察自然、種植植物。
                 </p>
                 
                 <div class="tags-container">
                     <span class="tag"># 物理</span>
                     <span class="tag"># 半音階口琴</span>
                     <span class="tag"># 程式開發</span>
-                    <span class="tag"># 百香果研究</span>
-                    <span class="tag"># 創意寫作</span>
+                    <span class="tag"># 自然觀察</span>
                 </div>
             </div>
         </section>
 
         <footer class="contact-footer">
             <div class="social-links">
-                <a href="https://github.com/妳的帳號" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:妳的信箱"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
             </div>
             <p class="footer-text">© 2026 Cindy. Stay curious.</p>
         </footer>
