@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cindy's FILES</title>
+    <title>Cindy's SPACE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* --- 修正後的邏輯區，解決亂碼問題 --- */
         :root {
             --bg-color: #fdfaf5;
             --card-white: #ffffff;
@@ -24,6 +23,7 @@
             overflow: hidden; 
         }
 
+        /* --- 封面層 --- */
         .main-coverLayer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -43,17 +43,20 @@
             width: 85%; max-width: 380px;
         }
 
+        /* 🛠️ 修正：頭像顯示邏輯，確保不被切掉一半 */
         .avatar {
-            width: 90px; height: 90px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             margin: 0 auto 20px;
             display: block;
             border: 3px solid #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            object-fit: cover;
+            object-fit: cover;    /* 縮放並填滿圓框 */
+            object-position: center; /* 置中對齊 */
         }
 
-        /* 打字機動畫邏輯 */
+        /* 🛠️ 修正：打字機動畫邏輯 */
         .typing-container {
             display: block;
             text-align: center;
@@ -80,6 +83,7 @@
 
         .unlock-animation { transform: translateY(-100%); opacity: 0; }
 
+        /* --- 內頁層 --- */
         .inner-page { padding: 60px 20px; text-align: center; opacity: 0; transition: opacity 0.8s; }
         .show-inner { opacity: 1; }
 
@@ -124,16 +128,16 @@
             <p style="font-size: 12px; color: #a3968b; margin-bottom: 35px;">請選擇一個你想了解的Cindy</p>
 
             <div class="nav-links">
-                <a href="about.html" class="link-btn transition-link">
+                <a href="about.html" class="link-btn">
                     <i class="fas fa-folder icon"></i> 關於我
                 </a>
-                <a href="life.html" class="link-btn transition-link">
+                <a href="life.html" class="link-btn">
                     <i class="fas fa-folder-open icon"></i> 分享及生活記錄
                 </a>
-                <a href="code.html" class="link-btn transition-link">
+                <a href="code.html" class="link-btn">
                     <i class="fas fa-code icon"></i> 小小程式
                 </a>
-                <a href="harmonica.html" class="link-btn transition-link">
+                <a href="harmonica.html" class="link-btn">
                     <i class="fas fa-music icon"></i> 口琴小世界
                 </a>
             </div>
