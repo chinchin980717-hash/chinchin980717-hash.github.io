@@ -23,7 +23,7 @@
             overflow: hidden; 
         }
 
-        /* --- 封面層 --- */
+        /* --- 封面層邏輯 --- */
         .main-coverLayer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -94,7 +94,7 @@
 
         .unlock-animation { transform: translateY(-100%); opacity: 0; }
 
-        /* --- 內頁層 --- */
+        /* --- 內頁層邏輯 --- */
         .inner-page { padding: 60px 20px; text-align: center; opacity: 0; transition: opacity 0.8s; }
         .show-inner { opacity: 1; }
 
@@ -115,7 +115,20 @@
 
         .link-btn:hover { transform: translateY(-3px); }
         .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
-        .footer { margin-top: 50px; font-size: 11px; color: #a3968b; }
+
+        /* 聯絡我樣式 */
+        .contact-section { margin-top: 45px; }
+        .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 18px; letter-spacing: 2px; }
+        .social-icons { display: flex; justify-content: center; gap: 20px; }
+        .social-icon-link {
+            color: var(--accent-brown);
+            font-size: 20px;
+            transition: transform 0.3s, color 0.3s;
+            text-decoration: none;
+        }
+        .social-icon-link:hover { transform: translateY(-3px); color: #a3968b; }
+
+        .footer { margin-top: 40px; font-size: 11px; color: #a3968b; }
     </style>
 </head>
 <body>
@@ -150,6 +163,18 @@
                     <i class="fas fa-music icon"></i> 口琴小世界
                 </a>
             </div>
+
+            <div class="contact-section">
+                <p class="contact-title">聯絡我</p>
+                <div class="social-icons">
+                    <a href="mailto:your-email@example.com" class="social-icon-link"><i class="fas fa-envelope"></i></a>
+                    <a href="https://instagram.com/" target="_blank" class="social-icon-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/" target="_blank" class="social-icon-link"><i class="fab fa-facebook"></i></a>
+                    <a href="https://discordapp.com/" target="_blank" class="social-icon-link"><i class="fab fa-discord"></i></a>
+                    <a href="https://github.com/" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
             <div class="footer">© 2026 Cindy. Build with folder concept.</div>
         </div>
     </div>
@@ -158,16 +183,16 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
-        // 🌟 新增邏輯：檢查網址是否有返回暗號 #inner
+        // 自動辨認返回暗號
         window.addEventListener('load', () => {
             if (window.location.hash === '#inner') {
-                cover.style.display = 'none'; // 直接隱藏封面
-                inner.classList.add('show-inner'); // 直接顯示選單
-                document.body.style.overflow = 'auto'; // 開放捲動
+                cover.style.display = 'none';
+                inner.classList.add('show-inner');
+                document.body.style.overflow = 'auto';
             }
         });
 
-        // 原本的封面點擊動畫
+        // 點擊解鎖邏輯
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
             document.body.style.overflow = 'auto';
