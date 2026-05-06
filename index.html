@@ -20,7 +20,8 @@
             background-color: var(--bg-color);
             min-height: 100vh;
             color: var(--text-main);
-            overflow-x: hidden; 
+            /* 初始禁止捲動，直到點擊封面解鎖 */
+            overflow: hidden; 
         }
 
         /* --- 封面層 --- */
@@ -55,8 +56,9 @@
         }
 
         .typing-container {
-            display: block;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 15px auto;
         }
 
@@ -66,14 +68,18 @@
             white-space: nowrap;
             overflow: hidden;
             width: 0; 
-            margin: 0 auto 10px;
+            margin-bottom: 10px;
             border-right: 2px solid var(--accent-brown);
         }
 
         .line1 { animation: typing 2s steps(15) forwards; }
         .line2 { animation: typing 2s steps(15) 2.2s forwards; }
 
-        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        /* 打字動畫：最後隱藏游標邊框 */
+        @keyframes typing { 
+            from { width: 0; } 
+            to { width: 100%; border-right-color: transparent; } 
+        }
 
         .bounce-text {
             font-size: 12px;
@@ -112,7 +118,7 @@
         .link-btn:hover { transform: translateY(-3px); }
         .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
 
-        /* --- 聯絡我圖示優化 --- */
+        /* --- 聯絡我圖示 --- */
         .contact-section { margin-top: 50px; }
         .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
         .social-icons { display: flex; justify-content: center; gap: 25px; align-items: center; }
@@ -125,6 +131,7 @@
             transition: transform 0.3s;
         }
         
+        /* 統一所有圖示顏色，包含 IG */
         .social-icon-link i {
             font-size: 22px;
             color: var(--accent-brown);
@@ -162,7 +169,7 @@
 
     <div class="main-coverLayer" id="coverLayer">
         <div class="cover-content">
-            <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
+            <img src="IMG_20260506_160527.png" class="avatar" alt="Avatar">
             <div class="typing-container">
                 <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
                 <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
@@ -199,7 +206,7 @@
                     </a>
                     
                     <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()">
-                        <i class="fab fa-instagram" ></i>
+                        <i class="fab fa-instagram"></i>
                     </a>
                     
                     <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link">
@@ -235,7 +242,10 @@
 
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
-            document.body.style.overflow = 'auto';
+            // 解鎖後恢復頁面捲動，並隱藏水平捲軸
+            document.body.style.overflowY = 'auto';
+            document.body.style.overflowX = 'hidden';
+            
             setTimeout(() => {
                 cover.style.display = 'none';
                 inner.classList.add('show-inner');
