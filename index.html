@@ -54,26 +54,31 @@
             object-fit: cover;    
         }
 
+        /* ✨ 修正後的單行打字機樣式 */
         .typing-container {
-            display: block;
-            text-align: center;
+            display: flex;
+            justify-content: center;
             margin: 15px auto;
         }
 
         .profile-text {
             font-size: 15px;
             font-weight: 500;
+            color: var(--text-main);
             white-space: nowrap;
             overflow: hidden;
-            width: 0; 
-            margin: 0 auto 10px;
-            border-right: 2px solid var(--accent-brown);
+            border-right: 2px solid var(--accent-brown); /* 單一游標槓槓 */
+            width: 0;
+            animation: 
+                typing 3.5s steps(30) forwards, 
+                blink 0.8s step-end infinite;
         }
 
-        .line1 { animation: typing 2s steps(15) forwards; }
-        .line2 { animation: typing 2s steps(15) 2.2s forwards; }
-
         @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-brown); }
+        }
 
         .bounce-text {
             font-size: 12px;
@@ -125,7 +130,6 @@
             transition: transform 0.3s;
         }
         
-        /* ✅ 核心修正：統一所有圖示的大小與顏色 (褐色) */
         .social-icon-link i {
             font-size: 22px;
             color: var(--accent-brown);
@@ -165,8 +169,9 @@
         <div class="cover-content">
             <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
             <div class="typing-container">
-                <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
-                <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
+                <div class="profile-text">
+                    歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。
+                </div>
             </div>
             <p class="bounce-text">點擊解鎖入口</p>
         </div>
@@ -234,17 +239,15 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
-        // 封面解鎖動畫
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
-            document.body.style.overflow = 'auto'; // 解鎖後允許滾動
+            document.body.style.overflow = 'auto';
             setTimeout(() => {
                 cover.style.display = 'none';
                 inner.classList.add('show-inner');
-            }, 800); // 動花持續 0.8s
+            }, 800);
         });
 
-        // 彈窗控制功能
         function openIG() {
             document.getElementById('ig-modal').style.display = 'flex';
         }
