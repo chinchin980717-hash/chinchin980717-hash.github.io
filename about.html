@@ -3,267 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Cindy | CINDY'S SPACE</title>
+    <title>About Cindy - 玩家檔案</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #fdfaf5;
-            --card-white: #ffffff;
+            --paper-color: #fcf8f0;
             --text-main: #4a3f35;
             --accent-brown: #c9a991;
             --shadow: rgba(74, 63, 53, 0.08);
         }
 
+        /* 📜 讓整個頁面像畫布一樣 */
         body {
             font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
             margin: 0;
-            background-color: var(--bg-color);
+            background: var(--bg-color);
+            /* 加上微弱的紙張紋理感漸層 */
+            background-image: radial-gradient(#e5e0d8 1px, transparent 1px);
+            background-size: 20px 20px;
             color: var(--text-main);
-            line-height: 1.8;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* 導覽列 */
-        .nav-header {
-            position: sticky;
-            top: 0;
-            padding: 20px;
-            background-color: rgba(253, 250, 245, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-            display: flex;
-            align-items: center;
+        /* 🎨 頂部與底部的繪畫暈染遮罩 */
+        body::before, body::after {
+            content: "";
+            position: fixed;
+            left: 0; width: 100%; height: 80px;
+            z-index: 10;
+            pointer-events: none;
         }
-
-        .back-btn {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
+        body::before {
+            top: 0;
+            background: linear-gradient(to bottom, var(--bg-color) 20%, transparent);
+        }
+        body::after {
+            bottom: 0;
+            background: linear-gradient(to top, var(--bg-color) 20%, transparent);
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 100px 20px; /* 增加上下間距讓滾動感更明顯 */
         }
 
-        /* 滑動漸顯動畫 */
-        .reveal {
+        /* ✨ 玩家檔案卡片：增加「畫框」感 */
+        .player-profile {
+            background: var(--card-white);
+            background-color: #ffffff;
+            border-radius: 2px; /* 方正一點像畫紙 */
+            padding: 40px;
+            box-shadow: 0 20px 50px var(--shadow);
+            border: 1px solid rgba(201, 169, 145, 0.3);
+            position: relative;
+            
+            /* 初始狀態隱藏，準備跑動畫 */
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .reveal.active {
+        /* 當捲動到位置時觸發 */
+        .player-profile.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* 個人簡介區 */
-        .profile-section {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-top: 20px;
+        /* 裝飾畫角 */
+        .player-profile::before {
+            content: "";
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(201, 169, 145, 0.1);
+            pointer-events: none;
         }
 
-        .about-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #fff;
-            box-shadow: 0 8px 20px var(--shadow);
-            margin-bottom: 20px;
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
         }
 
-        h1 { font-size: 26px; margin-bottom: 5px; }
-        .subtitle { color: var(--accent-brown); font-size: 14px; letter-spacing: 2px; margin-bottom: 30px; }
+        .icon-game {
+            font-size: 24px;
+            color: var(--accent-brown);
+            margin-right: 12px;
+        }
 
-        /* 內容卡片 */
-        .content-card {
-            background: var(--card-white);
-            padding: 30px;
-            border-radius: 28px;
-            box-shadow: 0 12px 35px var(--shadow);
+        .profile-title {
+            font-size: 18px;
+            margin: 0;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .id-card {
+            background: #f9f6f2;
+            padding: 20px;
+            border-left: 4px solid var(--accent-brown);
             margin-bottom: 30px;
         }
 
-        .section-title {
-            font-size: 19px;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .id-label {
+            font-weight: bold;
+            color: var(--accent-brown);
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--accent-brown);
+            margin: 30px 0 15px;
             display: flex;
             align-items: center;
         }
-        .section-title i { margin-right: 12px; color: var(--accent-brown); }
-
-        /* 進度條動畫 */
-        .progress-bar-container {
-            background: #eee;
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
+        .section-subtitle::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent-brown), transparent);
+            margin-left: 10px;
         }
 
-        .progress-fill {
-            background: var(--accent-brown);
-            height: 100%;
-            width: 0; /* 初始寬度為0 */
-            border-radius: 10px;
-            transition: width 1.5s ease-in-out;
+        .attr-text {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 5px 0;
         }
 
-        /* 隱身術卡片 */
-        .skill-box {
-            font-size: 15px;
-            background: #fdfdfd;
-            padding: 18px;
-            border-radius: 18px;
-            border: 1px dashed var(--accent-brown);
-            margin: 15px 0;
-            line-height: 1.6;
-        }
-
-        .tag {
-            background: var(--bg-color);
-            color: var(--accent-brown);
-            padding: 7px 18px;
-            border-radius: 20px;
+        .attr-note {
             font-size: 13px;
-            border: 1px solid rgba(201, 169, 145, 0.15);
+            color: #8e8276;
+            font-style: italic;
         }
 
-        .footer-simple { text-align: center; padding: 50px 0; font-size: 12px; color: #a3968b; }
+        .equip-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .equip-list li {
+            padding: 15px 0;
+            border-bottom: 1px dashed #e0dcd5;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .icon-small {
+            width: 30px;
+            color: var(--accent-brown);
+            margin-right: 10px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            color: var(--accent-brown);
+            font-size: 13px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--accent-brown);
+            padding-bottom: 2px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { opacity: 0.7; }
+
     </style>
 </head>
 <body>
 
-    <nav class="nav-header">
-        <a href="index.html#inner" class="back-btn">
-            <i class="fas fa-chevron-left"></i> 返回
-        </a>
-    </nav>
-
     <div class="container">
-        <section class="profile-section reveal">
-            <img src="IMG_20260211_080039.jpg" class="about-avatar" alt="Cindy">
-            <h1>Cindy (小C)</h1>
-            <div class="subtitle">HIGH SCHOOL STUDENT</div>
-        </section>
-
-        <div class="content-card reveal">
-            <div class="section-title">
-                <i class="fas fa-gamepad"></i> 玩家檔案：Lv.1 物理魔法師 (小C)
-            </div>
-            
-            <div style="background: #fbf8f3; padding: 18px; border-radius: 18px; margin-bottom: 25px; border-left: 6px solid var(--accent-brown);">
-                <p style="margin: 0; font-weight: bold; font-size: 17px;">ID: Cindy</p>
-                <p style="margin: 6px 0 0 0; font-size: 14px; color: #8c7e73;">目前所在地：彰化女中副本</p>
+        <div class="player-profile" id="profileCard">
+            <div class="profile-header">
+                <i class="fas fa-gamepad icon-game"></i>
+                <h3 class="profile-title">玩家檔案：Lv.1 物理魔法師</h3>
             </div>
 
-            <p style="margin-bottom: 10px;"><strong>【 屬性 】</strong></p>
-            <p style="margin-top: 0; font-size: 15px;">
-                無敵大 I 人 <br>
-                <span style="color: #a3968b; font-size: 13px;">（社交能量極低，變熟了會變得很瘋）</span>
-            </p>
-            
-            <p style="margin-top: 25px;"><strong>【 核心裝備 】</strong></p>
-            <ul style="list-style: none; padding-left: 5px; font-size: 15px; line-height: 2.2;">
-                <li><i class="fas fa-music" style="color: var(--accent-brown); width: 25px;"></i> <strong>口琴：</strong> 隨身攜帶的社交武器</li>
-                <li><i class="fab fa-github" style="color: var(--accent-brown); width: 25px;"></i> <strong>GitHub：</strong> 正在擴建中的數位領地</li>
-                <li><i class="fas fa-bolt" style="color: var(--accent-brown); width: 25px;"></i> <strong>Arduino：</strong> 還不太熟悉的軟硬體法器</li>
-            </ul>
-
-            <p style="margin-top: 25px;"><strong>【 隱藏技能 】</strong></p>
-            <div class="skill-box">
-                👻 <strong>隱身術：</strong><br>
-                常常因為存在感低而嚇到人。如果你看不到我，卻感覺有人在叫你，麻煩低一下頭……
+            <div class="id-card">
+                <div class="id-label">Identity Card</div>
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">ID: Cindy</div>
+                <div style="font-size: 14px; color: #666;">目前所在地：彰化女中副本</div>
             </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <span class="tag"># 高一牲</span>
-                <span class="tag"># 大宅宅</span>
+            <div class="attributes-section">
+                <h4 class="section-subtitle">【 屬性 ATTR 】</h4>
+                <p class="attr-text">無敵大 I 人</p>
+                <p class="attr-note">社交能量極低，變熟了會變得很瘋</p>
             </div>
+
+            <div class="equipment-section">
+                <h4 class="section-subtitle">【 核心裝備 EQUIP 】</h4>
+                <ul class="equip-list">
+                    <li><i class="fas fa-music icon-small"></i> 口琴： 隨身攜帶的社交武器</li>
+                    <li><i class="fab fa-github icon-small"></i> GitHub： 正在擴建中的數位領地</li>
+                    <li><i class="fas fa-bolt icon-small"></i> Arduino： 還不太熟悉的軟硬體法器</li>
+                </ul>
+            </div>
+
+            <a href="index.html" class="back-btn">← RETURN TO MENU</a>
         </div>
-
-        <div class="content-card reveal">
-            <div class="section-title"><i class="fas fa-tasks"></i> 近期任務清單</div>
-            
-            <div style="margin-bottom: 22px;">
-                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
-                    <span>🔬 科學探究：努力找題目中</span>
-                    <strong>20%</strong>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-fill" data-percent="20%"></div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 22px;">
-                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
-                    <span>💻 技術開發：網站架設 & Arduino</span>
-                    <strong>60%</strong>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-fill" data-percent="60%"></div>
-                </div>
-            </div>
-
-            <div style="margin-bottom: 22px;">
-                <div style="display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px;">
-                    <span>🤝 社群參與：SITCON 2026 工人挑戰</span>
-                    <strong>40%</strong>
-                </div>
-                <div class="progress-bar-container">
-                    <div class="progress-fill" data-percent="40%"></div>
-                </div>
-            </div>
-
-            <p style="margin-top: 40px; text-align: center; font-weight: bold; color: #d9534f; font-size: 18px;">
-                🚩 終極目標：打敗「學測大魔王」
-            </p>
-        </div>
-
-        <div class="content-card reveal">
-            <div class="section-title"><i class="fas fa-heart"></i> 興趣愛好</div>
-            <p style="font-size: 15px; color: #5a4f44;">
-                在二次元世界裡，我是漫畫與動漫的忠實讀者。音樂與自然觀察也是我的能量來源，我喜歡研究植物的生長，就像研究物理定律一樣有趣。
-            </p>
-            <div style="display: flex; gap: 10px; margin-top: 20px;">
-                <span class="tag"># 動漫</span>
-                <span class="tag"># 音樂</span>
-                <span class="tag"># 漫畫</span>
-            </div>
-        </div>
-
-        <footer class="footer-simple">
-            © 2026 Cindy. Stay curious.
-        </footer>
     </div>
 
     <script>
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
-                    // 觸發進度條動畫
-                    var progressFills = reveals[i].querySelectorAll(".progress-fill");
-                    progressFills.forEach(fill => {
-                        fill.style.width = fill.getAttribute("data-percent");
-                    });
+        // ✨ 簡單的捲動偵測腳本
+        const card = document.getElementById('profileCard');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    card.classList.add('is-visible');
                 }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        // 初始化檢查一次
-        reveal();
-    </script>
+            });
+        }, { threshold: 0.1 });
 
+        observer.observe(card);
+
+        // 初始化時檢查一次
+        window.addEventListener('load', () => {
+            card.classList.add('is-visible');
+        });
+    </script>
 </body>
 </html>
