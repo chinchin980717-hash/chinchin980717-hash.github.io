@@ -117,20 +117,21 @@
         .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
         .social-icons { display: flex; justify-content: center; gap: 25px; align-items: center; }
         
-        /* 💡 統一所有圖示顏色，包含 IG */
         .social-icon-link {
-            color: var(--accent-brown) !important; 
-            font-size: 22px;
-            transition: transform 0.3s, color 0.3s;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s;
         }
+        
+        /* 💡 這裡是關鍵：統一所有圖示的大小與預設褐色 */
         .social-icon-link i {
-            color: var(--accent-brown) !important;
+            font-size: 22px;
+            color: var(--accent-brown);
         }
-        .social-icon-link:hover { transform: scale(1.2); opacity: 0.8; }
+        
+        .social-icon-link:hover { transform: scale(1.2); }
 
         /* --- 彈窗樣式 --- */
         .modal-overlay {
@@ -194,11 +195,25 @@
             <div class="contact-section">
                 <p class="contact-title">聯絡我</p>
                 <div class="social-icons">
-                    <a href="https://github.com/chinchin980717-hash" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
-                    <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link"><i class="fab fa-facebook"></i></a>
-                    <a href="https://discord.gg/smmN4ddpU" target="_blank" class="social-icon-link"><i class="fab fa-discord"></i></a>
-                    <a href="mailto:chinchin980717@gmail.com" class="social-icon-link"><i class="fas fa-envelope"></i></a>
+                    <a href="https://github.com/chinchin980717-hash" target="_blank" class="social-icon-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    
+                    <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()">
+                        <i class="fab fa-instagram" style="color: #c9a991 !important;"></i>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    
+                    <a href="https://discord.gg/smmN4ddpU" target="_blank" class="social-icon-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    
+                    <a href="mailto:chinchin980717@gmail.com" class="social-icon-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
                 </div>
             </div>
 
