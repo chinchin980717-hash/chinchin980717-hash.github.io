@@ -19,7 +19,9 @@
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.8;
+            /* 讓身體可以自由滑動 */
+            overflow-y: auto; 
         }
 
         /* 導覽列：返回按鈕 */
@@ -42,7 +44,6 @@
             align-items: center;
             transition: color 0.3s;
         }
-
         .back-btn:hover { color: var(--accent-brown); }
         .back-btn i { margin-right: 8px; }
 
@@ -51,79 +52,80 @@
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* 個人簡介區 */
         .profile-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* 頭像邏輯：與主頁一致，確保不切半 */
         .about-avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            object-position: center;
             border: 4px solid #fff;
             box-shadow: 0 4px 15px var(--shadow);
             margin-bottom: 20px;
         }
 
-        h1 { font-size: 24px; margin-bottom: 10px; color: var(--text-main); }
-        .subtitle { color: var(--accent-brown); font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
+        h1 { font-size: 24px; margin-bottom: 5px; color: var(--text-main); }
+        .subtitle { color: var(--accent-brown); font-size: 14px; letter-spacing: 2px; margin-bottom: 30px; }
 
-        .bio-card {
+        /* 滑動區塊樣式 */
+        .content-card {
             background: var(--card-white);
             padding: 30px;
-            border-radius: 20px;
+            border-radius: 25px;
             box-shadow: 0 10px 30px var(--shadow);
-            text-align: left;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            animation: slideUp 0.8s ease-out;
         }
 
-        /* 興趣標籤區 */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+        }
+        .section-title i { margin-right: 10px; color: var(--accent-brown); }
+
+        /* 標籤區 */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
-
         .tag {
             background: var(--bg-color);
             color: var(--accent-brown);
             padding: 6px 15px;
             border-radius: 20px;
-            font-size: 13px;
-            border: 1px solid #eee;
+            font-size: 12px;
+            border: 1px solid rgba(201, 169, 145, 0.2);
         }
 
-        /* 底部聯絡 */
-        .contact-footer {
+        /* 動畫 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer-simple {
             text-align: center;
-            margin-top: 50px;
-            padding-bottom: 40px;
+            padding: 40px 0;
+            font-size: 11px;
+            color: #a3968b;
         }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 20px;
-        }
-
-        .social-links a { color: var(--accent-brown); transition: transform 0.3s; }
-        .social-links a:hover { transform: scale(1.2); }
-        
-        .footer-text { font-size: 11px; color: #a3968b; margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -138,30 +140,37 @@
         <section class="profile-section">
             <img src="IMG_20260211_080039.jpg" class="about-avatar" alt="Cindy">
             <h1>Cindy</h1>
-            <div class="subtitle">HIGH SCHOOL STUDENT | PHYSICS ENTHUSIAST</div>
-            
-            <div class="bio-card">
-                <p>嗨！我是 Cindy。目前是一名高一學生。</p>
-                <p>
-                    我對這個世界充滿好奇，喜歡透過物理去理解自然的邏輯，也喜歡透過程式去創造屬於自己的小世界。
-                    在課餘時間，我會練習半音階口琴，也喜歡觀察自然、種植植物。
-                </p>
-                
-                <div class="tags-container">
-                    <span class="tag"># 物理</span>
-                    <span class="tag"># 半音階口琴</span>
-                    <span class="tag"># 程式開發</span>
-                    <span class="tag"># 自然觀察</span>
-                </div>
-            </div>
+            <div class="subtitle">HIGH SCHOOL STUDENT</div>
         </section>
 
-        <footer class="contact-footer">
-            <div class="social-links">
-                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+        <div class="content-card">
+            <div class="section-title"><i class="fas fa-user-sparkles"></i> 自我介紹</div>
+            <p>
+                嗨！我是 Cindy。目前就讀於彰化女中。
+            </p>
+            <p>
+                我對這個世界充滿好奇，喜歡透過物理去理解自然的邏輯，也喜歡透過程式去創造屬於自己的小世界。
+            </p>
+            <div class="tags-container">
+                <span class="tag"># 高一牲</span>
             </div>
-            <p class="footer-text">© 2026 Cindy. Stay curious.</p>
+        </div>
+
+        <div class="content-card">
+            <div class="section-title"><i class="fas fa-heart"></i> 興趣愛好</div>
+            <p>
+                在課餘時間，我是一個喜歡沉浸在二次元世界的「大宅宅」。我熱愛閱讀漫畫與追番，音樂也是我生活中不可或缺的一部分。此外，我也會練習半音階口琴，並享受觀察自然與種植植物的過程。
+            </p>
+            <div class="tags-container">
+                <span class="tag"># 動漫</span>
+                <span class="tag"># 音樂</span>
+                <span class="tag"># 漫畫</span>
+                <span class="tag"># 大宅宅</span>
+            </div>
+        </div>
+
+        <footer class="footer-simple">
+            © 2026 Cindy. Stay curious.
         </footer>
     </div>
 
