@@ -69,17 +69,15 @@
             overflow: hidden;
             width: 0;
             margin: 0 auto 10px;
-            border-right: 2px solid transparent; /* 預設不顯示，由動畫控制 */
+            border-right: 2px solid transparent; 
         }
 
-        /* 第一行：2秒打完，打完後隱藏槓槓 */
         .line1 {
             animation: 
                 typing 2s steps(15) forwards, 
                 blink-hide 2s step-end forwards;
         }
 
-        /* 第二行：2.2秒後開始，跑完後持續閃爍 */
         .line2 {
             animation: 
                 typing 2s steps(15) 2.2s forwards, 
@@ -91,13 +89,11 @@
             to { width: 100%; }
         }
 
-        /* 第一行閃爍並最終消失 */
         @keyframes blink-hide {
             0%, 99% { border-color: var(--accent-brown); }
             100% { border-color: transparent; }
         }
 
-        /* 第二行持續閃爍 */
         @keyframes blink {
             from, to { border-color: transparent; }
             50% { border-color: var(--accent-brown); }
@@ -160,29 +156,6 @@
         
         .social-icon-link:hover { transform: scale(1.2); }
 
-        /* --- 彈窗樣式 --- */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(74, 63, 53, 0.6);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 30px;
-            width: 85%;
-            max-width: 340px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-            text-align: center;
-            animation: zoomIn 0.3s ease;
-        }
-        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
         .footer { margin-top: 50px; font-size: 11px; color: #a3968b; }
     </style>
 </head>
@@ -226,7 +199,7 @@
                         <i class="fab fa-github"></i>
                     </a>
                     
-                    <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()">
+                    <a href="https://www.instagram.com/chen95cindy?igsh=ejFhZjN0bDdzZzZk" target="_blank" class="social-icon-link">
                         <i class="fab fa-instagram" style="color: #c9a991 !important;"></i>
                     </a>
                     
@@ -248,15 +221,6 @@
         </div>
     </div>
 
-    <div id="ig-modal" class="modal-overlay" onclick="closeIG()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div style="width: 100%; margin: 0 auto; overflow: hidden; border-radius: 15px;">
-                <img src="IMG_20260506_160527.png" alt="IG QR Code" style="width: 100%; height: auto; display: block;">
-            </div>
-            <div style="margin-top: 15px; font-size: 11px; color: var(--accent-brown);">— 點擊任意處關閉 —</div>
-        </div>
-    </div>
-
     <script>
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
@@ -269,13 +233,6 @@
                 inner.classList.add('show-inner');
             }, 800);
         });
-
-        function openIG() {
-            document.getElementById('ig-modal').style.display = 'flex';
-        }
-        function closeIG() {
-            document.getElementById('ig-modal').style.display = 'none';
-        }
     </script>
 </body>
 </html>
