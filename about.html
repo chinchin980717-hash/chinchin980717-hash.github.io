@@ -20,11 +20,10 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.8;
-            /* 讓身體可以自由滑動 */
             overflow-y: auto; 
         }
 
-        /* 導覽列：返回按鈕 */
+        /* 導覽列 */
         .nav-header {
             position: sticky;
             top: 0;
@@ -47,7 +46,6 @@
         .back-btn:hover { color: var(--accent-brown); }
         .back-btn i { margin-right: 8px; }
 
-        /* 主容器 */
         .container {
             max-width: 600px;
             margin: 0 auto;
@@ -74,7 +72,7 @@
         h1 { font-size: 24px; margin-bottom: 5px; color: var(--text-main); }
         .subtitle { color: var(--accent-brown); font-size: 14px; letter-spacing: 2px; margin-bottom: 30px; }
 
-        /* 滑動區塊樣式 */
+        /* 內容卡片 */
         .content-card {
             background: var(--card-white);
             padding: 30px;
@@ -94,7 +92,7 @@
         }
         .section-title i { margin-right: 10px; color: var(--accent-brown); }
 
-        /* 標籤區 */
+        /* 標籤樣式 */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -107,25 +105,14 @@
             padding: 6px 15px;
             border-radius: 20px;
             font-size: 12px;
-            border: 1px solid rgba(201, 169, 145, 0.2);
+            border: 1px solid rgba(201, 169, 145, 0.1);
         }
 
         /* 動畫 */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .footer-simple {
-            text-align: center;
-            padding: 40px 0;
-            font-size: 11px;
-            color: #a3968b;
-        }
+        .footer-simple { text-align: center; padding: 40px 0; font-size: 11px; color: #a3968b; }
     </style>
 </head>
 <body>
@@ -144,28 +131,76 @@
         </section>
 
         <div class="content-card">
-            <div class="section-title"><i class="fas fa-user-sparkles"></i> 自我介紹</div>
-            <p>
-                嗨！我是 Cindy。目前就讀於彰化女中。
+            <div class="section-title">
+                <i class="fas fa-gamepad"></i> 玩家檔案：Lv.1 物理魔法師
+            </div>
+            
+            <div style="background: var(--bg-color); padding: 15px; border-radius: 15px; margin-bottom: 20px; border-left: 5px solid var(--accent-brown);">
+                <p style="margin: 0; font-weight: bold;">ID: Cindy</p>
+                <p style="margin: 5px 0 0 0; font-size: 13px; color: #888;">目前所在地：彰化女中副本</p>
+            </div>
+
+            <p><strong>【 屬性 】</strong> 無敵大 I 人 <span style="font-size: 12px; color: #a3968b;">（社交能量極低，變熟了會變瘋）</span></p>
+            
+            <p><strong>【 核心裝備 】</strong></p>
+            <ul style="list-style: none; padding-left: 10px; font-size: 14px; line-height: 2;">
+                <li><i class="fas fa-music" style="color: var(--accent-brown); width: 25px;"></i> <strong>口琴：</strong> 隨身攜帶的社交武器。</li>
+                <li><i class="fab fa-github" style="color: var(--accent-brown); width: 25px;"></i> <strong>GitHub：</strong> 正在擴建中的數位領地。</li>
+                <li><i class="fas fa-bolt" style="color: var(--accent-brown); width: 25px;"></i> <strong>Arduino：</strong> 還不太熟悉的軟硬體法器。</li>
+            </ul>
+
+            <p><strong>【 隱藏技能 】</strong></p>
+            <p style="font-size: 14px; background: #f9f9f9; padding: 12px; border-radius: 12px; border: 1px dashed var(--accent-brown);">
+                👻 <strong>隱身術：</strong> 常常因為存在感低而嚇到人。如果你看不到我卻感覺有人在叫你，麻煩低一下頭……
             </p>
-            <p>
-                我對這個世界充滿好奇，喜歡透過物理去理解自然的邏輯，也喜歡透過程式去創造屬於自己的小世界。
-            </p>
+
             <div class="tags-container">
                 <span class="tag"># 高一牲</span>
+                <span class="tag"># 大宅宅</span>
             </div>
         </div>
 
         <div class="content-card">
+            <div class="section-title"><i class="fas fa-tasks"></i> 近期任務清單</div>
+            
+            <div style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px;">
+                    <span>🔬 科學探究：努力找題目中</span>
+                    <span>20%</span>
+                </div>
+                <div style="background: #eee; height: 8px; border-radius: 10px;"><div style="background: var(--accent-brown); width: 20%; height: 100%; border-radius: 10px;"></div></div>
+            </div>
+
+            <div style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px;">
+                    <span>💻 技術開發：網站架設 & Arduino</span>
+                    <span>60%</span>
+                </div>
+                <div style="background: #eee; height: 8px; border-radius: 10px;"><div style="background: var(--accent-brown); width: 60%; height: 100%; border-radius: 10px;"></div></div>
+            </div>
+
+            <div style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px;">
+                    <span>🤝 社群參與：SITCON 2026 工人挑戰</span>
+                    <span>40%</span>
+                </div>
+                <div style="background: #eee; height: 8px; border-radius: 10px;"><div style="background: var(--accent-brown); width: 40%; height: 100%; border-radius: 10px;"></div></div>
+            </div>
+
+            <p style="margin-top: 30px; text-align: center; font-weight: bold; color: #d9534f; letter-spacing: 1px;">
+                🚩 終極目標：打敗「學測大魔王」
+            </p>
+        </div>
+
+        <div class="content-card">
             <div class="section-title"><i class="fas fa-heart"></i> 興趣愛好</div>
-            <p>
-                在課餘時間，我是一個喜歡沉浸在二次元世界的「大宅宅」。我熱愛閱讀漫畫與追番，音樂也是我生活中不可或缺的一部分。此外，我也會練習半音階口琴，並享受觀察自然與種植植物的過程。
+            <p style="font-size: 14px;">
+                在二次元世界裡，我是漫畫與動漫的忠實讀者。音樂與自然觀察也是我的能量來源，我喜歡研究植物的生長，就像研究物理定律一樣有趣。
             </p>
             <div class="tags-container">
                 <span class="tag"># 動漫</span>
                 <span class="tag"># 音樂</span>
                 <span class="tag"># 漫畫</span>
-                <span class="tag"># 大宅宅</span>
             </div>
         </div>
 
