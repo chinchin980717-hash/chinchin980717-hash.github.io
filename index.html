@@ -54,7 +54,7 @@
             object-fit: cover;    
         }
 
-        /* --- ✨ 修正版：貼身游標打字動畫 --- */
+        /* --- ✨ 兩行打字機：游標接力動畫 --- */
         .typing-container {
             display: block;
             text-align: center;
@@ -65,14 +65,25 @@
             font-size: 15px;
             font-weight: 500;
             color: var(--text-main);
-            display: inline-block; /* 讓容器寬度隨文字跑 */
             white-space: nowrap;
             overflow: hidden;
             width: 0;
-            border-right: 2px solid var(--accent-brown); /* 游標本體 */
+            margin: 0 auto 10px;
+            border-right: 2px solid transparent; /* 預設不顯示，由動畫控制 */
+        }
+
+        /* 第一行：2秒打完，打完後隱藏槓槓 */
+        .line1 {
             animation: 
-                typing 3.5s steps(30) forwards, 
-                cursor-effect 3.5s step-end forwards;
+                typing 2s steps(15) forwards, 
+                blink-hide 2s step-end forwards;
+        }
+
+        /* 第二行：2.2秒後開始，跑完後持續閃爍 */
+        .line2 {
+            animation: 
+                typing 2s steps(15) 2.2s forwards, 
+                blink 0.8s step-end infinite 2.2s;
         }
 
         @keyframes typing {
@@ -80,10 +91,16 @@
             to { width: 100%; }
         }
 
-        /* 控制游標閃爍，並在結束時徹底隱藏 */
-        @keyframes cursor-effect {
-            0%, 90% { border-color: var(--accent-brown); }
-            91%, 100% { border-color: transparent; border-right: none; }
+        /* 第一行閃爍並最終消失 */
+        @keyframes blink-hide {
+            0%, 99% { border-color: var(--accent-brown); }
+            100% { border-color: transparent; }
+        }
+
+        /* 第二行持續閃爍 */
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-brown); }
         }
 
         .bounce-text {
@@ -175,9 +192,8 @@
         <div class="cover-content">
             <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
             <div class="typing-container">
-                <div class="profile-text">
-                    歡迎來到 Cindy 的個人空間，在這裡你可以了解到真正的我。
-                </div>
+                <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
+                <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
             </div>
             <p class="bounce-text">點擊解鎖入口</p>
         </div>
