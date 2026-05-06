@@ -115,14 +115,22 @@
         /* --- 聯絡我圖示優化 --- */
         .contact-section { margin-top: 50px; }
         .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
-        .social-icons { display: flex; justify-content: center; gap: 25px; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; align-items: center; }
+        
+        /* 💡 統一所有圖示顏色，包含 IG */
         .social-icon-link {
-            color: var(--accent-brown);
+            color: var(--accent-brown) !important; 
             font-size: 22px;
             transition: transform 0.3s, color 0.3s;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .social-icon-link:hover { transform: scale(1.2); color: #a3968b; }
+        .social-icon-link i {
+            color: var(--accent-brown) !important;
+        }
+        .social-icon-link:hover { transform: scale(1.2); opacity: 0.8; }
 
         /* --- 彈窗樣式 --- */
         .modal-overlay {
@@ -137,10 +145,10 @@
         }
         .modal-content {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 30px;
             width: 85%;
-            max-width: 320px;
+            max-width: 340px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             text-align: center;
             animation: zoomIn 0.3s ease;
@@ -200,11 +208,10 @@
 
     <div id="ig-modal" class="modal-overlay" onclick="closeIG()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <div style="width: 250px; height: 250px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid #f0f0f0;">
-                <img src="12431.png" alt="IG QR Code" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+            <div style="width: 100%; margin: 0 auto; overflow: hidden; border-radius: 15px;">
+                <img src="12441.png" alt="IG QR Code" style="width: 100%; height: auto; display: block;">
             </div>
-            <div style="margin-top: 15px; font-weight: bold; color: var(--text-main); font-size: 15px;">@CHEN95CINDY</div>
-            <div style="margin-top: 10px; font-size: 11px; color: var(--accent-brown);">— 點擊任意處關閉 —</div>
+            <div style="margin-top: 15px; font-size: 11px; color: var(--accent-brown);">— 點擊任意處關閉 —</div>
         </div>
     </div>
 
@@ -212,7 +219,6 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
-        // 封面解鎖點擊
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
             document.body.style.overflow = 'auto';
@@ -222,7 +228,6 @@
             }, 800);
         });
 
-        // IG 彈窗控制
         function openIG() {
             document.getElementById('ig-modal').style.display = 'flex';
         }
