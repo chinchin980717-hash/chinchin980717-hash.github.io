@@ -125,6 +125,7 @@
             transition: transform 0.3s;
         }
         
+        /* ✅ 核心修正：統一所有圖示的大小與顏色 (褐色) */
         .social-icon-link i {
             font-size: 22px;
             color: var(--accent-brown);
@@ -162,7 +163,7 @@
 
     <div class="main-coverLayer" id="coverLayer">
         <div class="cover-content">
-            <img src="IMG_20260506_160527.png" class="avatar" alt="Avatar">
+            <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
             <div class="typing-container">
                 <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
                 <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
@@ -233,15 +234,17 @@
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
 
+        // 封面解鎖動畫
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; // 解鎖後允許滾動
             setTimeout(() => {
                 cover.style.display = 'none';
                 inner.classList.add('show-inner');
-            }, 800);
+            }, 800); // 動花持續 0.8s
         });
 
+        // 彈窗控制功能
         function openIG() {
             document.getElementById('ig-modal').style.display = 'flex';
         }
