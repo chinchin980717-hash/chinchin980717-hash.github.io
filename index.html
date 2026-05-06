@@ -20,7 +20,7 @@
             background-color: var(--bg-color);
             min-height: 100vh;
             color: var(--text-main);
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         /* --- 封面層 --- */
@@ -52,7 +52,6 @@
             border: 3px solid #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             object-fit: cover;    
-            object-position: center; 
         }
 
         .typing-container {
@@ -74,10 +73,7 @@
         .line1 { animation: typing 2s steps(15) forwards; }
         .line2 { animation: typing 2s steps(15) 2.2s forwards; }
 
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 15em; } 
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
 
         .bounce-text {
             font-size: 12px;
@@ -116,19 +112,19 @@
         .link-btn:hover { transform: translateY(-3px); }
         .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
 
-        /* --- 聯絡我 & 彈窗樣式 --- */
-        .contact-section { margin-top: 40px; }
-        .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 18px; letter-spacing: 2px; }
-        .social-icons { display: flex; justify-content: center; gap: 22px; }
+        /* --- 聯絡我圖示優化 --- */
+        .contact-section { margin-top: 50px; }
+        .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; }
         .social-icon-link {
             color: var(--accent-brown);
-            font-size: 20px;
+            font-size: 22px;
             transition: transform 0.3s, color 0.3s;
             text-decoration: none;
-            cursor: pointer;
         }
-        .social-icon-link:hover { transform: translateY(-3px); color: #a3968b; }
+        .social-icon-link:hover { transform: scale(1.2); color: #a3968b; }
 
+        /* --- 彈窗樣式 --- */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -143,19 +139,15 @@
             background: white;
             padding: 25px;
             border-radius: 30px;
-            width: 80%;
+            width: 85%;
             max-width: 320px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.2);
             text-align: center;
-            animation: zoomIn 0.4s ease;
+            animation: zoomIn 0.3s ease;
         }
-        @keyframes zoomIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-        .close-hint { margin-top: 15px; font-size: 11px; color: var(--accent-brown); letter-spacing: 1px; }
+        @keyframes zoomIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .footer { margin-top: 45px; font-size: 11px; color: #a3968b; }
+        .footer { margin-top: 50px; font-size: 11px; color: #a3968b; }
     </style>
 </head>
 <body>
@@ -195,7 +187,7 @@
                 <p class="contact-title">聯絡我</p>
                 <div class="social-icons">
                     <a href="https://github.com/chinchin980717-hash" target="_blank" class="social-icon-link"><i class="fab fa-github"></i></a>
-                    <a href="javascript:void(0)" class="IMG_20260506_140211.png" onclick="openIG()"><i class="fab fa-instagram"></i></a>
+                    <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link"><i class="fab fa-facebook"></i></a>
                     <a href="https://discord.gg/smmN4ddpU" target="_blank" class="social-icon-link"><i class="fab fa-discord"></i></a>
                     <a href="mailto:chinchin980717@gmail.com" class="social-icon-link"><i class="fas fa-envelope"></i></a>
@@ -209,25 +201,16 @@
     <div id="ig-modal" class="modal-overlay" onclick="closeIG()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div style="width: 250px; height: 250px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid #f0f0f0;">
-                <img src="IMG_20260506_140211.png" alt="IG QR Code" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+                <img src="12431.png" alt="IG QR Code" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
             </div>
             <div style="margin-top: 15px; font-weight: bold; color: var(--text-main); font-size: 15px;">@CHEN95CINDY</div>
-            <div class="close-hint">— 點擊任意處關閉 —</div>
+            <div style="margin-top: 10px; font-size: 11px; color: var(--accent-brown);">— 點擊任意處關閉 —</div>
         </div>
     </div>
 
     <script>
         const cover = document.getElementById('coverLayer');
         const inner = document.getElementById('innerPage');
-
-        // 初始化檢查是否已經在內頁
-        window.addEventListener('load', () => {
-            if (window.location.hash === '#inner') {
-                cover.style.display = 'none';
-                inner.classList.add('show-inner');
-                document.body.style.overflow = 'auto';
-            }
-        });
 
         // 封面解鎖點擊
         cover.addEventListener('click', () => {
