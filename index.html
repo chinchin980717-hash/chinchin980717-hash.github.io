@@ -20,8 +20,7 @@
             background-color: var(--bg-color);
             min-height: 100vh;
             color: var(--text-main);
-            /* 初始禁止捲動，直到點擊封面解鎖 */
-            overflow: hidden; 
+            overflow-x: hidden; 
         }
 
         /* --- 封面層 --- */
@@ -56,9 +55,8 @@
         }
 
         .typing-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: block;
+            text-align: center;
             margin: 15px auto;
         }
 
@@ -68,18 +66,14 @@
             white-space: nowrap;
             overflow: hidden;
             width: 0; 
-            margin-bottom: 10px;
+            margin: 0 auto 10px;
             border-right: 2px solid var(--accent-brown);
         }
 
         .line1 { animation: typing 2s steps(15) forwards; }
         .line2 { animation: typing 2s steps(15) 2.2s forwards; }
 
-        /* 打字動畫：最後隱藏游標邊框 */
-        @keyframes typing { 
-            from { width: 0; } 
-            to { width: 100%; border-right-color: transparent; } 
-        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
 
         .bounce-text {
             font-size: 12px;
@@ -118,7 +112,7 @@
         .link-btn:hover { transform: translateY(-3px); }
         .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
 
-        /* --- 聯絡我圖示 --- */
+        /* --- 聯絡我圖示優化 --- */
         .contact-section { margin-top: 50px; }
         .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
         .social-icons { display: flex; justify-content: center; gap: 25px; align-items: center; }
@@ -131,7 +125,6 @@
             transition: transform 0.3s;
         }
         
-        /* 統一所有圖示顏色，包含 IG */
         .social-icon-link i {
             font-size: 22px;
             color: var(--accent-brown);
@@ -206,7 +199,7 @@
                     </a>
                     
                     <a href="javascript:void(0)" class="social-icon-link" onclick="openIG()">
-                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-instagram" style="color: #c9a991 !important;"></i>
                     </a>
                     
                     <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link">
@@ -242,10 +235,7 @@
 
         cover.addEventListener('click', () => {
             cover.classList.add('unlock-animation');
-            // 解鎖後恢復頁面捲動，並隱藏水平捲軸
-            document.body.style.overflowY = 'auto';
-            document.body.style.overflowX = 'hidden';
-            
+            document.body.style.overflow = 'auto';
             setTimeout(() => {
                 cover.style.display = 'none';
                 inner.classList.add('show-inner');
