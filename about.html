@@ -13,6 +13,7 @@
             --accent-brown: #c9a991;
             --shadow: rgba(74, 63, 53, 0.08);
             --classroom-bg: linear-gradient(135deg, #c9a991 0%, #e5e0d8 100%);
+            --mono-font: 'Courier New', Courier, monospace;
         }
 
         body {
@@ -26,7 +27,7 @@
             overflow-x: hidden;
         }
 
-        /* 🏫 Google Classroom 風格標題框 */
+        /* 🏫 Classroom 風格標題框 */
         .classroom-header {
             width: 100%;
             height: 240px;
@@ -41,19 +42,8 @@
             position: relative;
         }
 
-        .classroom-header h1 {
-            margin: 0;
-            font-size: 32px;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .classroom-header p {
-            margin: 5px 0 0;
-            font-size: 16px;
-            opacity: 0.95;
-            letter-spacing: 1px;
-        }
+        .classroom-header h1 { margin: 0; font-size: 32px; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .classroom-header p { margin: 5px 0 0; font-size: 16px; opacity: 0.95; letter-spacing: 1px; }
 
         .container {
             max-width: 600px;
@@ -63,7 +53,6 @@
             z-index: 2;
         }
 
-        /* ✨ 優雅淡入的個人檔案卡片 */
         .player-profile {
             background: var(--paper-color);
             border-radius: 12px;
@@ -77,43 +66,71 @@
 
         .player-profile.is-visible { opacity: 1; transform: translateY(0); }
 
+        /* 🪪 數位 ID 識別卡 */
         .id-card {
-            background: #faf8f5;
-            padding: 25px 35px;
-            border-left: 6px solid var(--accent-brown);
-            margin-bottom: 50px;
-            border-radius: 0 8px 8px 0;
+            background: #ffffff;
+            padding: 30px;
+            border: 1px solid #eee;
+            border-left: 8px solid var(--accent-brown);
+            margin-bottom: 35px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
         }
 
+        .id-scanner-line {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent-brown), transparent);
+            opacity: 0.3;
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+        .id-label { font-family: var(--mono-font); font-size: 10px; letter-spacing: 3px; color: var(--accent-brown); font-weight: bold; margin-bottom: 10px; }
+        .id-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+        .id-prefix { font-family: var(--mono-font); font-size: 16px; color: #ccc; }
+        .id-name { font-family: var(--mono-font); font-size: 32px; font-weight: 900; letter-spacing: -1px; color: var(--text-main); }
+
+        .id-location {
+            font-family: var(--mono-font); font-size: 12px; color: #8e8276;
+            display: flex; align-items: center; border-top: 1px solid #f5f5f5; padding-top: 10px;
+        }
+
+        /* 🏷️ 別名標籤 */
+        .alias-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .tag {
+            background: #f0ece9; color: var(--text-main); padding: 5px 12px;
+            border-radius: 20px; font-size: 12px; border: 1px solid rgba(201, 169, 145, 0.15);
+            transition: 0.3s;
+        }
+        .tag:hover { background: var(--accent-brown); color: white; }
+        .tag small { opacity: 0.6; font-size: 10px; margin-left: 4px; font-family: var(--mono-font); }
+
+        /* 內容區塊通用樣式 */
         .section-subtitle {
-            font-size: 13px;
-            color: var(--accent-brown);
-            margin: 55px 0 25px;
-            display: flex;
-            align-items: center;
-            letter-spacing: 2px;
-            font-weight: bold;
+            font-size: 13px; color: var(--accent-brown); margin: 50px 0 20px;
+            display: flex; align-items: center; letter-spacing: 2px; font-weight: bold;
         }
-        .section-subtitle::after {
-            content: ""; flex: 1; height: 1px;
-            background: linear-gradient(to right, var(--accent-brown), transparent);
-            margin-left: 20px;
-        }
+        .section-subtitle::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent-brown), transparent); margin-left: 20px; }
 
-        .attr-box { margin-bottom: 35px; }
+        .attr-box { margin-bottom: 30px; }
         .attr-text { font-size: 20px; font-weight: 600; margin: 5px 0; }
-        .attr-note { font-size: 14.5px; color: #8e8276; }
+        .attr-note { font-size: 14px; color: #8e8276; }
 
-        /* 💡 隱身術備註區塊 */
+        /* 提示框樣式 */
         .ps-note {
             font-size: 13px; color: #a1958b; background: #fdfaf5;
             padding: 15px 20px; border-radius: 6px; margin-top: 15px;
             border: 1px solid #f0efed; font-style: italic; line-height: 1.6;
         }
 
+        .interest-icons { display: flex; gap: 20px; margin: 15px 0; font-size: 22px; color: var(--accent-brown); }
+
         .content-list { list-style: none; padding: 0; margin: 0; }
         .content-list li {
-            padding: 22px 0; border-bottom: 1px dashed #e8e4df;
+            padding: 20px 0; border-bottom: 1px dashed #e8e4df;
             font-size: 15px; display: flex; align-items: flex-start;
         }
         .content-list i { margin-top: 6px; margin-right: 15px; color: var(--accent-brown); font-size: 15px; width: 25px; text-align: center; }
@@ -138,13 +155,37 @@
         <div class="player-profile" id="profileCard">
             
             <div class="id-card">
-                <div style="font-size:11px; letter-spacing:4px; color:var(--accent-brown); margin-bottom:12px; font-weight:bold;">DATA ARCHIVE</div>
-                <div style="font-size: 24px; font-weight: bold; margin-bottom: 8px;">ID: Cindy</div>
-                <div style="font-size: 14px; color: #7a6f64;"><i class="fas fa-school" style="margin-right:8px;"></i> 彰化女中副本</div>
+                <div class="id-scanner-line"></div>
+                <div class="id-content">
+                    <div class="id-label">USER IDENTIFICATION</div>
+                    <div class="id-main">
+                        <span class="id-prefix">ID:</span>
+                        <span class="id-name">Cindy</span>
+                    </div>
+                    <div class="id-location">
+                        <i class="fas fa-barcode" style="margin-right: 10px; opacity: 0.5;"></i>
+                        CHGSH_STU // 彰化女中副本
+                    </div>
+                </div>
             </div>
 
             <div class="attr-box">
-                <h4 class="section-subtitle">【 屬性 】</h4>
+                <h4 class="section-subtitle">【 已解鎖別名 (AKA) 】</h4>
+                <div class="alias-tags">
+                    <span class="tag">小C</span>
+                    <span class="tag">欣欣 <small>(Elementary)</small></span>
+                    <span class="tag">班班 <small>(Junior High)</small></span>
+                    <span class="tag">Yee~ <small>(諧音)</small></span>
+                    <span class="tag">欣宜 <small>(Real Name)</small></span>
+                </div>
+                <p class="attr-note" style="margin-top: 15px;">
+                    <i class="fas fa-exclamation-triangle" style="color: #d9534f; margin-right: 5px;"></i>
+                    <b>系統警告：</b>請勿調用 <span style="text-decoration: line-through; opacity: 0.6;">阿宜</span> 指令，避免觸發尷尬事件溢位。
+                </p>
+            </div>
+
+            <div class="attr-box">
+                <h4 class="section-subtitle">【 核心屬性 】</h4>
                 <p class="attr-text">無敵大 I 人</p>
                 <p class="attr-note">（社交能量極低，變熟了會變得很瘋）</p>
             </div>
@@ -155,6 +196,24 @@
                 <p class="attr-note">常常因為站在別人後面沒被發現而嚇到人</p>
                 <div class="ps-note">
                     Ps. 如果有一天走在路上發現有人在叫你，卻沒有看到人，不要慌，請把你的頭低下來...
+                </div>
+            </div>
+
+            <div class="attr-box">
+                <h4 class="section-subtitle">【 精神時光屋 (Interest) 】</h4>
+                <div class="interest-icons">
+                    <i class="fas fa-mobile-alt"></i>
+                    <i class="fas fa-book-open"></i>
+                    <i class="fas fa-tv"></i>
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <p class="attr-text">多重宇宙冒險者</p>
+                <p class="attr-note">
+                    沈迷於動漫、小說與虛擬世界。妳可能會在《傳說對決》或《崩壞：星穹鐵道》中與我擦身而過...
+                </p>
+                <div class="ps-note" style="background: #fdf5f7; border-color: #fbebed;">
+                    <i class="fas fa-eye-slash" style="margin-right: 5px;"></i>
+                    <b>偵測失敗：</b>由於隱身術等級過高，即使在同一個副本，你也絕對認不出哪一個是我。
                 </div>
             </div>
 
@@ -178,8 +237,8 @@
                 <h4 class="section-subtitle">【 核心裝備 】</h4>
                 <ul class="content-list">
                     <li><i class="fas fa-music"></i> 半音階口琴：隨身攜帶的社交武器</li>
-                    <li><i class="fab fa-github"></i> GitHub：正在擴建中的數位領地</li>
-                    <li><i class="fas fa-microchip"></i> Arduino：物理魔法陣的必備法器</li>
+                    <li><i class="fab fa-github"></i> GitHub：數位領地擴建中</li>
+                    <li><i class="fas fa-microchip"></i> Arduino：物理魔法陣必備法器</li>
                 </ul>
             </div>
 
