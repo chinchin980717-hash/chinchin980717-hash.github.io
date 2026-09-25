@@ -1,3 +1,4 @@
+const GAME_VERSION = 'v0.3.0';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -21,7 +22,7 @@ const vocabPairs = [
   { id:4,jp:'友達',kana:'ともだち',zh:'朋友' },{ id:5,jp:'逢いたい',kana:'あいたい',zh:'想見你' },{ id:6,jp:'笑顔',kana:'えがお',zh:'笑容' }
 ];
 const screens={title:document.querySelector('#title-screen'),select:document.querySelector('#select-screen'),game:document.querySelector('#game-screen'),result:document.querySelector('#result-screen')};
-const $=(selector)=>document.querySelector(selector); let currentRoute='male';let selectedChar=CHARACTERS.male[0];let currentMode='story';let flipped=[];let matched=0;let combo=0;let bestCombo=0;let affection=0;let locked=false;let startedAt=0;let soundOn=true;
+const $=(selector)=>document.querySelector(selector); $('#version-label').textContent=`Version ${GAME_VERSION}`; let currentRoute='male';let selectedChar=CHARACTERS.male[0];let currentMode='story';let flipped=[];let matched=0;let combo=0;let bestCombo=0;let affection=0;let locked=false;let startedAt=0;let soundOn=true;
 function showScreen(name){Object.values(screens).forEach(s=>s.classList.remove('is-active'));screens[name].classList.add('is-active')}
 function shuffle(list){return [...list].sort(()=>Math.random()-.5)}
 function speak(text){if(!soundOn||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.86;window.speechSynthesis.speak(u)}
