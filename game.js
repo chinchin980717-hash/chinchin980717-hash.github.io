@@ -1,141 +1,35 @@
-const vocabPairs = [
-  { id: 1, jp: '好き', kana: 'すき', zh: '喜歡' },
-  { id: 2, jp: '約束', kana: 'やくそく', zh: '約定' },
-  { id: 3, jp: '秘密', kana: 'ひみつ', zh: '秘密' },
-  { id: 4, jp: '友達', kana: 'ともだち', zh: '朋友' }
-];
-
-const screens = {
-  title: document.querySelector('#title-screen'),
-  select: document.querySelector('#select-screen'),
-  game: document.querySelector('#game-screen'),
-  result: document.querySelector('#result-screen')
+const CHARACTERS = {
+  male: [
+    { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
+    { id:'souta', name:'橘 奏太', tag:'溫柔會長', avatar:'✦', quote:'別太勉強自己，你的努力我一直看在眼裡。', praise:'素晴らしいですね！', jpPraise:'素晴らしいですね！' },
+    { id:'rin', name:'黑羽 凜', tag:'霸道主唱', avatar:'♪', quote:'湊近一點，這句日文我只想唱給你聽。', praise:'もっと見せて。', jpPraise:'もっと見せて。' },
+    { id:'haru', name:'白石 春', tag:'溫柔作家', avatar:'✒', quote:'每個單字都是一封還沒寄出的情書。', praise:'君の言葉、好きだよ。', jpPraise:'君の言葉、好きだよ。' },
+    { id:'kai', name:'神谷 海', tag:'陽光運動系', avatar:'⚡', quote:'答對了！下一球……不，下一張也一起來吧！', praise:'すごい！最高だね！', jpPraise:'すごい！最高だね！' },
+    { id:'yuki', name:'月城 雪', tag:'神秘轉學生', avatar:'☾', quote:'你聽見了嗎？這是屬於我們的秘密暗號。', praise:'君なら、できると思った。', jpPraise:'君なら、できると思った。' }
+  ],
+  female: [
+    { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
+    { id:'suzu', name:'神樂 鈴', tag:'神秘巫女', avatar:'⛩', quote:'願神明的祝福，伴隨你的日語學習之旅。', praise:'見事な解密です。', jpPraise:'見事な解密です。' },
+    { id:'ami', name:'星野 亞美', tag:'元氣後輩', avatar:'🎤', quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
+    { id:'mio', name:'水瀨 澪', tag:'冷靜班長', avatar:'◇', quote:'很好，正確率又提高了。請保持這份專注。', praise:'完璧です。', jpPraise:'完璧です。' },
+    { id:'nana', name:'藤原 菜奈', tag:'甜點研究社', avatar:'🍓', quote:'答對的獎勵是……下課一起吃草莓蛋糕？', praise:'おいしい！じゃなくて、すごい！', jpPraise:'すごい！' },
+    { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', avatar:'♢', quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' }
+  ]
 };
-const $ = (selector) => document.querySelector(selector);
-let flipped = [];
-let matched = 0;
-let combo = 0;
-let bestCombo = 0;
-let locked = false;
-let startedAt = 0;
-let soundOn = true;
-
-function showScreen(name) {
-  Object.values(screens).forEach((screen) => screen.classList.remove('is-active'));
-  screens[name].classList.add('is-active');
-}
-
-function shuffle(list) {
-  return [...list].sort(() => Math.random() - 0.5);
-}
-
-function speak(text) {
-  if (!soundOn || !('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'ja-JP';
-  utterance.rate = 0.85;
-  window.speechSynthesis.speak(utterance);
-}
-
-function createCards() {
-  const cards = shuffle(vocabPairs.flatMap((pair) => [
-    { ...pair, type: 'jp', value: pair.jp },
-    { ...pair, type: 'zh', value: pair.zh }
-  ]));
-  $('#card-grid').innerHTML = cards.map((card, index) => `
-    <button class="card" type="button" data-id="${card.id}" data-type="${card.type}" data-index="${index}" aria-label="未翻開的卡牌">
-      <span class="card-inner">
-        <span class="card-face card-front">✦</span>
-        <span class="card-face card-back ${card.type}">
-          <strong>${card.value}</strong>
-          <small>${card.type === 'jp' ? card.kana : '中文意思'}</small>
-        </span>
-      </span>
-    </button>
-  `).join('');
-  $('#card-grid').querySelectorAll('.card').forEach((card) => card.addEventListener('click', () => flipCard(card)));
-}
-
-function resetGame() {
-  flipped = [];
-  matched = 0;
-  combo = 0;
-  bestCombo = 0;
-  locked = false;
-  startedAt = Date.now();
-  $('#combo').textContent = '0';
-  $('#progress-label').textContent = '配對進度 0 / 4';
-  $('#progress-bar').style.width = '0%';
-  $('#message').textContent = '先翻開一張卡牌吧！';
-  createCards();
-}
-
-function flipCard(card) {
-  if (locked || card.classList.contains('is-flipped') || card.classList.contains('is-matched')) return;
-  card.classList.add('is-flipped');
-  flipped.push(card);
-  if (card.dataset.type === 'jp') {
-    const pair = vocabPairs.find((item) => String(item.id) === card.dataset.id);
-    speak(pair.jp);
-  }
-  if (flipped.length === 2) checkMatch();
-}
-
-function checkMatch() {
-  locked = true;
-  const [first, second] = flipped;
-  const isMatch = first.dataset.id === second.dataset.id && first.dataset.type !== second.dataset.type;
-  if (isMatch) {
-    matched += 1;
-    combo += 1;
-    bestCombo = Math.max(bestCombo, combo);
-    first.classList.add('is-matched');
-    second.classList.add('is-matched');
-    $('#combo').textContent = String(combo);
-    $('#progress-label').textContent = `配對進度 ${matched} / 4`;
-    $('#progress-bar').style.width = `${matched * 25}%`;
-    $('#message').textContent = combo >= 2 ? `太好了！連續配對 ${combo} 次。` : '配對成功！繼續找下一組。';
-    flipped = [];
-    locked = false;
-    if (matched === vocabPairs.length) finishGame();
-  } else {
-    combo = 0;
-    $('#combo').textContent = '0';
-    $('#message').textContent = '這兩張不是一組，再試試看！';
-    setTimeout(() => {
-      first.classList.remove('is-flipped');
-      second.classList.remove('is-flipped');
-      flipped = [];
-      locked = false;
-    }, 800);
-  }
-}
-
-function finishGame() {
-  const seconds = Math.max(1, Math.round((Date.now() - startedAt) / 1000));
-  setTimeout(() => {
-    $('#final-combo').textContent = String(bestCombo);
-    $('#final-time').textContent = String(seconds);
-    showScreen('result');
-  }, 650);
-}
-
-$('#start-btn').addEventListener('click', () => showScreen('select'));
-$('.back-to-title').addEventListener('click', () => showScreen('title'));
-$('#practice-btn').addEventListener('click', () => { resetGame(); showScreen('game'); });
-$('#quit-btn').addEventListener('click', () => showScreen('select'));
-$('#again-btn').addEventListener('click', () => { resetGame(); showScreen('game'); });
-$('#result-home-btn').addEventListener('click', () => showScreen('title'));
-$('#sound-btn').addEventListener('click', () => {
-  soundOn = !soundOn;
-  $('#sound-btn').innerHTML = soundOn ? '🔊 <span>發音開</span>' : '🔇 <span>發音關</span>';
-  if (!soundOn && 'speechSynthesis' in window) window.speechSynthesis.cancel();
-});
-
-document.querySelectorAll('.option-card:not(.disabled)').forEach((button) => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.option-card').forEach((item) => item.classList.remove('selected'));
-    button.classList.add('selected');
-  });
-});
+const vocabPairs = [
+  { id:1,jp:'好き',kana:'すき',zh:'喜歡' },{ id:2,jp:'約束',kana:'やくそく',zh:'約定' },{ id:3,jp:'秘密',kana:'ひみつ',zh:'秘密' },
+  { id:4,jp:'友達',kana:'ともだち',zh:'朋友' },{ id:5,jp:'逢いたい',kana:'あいたい',zh:'想見你' },{ id:6,jp:'笑顔',kana:'えがお',zh:'笑容' }
+];
+const screens={title:document.querySelector('#title-screen'),select:document.querySelector('#select-screen'),game:document.querySelector('#game-screen'),result:document.querySelector('#result-screen')};
+const $=(selector)=>document.querySelector(selector); let currentRoute='male';let selectedChar=CHARACTERS.male[0];let currentMode='story';let flipped=[];let matched=0;let combo=0;let bestCombo=0;let affection=0;let locked=false;let startedAt=0;let soundOn=true;
+function showScreen(name){Object.values(screens).forEach(s=>s.classList.remove('is-active'));screens[name].classList.add('is-active')}
+function shuffle(list){return [...list].sort(()=>Math.random()-.5)}
+function speak(text){if(!soundOn||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.86;window.speechSynthesis.speak(u)}
+function renderCharacters(){const list=CHARACTERS[currentRoute];$('#character-grid').innerHTML=list.map((c,i)=>`<button class="character-card ${c.id===selectedChar.id?'selected':''}" data-id="${c.id}" type="button"><span class="char-avatar">${c.avatar}</span><strong>${c.name}</strong><small>${c.tag}</small></button>`).join('');document.querySelectorAll('.character-card').forEach(card=>card.addEventListener('click',()=>{selectedChar=list.find(c=>c.id===card.dataset.id);renderCharacters();updatePreview()}))}
+function updatePreview(){$('#selected-avatar').textContent=selectedChar.avatar;$('#selected-name').textContent=selectedChar.name;$('#selected-tag').textContent=`${selectedChar.tag} · 「${selectedChar.quote}」`}
+function createCards(){const cards=shuffle(vocabPairs.flatMap(p=>[{...p,type:'jp',value:p.jp},{...p,type:'zh',value:p.zh}]));$('#card-grid').innerHTML=cards.map(c=>`<button class="card" type="button" data-id="${c.id}" data-type="${c.type}"><span class="card-inner"><span class="card-face card-front">✦</span><span class="card-face card-back ${c.type}"><strong>${c.value}</strong><small>${c.type==='jp'?c.kana:'中文意思'}</small></span></span></button>`).join('');document.querySelectorAll('.card').forEach(card=>card.addEventListener('click',()=>flipCard(card)))}
+function resetGame(){flipped=[];matched=0;combo=0;bestCombo=0;affection=0;locked=false;startedAt=Date.now();$('#combo').textContent='0';$('#progress-label').textContent=`解密進度 0 / ${vocabPairs.length}`;$('#progress-bar').style.width='0%';$('#message').textContent='先翻開一張卡牌，找出命運中的另一半。';$('#mode-badge').textContent=currentMode==='story'?'📖 主線解密劇情':'⚡ 純淨刷題模式';$('#dialogue-content').textContent=currentMode==='story'?selectedChar.quote:'準備好了嗎？專心配對，記住每個日文單字。';createCards()}
+function flipCard(card){if(locked||card.classList.contains('is-flipped')||card.classList.contains('is-matched'))return;card.classList.add('is-flipped');flipped.push(card);if(card.dataset.type==='jp'){const pair=vocabPairs.find(p=>String(p.id)===card.dataset.id);speak(pair.jp)}if(flipped.length===2)checkMatch()}
+function checkMatch(){locked=true;const[a,b]=flipped;const correct=a.dataset.id===b.dataset.id&&a.dataset.type!==b.dataset.type;if(correct){matched++;combo++;bestCombo=Math.max(bestCombo,combo);affection+=10+combo; a.classList.add('is-matched');b.classList.add('is-matched');$('#combo').textContent=String(combo);$('#progress-label').textContent=`解密進度 ${matched} / ${vocabPairs.length}`;$('#progress-bar').style.width=`${matched/vocabPairs.length*100}%`;const praise=currentMode==='story'?selectedChar.praise:'配對成功！繼續保持這個節奏。';$('#message').textContent=combo>=2?`心動連擊 ${combo}！${praise}`:praise;$('#dialogue-content').textContent=currentMode==='story'?`${selectedChar.jpPraise}（心動連擊 +${combo}）`:'Good! 單字記住了。';if(currentMode==='story')speak(selectedChar.jpPraise);flipped=[];locked=false;if(matched===vocabPairs.length)finishGame()}else{combo=0;$('#combo').textContent='0';$('#message').textContent='這兩張不是一組，再試試看！';setTimeout(()=>{a.classList.remove('is-flipped');b.classList.remove('is-flipped');flipped=[];locked=false},800)}}
+function finishGame(){const seconds=Math.max(1,Math.round((Date.now()-startedAt)/1000));setTimeout(()=>{$('#final-combo').textContent=String(bestCombo);$('#final-time').textContent=String(seconds);$('#final-affection').textContent=`+${affection}`;$('#result-copy').textContent=currentMode==='story'?`${selectedChar.name} 的眼神，比剛才更靠近了一點。把今天的單字帶進下一場邂逅吧。`:'這一輪的單字都配對完成了。再玩一次，讓記憶變得更牢固。';showScreen('result')},650)}
+$('#enter-btn').addEventListener('click',()=>{$('#intro-overlay').classList.add('dismissed');setTimeout(()=>$('#intro-overlay').remove(),850)});$('#start-btn').addEventListener('click',()=>{renderCharacters();updatePreview();showScreen('select')});$('.back-to-title').addEventListener('click',()=>showScreen('title'));document.querySelectorAll('.route-tab').forEach(tab=>tab.addEventListener('click',()=>{currentRoute=tab.dataset.route;selectedChar=CHARACTERS[currentRoute][0];document.querySelectorAll('.route-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');renderCharacters();updatePreview()}));$('#practice-btn').addEventListener('click',()=>{resetGame();showScreen('game')});$('#quit-btn').addEventListener('click',()=>showScreen('select'));$('#again-btn').addEventListener('click',()=>{resetGame();showScreen('game')});$('#result-home-btn').addEventListener('click',()=>showScreen('title'));$('#mode-switch').addEventListener('click',()=>{currentMode=currentMode==='story'?'free':'story';$('#mode-badge').textContent=currentMode==='story'?'📖 主線解密劇情':'⚡ 純淨刷題模式';$('#dialogue-content').textContent=currentMode==='story'?selectedChar.quote:'準備好了嗎？專心配對，記住每個日文單字。'});$('#sound-btn').addEventListener('click',()=>{soundOn=!soundOn;$('#sound-btn').innerHTML=soundOn?'🔊 <span>發音開</span>':'🔇 <span>發音關</span>';if(!soundOn&&'speechSynthesis'in window)window.speechSynthesis.cancel()});$('#dialogue-sound').addEventListener('click',()=>speak(currentMode==='story'?selectedChar.jpPraise:'日本語の勉強を楽しんでください。'));
