@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="戀語解密 Flip! 日語單字配對遊戲原型" />
+  <title>戀語解密 Flip!｜日語學習遊戲</title>
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <div class="petals" aria-hidden="true"></div>
+  <main class="app-shell">
+    <section id="title-screen" class="screen is-active" aria-labelledby="game-title">
+      <div class="title-card">
+        <div class="title-mark">FLIP <span>恋</span></div>
+        <p class="eyebrow">日語單字配對練習 · Prototype 01</p>
+        <h1 id="game-title">戀語解密<br /><em>Flip!</em></h1>
+        <p class="lead">翻開卡牌，配對日文與中文意思，<br />在輕鬆的節奏中記住每一個詞。</p>
+        <button class="primary-btn" id="start-btn">開始學習 <span>→</span></button>
+        <p class="hint">目前版本：無角色模式・N5 基礎詞彙</p>
+      </div>
+    </section>
+
+    <section id="select-screen" class="screen" aria-labelledby="select-title">
+      <div class="panel select-panel">
+        <button class="text-btn back-to-title" type="button">← 返回首頁</button>
+        <div class="section-heading">
+          <p class="eyebrow">STEP 01 / 學習設定</p>
+          <h2 id="select-title">選擇學習內容</h2>
+          <p>先從基礎單字開始，完成一輪 4 組配對。</p>
+        </div>
+        <div class="option-list" role="group" aria-label="學習內容">
+          <button class="option-card selected" type="button" data-category="vocab">
+            <span class="option-icon">言</span>
+            <span><strong>心動基礎單字</strong><small>日常用語・N5 入門</small></span>
+            <span class="check">✓</span>
+          </button>
+          <button class="option-card disabled" type="button" aria-disabled="true">
+            <span class="option-icon">文</span>
+            <span><strong>戀愛短句</strong><small>即將開放</small></span>
+            <span class="lock">鎖定</span>
+          </button>
+        </div>
+        <button class="primary-btn wide" id="practice-btn">進入練習 <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen" aria-labelledby="game-heading">
+      <div class="game-panel">
+        <header class="game-header">
+          <button class="text-btn" id="quit-btn" type="button">← 離開</button>
+          <div class="progress-wrap"><span id="progress-label">配對進度 0 / 4</span><div class="progress"><i id="progress-bar"></i></div></div>
+          <div class="score-badge">連續 <strong id="combo">0</strong></div>
+        </header>
+        <div class="game-intro">
+          <div><p class="eyebrow">STEP 02 / 翻牌解密</p><h2 id="game-heading">找出相同意思的卡牌</h2></div>
+          <button class="sound-btn" id="sound-btn" type="button" title="開啟或關閉發音">🔊 <span>發音開</span></button>
+        </div>
+        <div id="message" class="message" role="status" aria-live="polite">先翻開一張卡牌吧！</div>
+        <div id="card-grid" class="card-grid" aria-label="日語單字卡牌"></div>
+        <p class="game-tip">提示：翻到日文卡時會嘗試播放日語發音。</p>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen" aria-labelledby="result-title">
+      <div class="panel result-panel">
+        <div class="result-sparkle">✦</div>
+        <p class="eyebrow">MISSION COMPLETE</p>
+        <h2 id="result-title">解密成功！</h2>
+        <p class="result-copy">這一輪的單字都配對完成了，<br />把剛剛遇到的詞再念一次吧。</p>
+        <div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span></div>
+        <button class="primary-btn wide" id="again-btn">再玩一次 <span>↻</span></button>
+        <button class="text-btn" id="result-home-btn" type="button">回到首頁</button>
+      </div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
