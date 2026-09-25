@@ -28,9 +28,15 @@
         <p class="eyebrow">日語學習乙女遊戲 · CHAPTER 01</p>
         <h1 id="game-title">戀語解密<br /><em>Flip!</em></h1>
         <p class="lead">翻開卡牌，配對日文與中文意思，<br />在每一次心動連擊裡記住一個詞。</p>
-        <button class="primary-btn" id="start-btn">開始邂逅 <span>→</span></button>
-      <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
-      <p class="version-label" id="version-label">Version v0.5.0</p>
+        <div class="home-menu" aria-label="遊戲主選單">
+          <button class="menu-tile menu-main" id="start-btn" type="button"><span class="menu-icon">✦</span><span><strong>開始邂逅</strong><small>選擇伴學角色，進入故事</small></span><b>→</b></button>
+          <button class="menu-tile" id="menu-characters" type="button"><span class="menu-icon">♛</span><span><strong>角色養成</strong><small>查看角色與好感度</small></span><b>›</b></button>
+          <button class="menu-tile" id="menu-learning" type="button"><span class="menu-icon">言</span><span><strong>日語學習</strong><small>N5 單字與配對課程</small></span><b>›</b></button>
+          <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⚔</span><span><strong>出擊冒險</strong><small>完成角色準備後開放</small></span><b>鎖定</b></button>
+          <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⌂</span><span><strong>我的基地</strong><small>布置房間與回憶</small></span><b>鎖定</b></button>
+        </div>
+        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
+      <p class="version-label" id="version-label">Version v0.6.0</p>
       </div>
     </section>
 
