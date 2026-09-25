@@ -52,7 +52,9 @@
       <div class="game-panel">
         <header class="game-header"><button class="text-btn" id="quit-btn" type="button">← 離開</button><div class="progress-wrap"><span id="progress-label">解密進度 0 / 6</span><div class="progress"><i id="progress-bar"></i></div></div><div class="score-badge">Combo <strong id="combo">0</strong></div></header>
         <div class="game-toolbar"><span id="mode-badge" class="mode-badge">📖 主線解密劇情</span><button class="mode-switch" id="mode-switch" type="button">切換模式</button><button class="sound-btn" id="sound-btn" type="button">🔊 <span>發音開</span></button></div>
+        <div class="scene-meta"><span id="scene-location">放學後的圖書館</span><span>好感度 <i id="affection-bar"><b></b></i><strong id="affection-value">0</strong></span></div>
         <div class="dialogue-section"><div class="partner-portrait" id="partner-avatar">♛</div><div class="dialogue-box"><div class="partner-title" id="partner-title">涼宮 蓮 · 傲嬌學霸</div><div class="dialogue-text"><span id="dialogue-content">準備好了嗎？翻開卡牌，讓我看看你的日文實力吧！</span><button class="tts-icon" id="dialogue-sound" type="button" aria-label="播放對話">🔊</button></div></div></div>
+        <div id="choice-box" class="choice-box" aria-label="對話選項"><p>你會怎麼回應？</p><div><button type="button" data-choice="study">「那就請你教我吧。」</button><button type="button" data-choice="tease">「我才不會輸給你呢。」</button></div></div>
         <div id="message" class="message" role="status" aria-live="polite">先翻開一張卡牌，找出命運中的另一半。</div>
         <div id="card-grid" class="card-grid" aria-label="日語單字卡牌"></div>
         <p class="game-tip">翻到日文卡會播放日語發音；配對成功時，伴學夥伴會給你一句鼓勵。</p>
