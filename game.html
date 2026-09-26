@@ -36,7 +36,29 @@
           <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⌂</span><span><strong>我的基地</strong><small>布置房間與回憶</small></span><b>鎖定</b></button>
         </div>
         <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
-      <p class="version-label" id="version-label">Version v0.6.0</p>
+      <p class="version-label" id="version-label">Version v0.7.0</p>
+      </div>
+    </section>
+
+    <section id="roster-screen" class="screen" aria-labelledby="roster-title">
+      <div class="panel roster-panel">
+        <button class="text-btn back-to-title" id="roster-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">BASE / CHARACTER ROSTER</p><h2 id="roster-title">角色養成</h2><p>每一位伴學夥伴都可以培養，陪你一起變強。</p></div>
+        <div class="roster-summary"><span>持有角色 <strong id="roster-count">0</strong></span><span>目前隊長 <strong id="roster-leader">涼宮 蓮</strong></span></div>
+        <div id="roster-grid" class="roster-grid"></div>
+      </div>
+    </section>
+
+    <section id="character-screen" class="screen" aria-labelledby="character-title">
+      <div class="panel character-panel">
+        <button class="text-btn" id="character-back-btn" type="button">← 返回角色列表</button>
+        <div class="character-hero"><div class="detail-avatar" id="detail-avatar">♛</div><div class="detail-heading"><p class="eyebrow" id="detail-route">OTOME ROUTE</p><h2 id="character-title">涼宮 蓮</h2><p id="detail-tag">傲嬌學霸 · 攻擊型</p><div class="rarity" id="detail-rarity">★★★</div></div></div>
+        <div class="affection-card"><div><span>Lv.<strong id="detail-level">1</strong></span><span id="detail-exp-label">經驗 0 / 100</span></div><div class="detail-progress"><i id="detail-exp-bar"></i></div><div><span>好感度</span><strong id="detail-affection">0</strong></div><div class="detail-progress affection-progress"><i id="detail-affection-bar"></i></div></div>
+        <p class="detail-quote" id="detail-quote">別誤會了，我只是順便幫你複習日文而已！</p>
+        <div class="stat-grid" id="detail-stats"></div>
+        <div class="skill-card"><span class="skill-icon">✦</span><div><small>專屬技能</small><strong id="detail-skill-name">犀利解答</strong><p id="detail-skill-description">答對日語題目後，下一次攻擊傷害提升。</p></div></div>
+        <button class="primary-btn wide" id="detail-train-btn" type="button">使用學習經驗升級 <span>＋</span></button>
+        <p class="detail-note" id="detail-train-note">完成日語課程後，就能獲得角色經驗。</p>
       </div>
     </section>
 
