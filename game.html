@@ -36,7 +36,7 @@
           <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⌂</span><span><strong>我的基地</strong><small>布置房間與回憶</small></span><b>鎖定</b></button>
         </div>
         <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
-      <p class="version-label" id="version-label">Version v0.9.0</p>
+      <p class="version-label" id="version-label">Version v0.10.0</p>
       </div>
     </section>
 
@@ -97,6 +97,17 @@
         <div id="message" class="message" role="status" aria-live="polite">先翻開一張卡牌，找出命運中的另一半。</div>
         <div id="card-grid" class="card-grid" aria-label="日語單字卡牌"></div>
         <p class="game-tip">翻到日文卡會播放日語發音；配對成功時，伴學夥伴會給你一句鼓勵。</p>
+      </div>
+    </section>
+
+    <section id="battle-screen" class="screen" aria-labelledby="battle-title">
+      <div class="panel battle-panel">
+        <header class="battle-header"><button class="text-btn" id="battle-home-btn" type="button">← 返回地圖</button><span class="battle-stage" id="battle-stage-label">STAGE 01</span><span id="turn-label">TURN 1</span></header>
+        <div class="battle-arena"><div class="enemy-side"><span class="enemy-sprite" id="enemy-sprite">🌫️</span><strong id="enemy-name">忘卻迷霧</strong><div class="hp-track"><i id="enemy-hp-bar"></i></div><small>HP <b id="enemy-hp">100</b> / <span id="enemy-max-hp">100</span></small></div><div class="vs-mark">VS</div><div class="party-side"><span class="party-sprite" id="battle-avatar">♛</span><strong id="battle-active-name">涼宮 蓮</strong><div class="hp-track ally"><i id="ally-hp-bar"></i></div><small>HP <b id="ally-hp">100</b> / <span id="ally-max-hp">100</span></small></div></div>
+        <div id="battle-log" class="battle-log" role="status" aria-live="polite">答對日語問題，就能發動角色能力！</div>
+        <div class="battle-question"><p class="eyebrow">日語戰鬥指令 · 請選擇正確意思</p><h2 id="battle-title">「好き」的意思是？</h2><div id="battle-answers" class="answer-grid"></div></div>
+        <div class="party-switch-title">選擇出戰角色</div><div class="party-switch" id="party-switch"></div>
+        <div class="battle-result" id="battle-result" hidden><strong id="battle-result-title">關卡勝利！</strong><small id="battle-result-copy">獲得角色經驗與獎勵。</small><button class="primary-btn wide" id="battle-result-btn" type="button">返回地圖 <span>→</span></button></div>
       </div>
     </section>
 
