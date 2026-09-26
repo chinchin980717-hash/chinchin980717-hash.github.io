@@ -32,11 +32,11 @@
           <button class="menu-tile menu-main" id="start-btn" type="button"><span class="menu-icon">✦</span><span><strong>開始邂逅</strong><small>選擇伴學角色，進入故事</small></span><b>→</b></button>
           <button class="menu-tile" id="menu-characters" type="button"><span class="menu-icon">♛</span><span><strong>角色養成</strong><small>查看角色與好感度</small></span><b>›</b></button>
           <button class="menu-tile" id="menu-learning" type="button"><span class="menu-icon">言</span><span><strong>日語學習</strong><small>N5 單字與配對課程</small></span><b>›</b></button>
-          <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⚔</span><span><strong>出擊冒險</strong><small>完成角色準備後開放</small></span><b>鎖定</b></button>
+          <button class="menu-tile" id="menu-map" type="button"><span class="menu-icon">⚔</span><span><strong>出擊冒險</strong><small>前往櫻花校舍地圖</small></span><b>→</b></button>
           <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⌂</span><span><strong>我的基地</strong><small>布置房間與回憶</small></span><b>鎖定</b></button>
         </div>
         <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
-      <p class="version-label" id="version-label">Version v0.8.0</p>
+      <p class="version-label" id="version-label">Version v0.9.0</p>
       </div>
     </section>
 
@@ -59,6 +59,17 @@
         <div class="skill-card"><span class="skill-icon">✦</span><div><small>專屬技能</small><strong id="detail-skill-name">犀利解答</strong><p id="detail-skill-description">答對日語題目後，下一次攻擊傷害提升。</p></div></div>
         <button class="primary-btn wide" id="detail-train-btn" type="button">使用學習經驗升級 <span>＋</span></button>
         <p class="detail-note" id="detail-train-note">完成日語課程後，就能獲得角色經驗。</p>
+      </div>
+    </section>
+
+    <section id="map-screen" class="screen" aria-labelledby="map-title">
+      <div class="panel map-panel">
+        <button class="text-btn" id="map-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">ADVENTURE / CHAPTER 01</p><h2 id="map-title">櫻花校舍</h2><p>沿著放學後的路線前進，完成日語挑戰。</p></div>
+        <div class="map-status"><span>出擊體力 <strong id="map-energy">10 / 10</strong></span><span>招募券 <strong id="map-tickets">0</strong></span></div>
+        <div id="map-path" class="map-path"></div>
+        <div id="map-detail" class="map-detail"><strong>選擇一個關卡節點</strong><small>完成關卡後會解鎖下一段路線。</small></div>
+        <button class="primary-btn wide" id="map-enter-btn" type="button" disabled>選擇節點後出擊 <span>→</span></button>
       </div>
     </section>
 
@@ -91,6 +102,7 @@
 
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
   </main>
+  <script src="data/map.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
