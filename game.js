@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.7.0';
+const GAME_VERSION = 'v0.8.0';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
