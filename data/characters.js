@@ -1,6 +1,6 @@
 // 《戀語解密 Flip!》角色資料 v0.5.0
 // 先用資料模組管理，之後可替換成 API 或資料庫。
-export const CHARACTERS = [
+window.CHARACTERS = [
   {
     id: 'ren',
     name: '涼宮 蓮',
@@ -63,7 +63,7 @@ export const CHARACTERS = [
   }
 ];
 
-export const createCharacterState = (characterId) => ({
+window.createCharacterState = (characterId) => ({
   characterId,
   level: 1,
   exp: 0,

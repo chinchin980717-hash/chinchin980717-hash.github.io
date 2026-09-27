@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="戀語解密 Flip! 角色圖鑑" />
+  <title>角色圖鑑｜戀語解密 Flip!</title>
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <div class="petals" aria-hidden="true"></div>
+  <main class="app-shell">
+    <section class="screen is-active" aria-labelledby="codex-title">
+      <div class="panel codex-panel">
+        <button class="text-btn back-link" id="back-button" type="button">← 返回上一頁</button>
+        <div class="section-heading"><p class="eyebrow">CHARACTER CODEX / COLLECTION</p><h1 id="codex-title">角色圖鑑</h1><p>查看已經加入學習旅程的所有角色。</p></div>
+        <div class="codex-summary"><span>已擁有 <strong id="owned-count">0</strong> / <b id="total-count">0</b></span><span>收集率 <strong id="collection-rate">0%</strong></span></div>
+        <div class="codex-tabs" role="tablist"><button class="codex-tab active" data-filter="all" type="button">全部</button><button class="codex-tab" data-filter="male" type="button">男神線</button><button class="codex-tab" data-filter="female" type="button">女神線</button></div>
+        <div id="character-codex-grid" class="character-codex-grid"></div>
+      </div>
+    </section>
+  </main>
+  <script src="data/characters.js"></script>
+  <script src="characters.js"></script>
+</body>
+</html>
