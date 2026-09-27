@@ -57,6 +57,12 @@
         <p class="detail-quote" id="detail-quote">別誤會了，我只是順便幫你複習日文而已！</p>
         <div class="stat-grid" id="detail-stats"></div>
         <div class="skill-card"><span class="skill-icon">✦</span><div><small>專屬技能</small><strong id="detail-skill-name">犀利解答</strong><p id="detail-skill-description">答對日語題目後，下一次攻擊傷害提升。</p></div></div>
+        <div class="equipment-section">
+          <div class="equipment-heading"><div><p class="eyebrow">LOADOUT / EQUIPMENT</p><h3>裝備欄</h3></div><span id="equipment-power">戰力 0</span></div>
+          <p class="equipment-note" id="equipment-note">裝備會在答題戰鬥中立即生效。</p>
+          <div id="equipment-list" class="equipment-list"></div>
+          <div id="equipment-inventory" class="equipment-inventory"></div>
+        </div>
         <button class="primary-btn wide" id="detail-train-btn" type="button">使用學習經驗升級 <span>＋</span></button>
         <p class="detail-note" id="detail-train-note">完成日語課程後，就能獲得角色經驗。</p>
       </div>
@@ -114,6 +120,7 @@
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
   </main>
   <script src="data/map.js"></script>
+  <script src="data/equipment.js"></script>
   <script src="game.js"></script>
 </body>
 </html>
