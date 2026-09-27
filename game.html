@@ -23,22 +23,12 @@
 
   <main class="app-shell">
     <section id="title-screen" class="screen is-active" aria-labelledby="game-title">
-      <div class="title-card">
-        <div class="title-mark">FLIP <span>恋</span></div>
-        <p class="eyebrow">日語學習乙女遊戲 · CHAPTER 01</p>
-        <h1 id="game-title">戀語解密<br /><em>Flip!</em></h1>
-        <p class="lead">翻開卡牌，配對日文與中文意思，<br />在每一次心動連擊裡記住一個詞。</p>
-        <div class="home-menu" aria-label="遊戲主選單">
-          <button class="menu-tile menu-main" id="start-btn" type="button"><span class="menu-icon">✦</span><span><strong>開始邂逅</strong><small>選擇伴學角色，進入故事</small></span><b>→</b></button>
-          <button class="menu-tile" id="menu-characters" type="button"><span class="menu-icon">♛</span><span><strong>角色養成</strong><small>查看角色與好感度</small></span><b>›</b></button>
-          <a class="menu-tile" id="menu-codex" href="characters.html"><span class="menu-icon">▦</span><span><strong>角色圖鑑</strong><small>查看所有已擁有角色</small></span><b>→</b></a>
-          <button class="menu-tile" id="menu-learning" type="button"><span class="menu-icon">言</span><span><strong>日語學習</strong><small>N5 單字與配對課程</small></span><b>›</b></button>
-          <button class="menu-tile" id="menu-map" type="button"><span class="menu-icon">⚔</span><span><strong>出擊冒險</strong><small>前往櫻花校舍地圖</small></span><b>→</b></button>
-          <a class="menu-tile" id="menu-recruit" href="recruit.html"><span class="menu-icon">✧</span><span><strong>劇情招募</strong><small>使用招募券尋找新夥伴</small></span><b>→</b></a>
-          <button class="menu-tile is-locked" type="button" disabled><span class="menu-icon">⌂</span><span><strong>我的基地</strong><small>布置房間與回憶</small></span><b>鎖定</b></button>
-        </div>
-        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p>
-      <p class="version-label" id="version-label">Version v0.10.0</p>
+      <div class="dashboard-shell">
+        <header class="dashboard-header"><div class="title-mark">FLIP <span>恋</span></div><button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟遊戲選單">☰</button></header>
+        <div class="dashboard-heading"><p class="eyebrow">MY SCHOOL HEART · CHAPTER 01</p><h1 id="game-title">戀語解密<br /><em>Flip!</em></h1><p class="lead">今天也和最喜歡的角色一起，<br />把日文變成靠近彼此的語言。</p></div>
+        <section class="favorite-home" aria-labelledby="favorite-title"><div class="favorite-heading"><div><p class="eyebrow">FAVORITE PARTNERS</p><h2 id="favorite-title">我的最愛角色</h2></div><a href="characters.html" class="favorite-manage">管理圖鑑 →</a></div><div id="favorite-grid" class="favorite-grid"></div></section>
+        <button class="primary-btn dashboard-start" id="start-btn" type="button"><span>✦</span> 開始今天的邂逅 <b>→</b></button>
+        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p><p class="version-label" id="version-label">Version v0.16.0</p>
       </div>
     </section>
 
@@ -123,6 +113,7 @@
 
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
   </main>
+  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-header"><strong>FLIP 恋</strong><button class="menu-close" id="menu-close" type="button">×</button></div><p class="side-menu-kicker">GAME MENU</p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span>開始邂逅</button><button data-menu-action="characters" type="button"><span>♛</span>角色養成</button><a href="characters.html"><span>▦</span>角色圖鑑</a><button data-menu-action="learning" type="button"><span>言</span>日語學習</button><button data-menu-action="map" type="button"><span>⚔</span>出擊冒險</button><a href="recruit.html"><span>✧</span>劇情招募</a></nav><div class="side-menu-footer">Version v0.16.0</div></aside>
   <script src="data/map.js"></script>
   <script src="data/equipment.js"></script>
   <script src="game.js"></script>
