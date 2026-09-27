@@ -9,6 +9,7 @@ window.CHARACTERS = [
     role: '攻擊型',
     element: 'heart',
     avatar: '♛',
+    image: 'assets/ren-library.jpg',
     quote: '別誤會了，我只是順便幫你複習日文而已！',
     baseStats: { hp: 120, attack: 34, defense: 18, speed: 24 },
     growth: { hp: 12, attack: 5, defense: 3, speed: 2 },
@@ -60,6 +61,30 @@ window.CHARACTERS = [
       20: '你最近……好像真的有在進步。',
       50: '下次也一起走吧。只、只是順路！'
     }
+  },
+  {
+    id: 'rin',
+    name: '黑羽 凜',
+    route: 'male',
+    rarity: 3,
+    role: '主唱',
+    tag: '霸道主唱',
+    element: 'moon',
+    avatar: '♪',
+    image: 'assets/rin-stage.jpg',
+    quote: '湊近一點，這句日文我只想唱給你聽。'
+  },
+  {
+    id: 'haru',
+    name: '白石 春',
+    route: 'male',
+    rarity: 3,
+    role: '作家',
+    tag: '溫柔作家',
+    element: 'light',
+    avatar: '✒',
+    image: 'assets/haru-library.jpg',
+    quote: '每個單字都是一封還沒寄出的情書。'
   }
 ];
 
