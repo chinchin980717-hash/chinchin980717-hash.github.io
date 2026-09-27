@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="戀語解密 Flip! 劇情招募機" />
+  <title>校舍心動招募｜戀語解密 Flip!</title>
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <div class="petals" aria-hidden="true"></div>
+  <main class="app-shell">
+    <section class="screen is-active" aria-labelledby="recruit-title">
+      <div class="panel recruit-panel">
+        <a class="text-btn back-link" href="game.html">← 返回遊戲主選單</a>
+        <div class="section-heading"><p class="eyebrow">STORY RECRUITMENT / SCHOOL HEART</p><h1 id="recruit-title">校舍心動招募</h1><p id="pool-description">用冒險與學習得到的招募券，尋找新的學習夥伴。</p></div>
+        <div class="recruit-status"><span>招募券 <strong id="recruit-tickets">0</strong></span><span>距離稀有保底 <strong id="recruit-pity">10</strong></span></div>
+        <div class="recruit-machine"><div class="recruit-orbit">✦</div><strong>翻開下一段心意</strong><small>不使用金錢、不接付款，抽到的角色、裝備與聖物都能在遊戲內使用。</small></div>
+        <div class="recruit-actions"><button class="primary-btn" id="pull-one-btn" type="button">單抽 <span>×1</span></button><button class="primary-btn recruit-ten" id="pull-ten-btn" type="button">十連招募 <span>×10</span></button></div>
+        <p class="recruit-pity-note" id="recruit-pity-note">十連招募至少包含 1 件稀有以上物品；連續 9 抽未出現稀有時，下一抽必定稀有。</p>
+        <div id="recruit-results" class="recruit-results"><p class="empty-recruit">招募結果會在這裡出現。</p></div>
+        <p class="recruit-source-note">卡池資料來源：<code>data/gacha.js</code> · 更新卡池只需修改這個檔案。</p>
+      </div>
+    </section>
+  </main>
+  <script src="data/equipment.js"></script>
+  <script src="data/gacha.js"></script>
+  <script src="recruit.js"></script>
+</body>
+</html>
