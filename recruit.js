@@ -50,6 +50,7 @@ function pull(count){
   save(MAP_KEY,mapState);save(GACHA_KEY,gachaState);render();
   $('#recruit-results').innerHTML=`<div class="recruit-result-heading"><strong>${count===10?'十連招募完成':'招募完成'}</strong><small>本次消耗招募券 ×${count}</small></div><div class="recruit-result-grid">${results.map(result=>`<div class="recruit-result-card rarity-${result.entry.rarity}"><span>${result.entry.type==='character'?'♛':result.entry.type==='equipment'?'✦':'❖'}</span><div><strong>${result.name}</strong><small>${result.entry.type==='character'?'角色':result.entry.type==='equipment'?'裝備':'聖物'} · ${'★'.repeat(result.entry.rarity)}</small><em>${result.duplicate?'記憶碎片 ×1':result.detail}</em></div></div>`).join('')}</div>`;
 }
+$('#back-button').addEventListener('click',()=>history.back());
 $('#pull-one-btn').addEventListener('click',()=>pull(1));
 $('#pull-ten-btn').addEventListener('click',()=>pull(10));
 render();
