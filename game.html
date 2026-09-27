@@ -73,6 +73,7 @@
         <button class="text-btn" id="map-home-btn" type="button">← 返回主選單</button>
         <div class="section-heading"><p class="eyebrow">ADVENTURE / CHAPTER 01</p><h2 id="map-title">櫻花校舍</h2><p>沿著放學後的路線前進，完成日語挑戰。</p></div>
         <div class="map-status"><span>出擊體力 <strong id="map-energy">10 / 10</strong></span><span>招募券 <strong id="map-tickets">0</strong></span></div>
+        <div class="relic-loadout-card"><div class="equipment-heading"><div><p class="eyebrow">PARTY PASSIVE</p><h3>隊伍聖物</h3></div><span>最多 2 個</span></div><p class="equipment-note">聖物效果會在整場戰鬥中生效。</p><div id="relic-loadout" class="relic-loadout"></div></div>
         <div id="map-path" class="map-path"></div>
         <div id="map-detail" class="map-detail"><strong>選擇一個關卡節點</strong><small>完成關卡後會解鎖下一段路線。</small></div>
         <button class="primary-btn wide" id="map-enter-btn" type="button" disabled>選擇節點後出擊 <span>→</span></button>
@@ -111,6 +112,7 @@
         <header class="battle-header"><button class="text-btn" id="battle-home-btn" type="button">← 返回地圖</button><span class="battle-stage" id="battle-stage-label">STAGE 01</span><span id="turn-label">TURN 1</span></header>
         <div class="battle-arena"><div class="enemy-side"><span class="enemy-sprite" id="enemy-sprite">🌫️</span><strong id="enemy-name">忘卻迷霧</strong><div class="hp-track"><i id="enemy-hp-bar"></i></div><small>HP <b id="enemy-hp">100</b> / <span id="enemy-max-hp">100</span></small></div><div class="vs-mark">VS</div><div class="party-side"><span class="party-sprite" id="battle-avatar">♛</span><strong id="battle-active-name">涼宮 蓮</strong><div class="hp-track ally"><i id="ally-hp-bar"></i></div><small>HP <b id="ally-hp">100</b> / <span id="ally-max-hp">100</span></small></div></div>
         <div id="battle-log" class="battle-log" role="status" aria-live="polite">答對日語問題，就能發動角色能力！</div>
+        <div id="battle-relics" class="battle-relics"></div>
         <div class="battle-question"><p class="eyebrow">日語戰鬥指令 · 請選擇正確意思</p><h2 id="battle-title">「好き」的意思是？</h2><div id="battle-answers" class="answer-grid"></div></div>
         <div class="party-switch-title">選擇出戰角色</div><div class="party-switch" id="party-switch"></div>
         <div class="battle-result" id="battle-result" hidden><strong id="battle-result-title">關卡勝利！</strong><small id="battle-result-copy">獲得角色經驗與獎勵。</small><button class="primary-btn wide" id="battle-result-btn" type="button">返回地圖 <span>→</span></button></div>
