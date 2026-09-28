@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.28.1';
+const GAME_VERSION = 'v0.28.3';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -12,8 +12,8 @@ const CHARACTERS = {
   ],
   female: [
     { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
-    { id:'suzu', name:'神樂 鈴', tag:'神秘巫女', avatar:'⛩', quote:'願神明的祝福，伴隨你的日語學習之旅。', praise:'見事な解密です。', jpPraise:'見事な解密です。' },
-    { id:'ami', name:'星野 亞美', tag:'元氣後輩', avatar:'🎤', quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
+    { id:'suzu', name:'神樂 鈴', tag:'神秘巫女', role:'支援型', element:'sakura', rarity:3, avatar:'⛩', image:'assets/kagura-suzu-shrine.jpg', baseStats:{hp:112,attack:24,defense:23,speed:21},growth:{hp:11,attack:3,defense:3,speed:2}, quote:'願神明的祝福，伴隨你的日語學習之旅。', praise:'見事な解密です。', jpPraise:'見事な解密です。' },
+    { id:'ami', name:'星野 亞美', tag:'元氣後輩', role:'支援型', element:'light', rarity:3, avatar:'🎤', image:'assets/hoshino-ami-stage.jpg', baseStats:{hp:100,attack:26,defense:18,speed:28},growth:{hp:10,attack:3,defense:2,speed:3}, quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
     { id:'mio', name:'水瀨 澪', tag:'冷靜班長', avatar:'◇', quote:'很好，正確率又提高了。請保持這份專注。', praise:'完璧です。', jpPraise:'完璧です。' },
     { id:'nana', name:'藤原 菜奈', tag:'甜點研究社', avatar:'🍓', quote:'答對的獎勵是……下課一起吃草莓蛋糕？', praise:'おいしい！じゃなくて、すごい！', jpPraise:'すごい！' },
     { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', role:'支援型', element:'light', rarity:3, avatar:'📷', image:'assets/narumi-rei-studio.jpg', baseStats:{hp:108,attack:27,defense:19,speed:27},growth:{hp:10,attack:4,defense:2,speed:3}, quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' },

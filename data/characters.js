@@ -63,6 +63,22 @@ window.CHARACTERS = [
     }
   },
   {
+    id:'suzu', name:'神樂 鈴', route:'female', rarity:3, role:'支援型', tag:'神秘巫女', element:'sakura', avatar:'⛩', unlockMethod:'story',
+    image:'assets/kagura-suzu-shrine.jpg',
+    quote:'願神明的祝福，伴隨你的日語學習之旅。',
+    baseStats:{hp:112,attack:24,defense:23,speed:21}, growth:{hp:11,attack:3,defense:3,speed:2},
+    skills:[{id:'shrine-blessing',name:'神樂祝禱',description:'答對日語題目時，為全隊恢復少量生命。'}],
+    affectionLines:{0:'願神明的祝福伴隨你。先把今天的日文暗號念清楚吧。',20:'你的努力，神明一定也有看見。',50:'祭典的鈴聲響起時……我想和你一起聽。'}
+  },
+  {
+    id:'ami', name:'星野 亞美', route:'female', rarity:3, role:'支援型', tag:'元氣後輩', element:'light', avatar:'🎤', unlockMethod:'story',
+    image:'assets/hoshino-ami-stage.jpg',
+    quote:'學長學長！快聽我剛寫好的日文新歌！',
+    baseStats:{hp:100,attack:26,defense:18,speed:28}, growth:{hp:10,attack:3,defense:2,speed:3},
+    skills:[{id:'genki-encore',name:'元氣安可',description:'答對日語題目後，提升隊伍速度並恢復少量生命。'}],
+    affectionLines:{0:'學長學長！今天的日文暗號，要不要用歌唱的方式記住？',20:'你的應援我收到了！下一首歌也要唱給你聽。',50:'站上舞台前，我最想看到的觀眾就是你。'}
+  },
+  {
     id: 'rin',
     name: '黑羽 凜',
     route: 'male',
