@@ -1,4 +1,4 @@
-// 《戀語解密 Flip!》角色資料 v0.25.1
+// 《戀語解密 Flip!》角色資料 v0.28.0
 // 先用資料模組管理，之後可替換成 API 或資料庫。
 window.CHARACTERS = [
   {
@@ -71,7 +71,7 @@ window.CHARACTERS = [
     tag: '霸道主唱',
     element: 'moon',
     avatar: '♪',
-    image: 'assets/rin-stage.jpg',
+    image: 'assets/kuroha-rin-live.jpg',
     quote: '湊近一點，這句日文我只想唱給你聽。'
   },
   {
@@ -88,6 +88,7 @@ window.CHARACTERS = [
   },
   {
     id:'saku', name:'神崎 朔', route:'male', rarity:3, role:'控制型', tag:'天文社觀測者', element:'moon', avatar:'✦', unlockMethod:'story',
+    image:'assets/kanzaki-saku-observatory.jpg',
     quote:'星星會指路，但和你一起走的方向，我想自己選。',
     baseStats:{hp:102,attack:22,defense:21,speed:27}, growth:{hp:10,attack:3,defense:3,speed:3},
     skills:[{id:'starlit-analysis',name:'星軌推演',description:'答對日語題目後，降低敵方下一次攻擊威力。'}],
@@ -109,6 +110,7 @@ window.CHARACTERS = [
   },
   {
     id:'kotori', name:'七瀨 琴里', route:'female', rarity:3, role:'控制型', tag:'廣播社晨間主持', element:'sakura', avatar:'🎙', unlockMethod:'story',
+    image:'assets/nanase-kotori-radio.jpg',
     quote:'早安——今天的日文暗號，就由我用最好的聲音念給你聽。',
     baseStats:{hp:100,attack:26,defense:18,speed:28}, growth:{hp:10,attack:3,defense:2,speed:3},
     skills:[{id:'morning-signal',name:'早晨暗號',description:'答對日語題目後，削弱敵人的下一次攻擊。'}],

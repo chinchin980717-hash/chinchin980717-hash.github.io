@@ -5,20 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
   <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
-  <link rel="stylesheet" href="game.css?v=0.27.0-local-guest" />
+  <link rel="stylesheet" href="game.css?v=0.28.0-player-exp" />
 </head>
 <body>
   <div class="petals" aria-hidden="true"></div>
-  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-label="遊戲開場">
-    <div class="intro-orbit orbit-one"></div><div class="intro-orbit orbit-two"></div>
-    <div class="intro-content">
-      <div class="intro-bloom">✦</div>
-      <p class="intro-kicker">A ROMANTIC JAPANESE LEARNING GAME</p>
-      <h1>戀語解密 <em>Flip!</em></h1>
-      <p>指尖輕翻，解讀他未說出口的真心</p>
-      <button id="enter-btn" class="primary-btn intro-btn">點擊解鎖心動入口 <span>→</span></button>
-      <small>建議開啟聲音，讓日文在心裡發芽</small>
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="戀語解密遊戲開場">
+    <div class="intro-art-stage" id="intro-art-stage">
+      <img class="intro-art" src="assets/start-screen.jpg" alt="戀語解密 Flip! 校園櫻花開場插畫，含點擊開始、用戶中心與關於遊戲選項" draggable="false" />
+      <button id="enter-btn" class="intro-hotspot intro-hotspot-start" type="button" aria-label="點擊開始遊戲"></button>
+      <button id="intro-user-center-btn" class="intro-hotspot intro-hotspot-user" type="button" aria-label="開啟用戶中心"></button>
+      <button id="intro-about-btn" class="intro-hotspot intro-hotspot-about" type="button" aria-label="查看關於遊戲"></button>
     </div>
+    <section class="intro-dialog" id="intro-user-center-panel" aria-labelledby="intro-user-center-title" hidden>
+      <p class="eyebrow">PLAYER CENTER</p><h2 id="intro-user-center-title">用戶中心</h2>
+      <div class="intro-profile-list"><span>主角稱呼</span><strong id="intro-profile-name">主角</strong><span>存檔模式</span><strong id="intro-profile-status">尚未開始遊客模式</strong><span>主角等級</span><strong id="intro-profile-level">Lv.1</strong><span>主角經驗</span><strong id="intro-profile-exp">0 / 100 EXP</strong></div>
+      <p class="intro-dialog-note" id="intro-profile-note">遊客進度只保存在這個瀏覽器，不會上傳或跨裝置同步。</p>
+      <button class="account-login-disabled" type="button" disabled>帳號登入 <span>之後推出</span></button>
+      <button class="primary-btn wide intro-dialog-back" id="intro-user-center-back" type="button">返回開始畫面</button>
+    </section>
+    <section class="intro-dialog" id="intro-about-panel" aria-labelledby="intro-about-title" hidden>
+      <p class="eyebrow">ABOUT THE GAME</p><h2 id="intro-about-title">關於遊戲</h2>
+      <p>《戀語解密 Flip!》是一款結合日語學習、乙女劇情、角色養成與章節冒險的遊戲。</p>
+      <p>為主角設定專屬稱呼，透過日語課程和故事關卡累積主角經驗，也和喜歡的伴學角色一起成長。</p>
+      <p class="intro-dialog-note">本機遊客存檔目前只保存在此瀏覽器。正式帳號與雲端同步將於後續版本推出。</p>
+      <button class="primary-btn wide intro-dialog-back" id="intro-about-back" type="button">返回開始畫面</button>
+    </section>
   </div>
 
   <main class="app-shell">
@@ -44,11 +55,18 @@
     <section id="title-screen" class="screen" aria-labelledby="game-title">
       <div class="dashboard-shell">
         <header class="dashboard-header"><div class="title-mark">FLIP <span>恋</span></div><span class="guest-status-badge" id="guest-status-badge" hidden>本機遊客 · 本機存檔</span><button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟遊戲選單">☰</button></header>
+        <section class="player-progress-card" aria-label="主角學習經驗">
+          <div class="player-progress-heading"><div><p class="eyebrow">YOUR LEARNING JOURNEY</p><strong id="player-progress-name">主角</strong></div><span class="player-progress-level" id="player-progress-level">Lv.1</span></div>
+          <div class="player-progress-meta"><span>主角經驗</span><span id="player-progress-exp-label">0 / 100 EXP</span></div>
+          <div class="player-progress-track" role="progressbar" aria-label="主角升級經驗進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="player-progress-exp-bar"></i></div>
+          <div class="player-progress-footer"><small id="player-progress-total">累積 0 EXP</small><small>課程 +20 · 戰鬥勝利 +50</small></div>
+          <p class="player-progress-note">主角經驗獨立保存，不影響伴學角色的戰鬥能力。</p>
+        </section>
         <div class="dashboard-heading"><p class="eyebrow">MY SCHOOL HEART · CHAPTER 01</p><h1 id="game-title">戀語解密<br /><em>Flip!</em></h1><p class="lead">今天也和最喜歡的角色一起，<br />把日文變成靠近彼此的語言。</p></div>
-        <a class="release-spotlight" id="story-map-spotlight" href="#start-btn"><span class="release-spotlight-icon">✦</span><span><small>VERSION 0.27.0 · STORY CHAPTER MAP + LOCAL GUEST</small><strong>第一章五個劇情關卡與本機遊客存檔</strong></span><b aria-hidden="true">→</b></a>
+        <a class="release-spotlight" id="story-map-spotlight" href="#start-btn"><span class="release-spotlight-icon">✦</span><span><small>VERSION 0.28.0 · PROTAGONIST EXP</small><strong>主角經驗與伴學角色分開培養</strong></span><b aria-hidden="true">→</b></a>
         <section class="favorite-home" aria-labelledby="favorite-title"><div class="favorite-heading"><div><p class="eyebrow">FAVORITE PARTNERS</p><h2 id="favorite-title">我的最愛角色</h2></div><a href="characters.html" class="favorite-manage">管理圖鑑 →</a></div><div id="favorite-grid" class="favorite-grid"></div></section>
         <button class="primary-btn dashboard-start" id="start-btn" type="button"><span>✦</span> 開始今天的邂逅 <b>→</b></button>
-        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p><p class="version-label" id="version-label">Version v0.27.0</p>
+        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p><p class="version-label" id="version-label">Version v0.28.0</p>
       </div>
     </section>
 
@@ -177,10 +195,10 @@
 
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="story-map-return-btn" type="button" hidden>回到章節地圖 →</button><button class="text-btn" id="result-character-btn" type="button">查看角色成長 →</button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
   </main>
-  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-glow"></div><div class="side-menu-header"><div class="side-menu-brand"><span>FLIP</span><b>恋</b><small>戀語解密</small></div><button class="menu-close" id="menu-close" type="button" aria-label="關閉選單">×</button></div><div class="side-menu-hero"><div class="side-menu-orb">✦</div><div><small>MY SCHOOL HEART</small><strong>放學後的秘密基地</strong><em>選一個目的地吧</em></div><i>✧</i></div><p class="side-menu-kicker"><span>✦</span> MAIN DESTINATIONS <span>✦</span></p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span><div><strong>開始邂逅</strong><small>Story / Encounter</small></div><b>›</b></button><button data-menu-action="characters" type="button"><span>♛</span><div><strong>角色養成</strong><small>Character Growth</small></div><b>›</b></button><a href="characters.html"><span>▦</span><div><strong>角色圖鑑</strong><small>Character Codex</small></div><b>›</b></a><button data-menu-action="learning" type="button"><span>言</span><div><strong>日語學習</strong><small>Japanese Lessons</small></div><b>›</b></button><button data-menu-action="map" type="button"><span>⚔</span><div><strong>出擊冒險</strong><small>Adventure Map</small></div><b>›</b></button><a href="recruit.html"><span>✧</span><div><strong>劇情招募</strong><small>Story Recruitment</small></div><b>›</b></a><button data-menu-action="start" type="button"><span>✧</span><div><strong>劇情章節地圖</strong><small>Story Chapter Map</small></div><b>›</b></button></nav><div class="side-menu-footer"><span>CHAPTER 01 · SCHOOL HEART</span><small>Version v0.27.0</small></div></aside>
+  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-glow"></div><div class="side-menu-header"><div class="side-menu-brand"><span>FLIP</span><b>恋</b><small>戀語解密</small></div><button class="menu-close" id="menu-close" type="button" aria-label="關閉選單">×</button></div><div class="side-menu-hero"><div class="side-menu-orb">✦</div><div><small>MY SCHOOL HEART</small><strong>放學後的秘密基地</strong><em>選一個目的地吧</em></div><i>✧</i></div><p class="side-menu-kicker"><span>✦</span> MAIN DESTINATIONS <span>✦</span></p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span><div><strong>開始邂逅</strong><small>Story / Encounter</small></div><b>›</b></button><button data-menu-action="characters" type="button"><span>♛</span><div><strong>角色養成</strong><small>Character Growth</small></div><b>›</b></button><a href="characters.html"><span>▦</span><div><strong>角色圖鑑</strong><small>Character Codex</small></div><b>›</b></a><button data-menu-action="learning" type="button"><span>言</span><div><strong>日語學習</strong><small>Japanese Lessons</small></div><b>›</b></button><button data-menu-action="map" type="button"><span>⚔</span><div><strong>出擊冒險</strong><small>Adventure Map</small></div><b>›</b></button><a href="recruit.html"><span>✧</span><div><strong>劇情招募</strong><small>Story Recruitment</small></div><b>›</b></a><button data-menu-action="start" type="button"><span>✧</span><div><strong>劇情章節地圖</strong><small>Story Chapter Map</small></div><b>›</b></button></nav><div class="side-menu-footer"><span>CHAPTER 01 · SCHOOL HEART</span><small>Version v0.28.0</small></div></aside>
   <script src="data/map.js?v=0.23.0"></script>
   <script src="data/equipment.js"></script>
-  <script src="data/story-map.js?v=0.27.0-local-guest"></script>
-  <script src="game.js?v=0.27.0-local-guest"></script>
+  <script src="data/story-map.js?v=0.28.0-player-exp"></script>
+  <script src="game.js?v=0.28.0-player-exp"></script>
 </body>
 </html>

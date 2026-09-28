@@ -101,3 +101,45 @@ body{background:radial-gradient(circle at 9% 8%,rgba(255,255,255,.95) 0 5%,trans
 .guest-status-badge{display:inline-flex;align-items:center;max-width:180px;padding:7px 10px;border:1px solid rgba(189,86,126,.16);border-radius:99px;background:rgba(255,248,251,.92);color:var(--pink-deep);font-size:9px;font-weight:700;white-space:nowrap}
 .guest-status-badge[hidden]{display:none}
 @media(max-width:520px){.guest-login-panel{padding:30px 22px}.guest-storage-card{padding:12px}.guest-status-badge{max-width:124px;padding:6px 8px;font-size:8px}}
+
+
+/* v0.28.0 protagonist experience card */
+.dashboard-header{margin-bottom:16px}
+.player-progress-card{width:min(100%,520px);margin:0 auto 22px;padding:15px 17px;border:1px solid rgba(255,255,255,.95);border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.88),rgba(255,245,249,.88));box-shadow:0 10px 24px rgba(82,43,89,.07);text-align:left}
+.player-progress-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.player-progress-heading .eyebrow{margin:0 0 3px;font-size:8px;letter-spacing:1.4px}
+.player-progress-heading strong{color:var(--ink);font-size:16px}
+.player-progress-level{padding:6px 10px;border:1px solid rgba(189,86,126,.18);border-radius:99px;background:#fff0f5;color:var(--pink-deep);font-size:11px;font-weight:800}
+.player-progress-meta{display:flex;justify-content:space-between;gap:10px;margin-top:13px;color:var(--muted);font-size:10px}
+.player-progress-meta span:last-child{color:var(--pink-deep);font-weight:800;font-variant-numeric:tabular-nums}
+.player-progress-track{height:8px;margin-top:7px;overflow:hidden;border-radius:99px;background:#f0e1e8}
+.player-progress-track i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#e8799a,#e9b55e);box-shadow:0 0 10px rgba(232,121,154,.25);transition:width .35s ease}
+.player-progress-footer{display:flex;justify-content:space-between;gap:8px;margin-top:7px;color:#a893a5;font-size:9px}
+.player-progress-note{margin:9px 0 0;color:#927d91;font-size:9px;line-height:1.5}
+@media(max-width:520px){.player-progress-card{padding:13px 14px;margin-bottom:19px}.player-progress-heading strong{font-size:15px}.player-progress-footer{font-size:8px}}
+
+
+/* v0.28.0 illustrated opening screen and interactive hotspots */
+.intro-overlay{background:#17152c}
+.intro-overlay::before{content:"";position:absolute;inset:-28px;z-index:0;background:url("assets/start-screen.jpg") center/cover no-repeat;filter:blur(22px) brightness(.48);opacity:.72;transform:scale(1.04)}
+.intro-art-stage{position:relative;z-index:1;flex:none;width:min(100vw,55.81395dvh);height:min(100dvh,179.1667vw);aspect-ratio:768/1376;overflow:hidden;background:#25345e;box-shadow:0 20px 70px rgba(5,8,27,.42)}
+.intro-art{display:block;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.intro-hotspot{position:absolute;z-index:2;display:block;padding:0;border:1px solid transparent;border-radius:999px;background:transparent;cursor:pointer;touch-action:manipulation;transition:background .18s,border-color .18s,box-shadow .18s}
+.intro-hotspot-start{left:24%;top:69.6%;width:52%;height:7.8%}
+.intro-hotspot-user{left:22%;top:80.5%;width:26.5%;height:5.8%}
+.intro-hotspot-about{left:51.5%;top:80.5%;width:26.5%;height:5.8%}
+.intro-hotspot:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5);box-shadow:0 0 20px rgba(195,229,255,.32)}
+.intro-hotspot:focus-visible{outline:3px solid #ffe797;outline-offset:2px;background:rgba(255,255,255,.14)}
+.intro-dialog{position:relative;z-index:2;width:min(92vw,420px);max-height:calc(100dvh - 32px);overflow:auto;padding:clamp(23px,6vw,34px);border:1px solid rgba(255,255,255,.82);border-radius:23px;background:rgba(255,255,255,.95);color:var(--ink);box-shadow:0 24px 70px rgba(7,10,34,.38);backdrop-filter:blur(14px);text-align:center}
+#intro-overlay [hidden]{display:none!important}
+.intro-dialog .eyebrow{margin:0 0 7px;font-size:9px}
+.intro-dialog h2{margin:0 0 15px;font-size:27px;letter-spacing:1px}
+.intro-profile-list{display:grid;grid-template-columns:1fr auto;gap:10px 12px;margin:15px 0;padding:15px;border:1px solid #f4dce6;border-radius:14px;background:#fff8fb;text-align:left}
+.intro-profile-list span{color:var(--muted);font-size:11px}
+.intro-profile-list strong{color:var(--pink-deep);font-size:11px;text-align:right}
+.intro-dialog>p:not(.eyebrow){margin:10px 0;color:var(--muted);font-size:12px;line-height:1.8;text-align:left}
+.intro-dialog .intro-dialog-note{color:#9a879b;font-size:10px}
+.intro-dialog .account-login-disabled{width:100%;justify-content:center;margin-top:6px}
+.intro-dialog .intro-dialog-back{margin-top:13px;padding:12px 20px}
+@media(max-width:520px){.intro-dialog{padding:22px 19px}.intro-dialog h2{font-size:24px}.intro-profile-list{padding:13px;gap:9px 10px}}
+@media(prefers-reduced-motion:reduce){.intro-overlay,.intro-hotspot{transition:none}}
