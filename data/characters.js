@@ -115,6 +115,14 @@ window.CHARACTERS = [
     baseStats:{hp:100,attack:26,defense:18,speed:28}, growth:{hp:10,attack:3,defense:2,speed:3},
     skills:[{id:'morning-signal',name:'早晨暗號',description:'答對日語題目後，削弱敵人的下一次攻擊。'}],
     affectionLines:{0:'早安！今天也一起把日文說得更自然吧。',20:'你的聲音一出現在廣播裡，我就會忍不住笑。',50:'明天的晨間點歌……我可以把第一首歌留給你嗎？'}
+  },
+  {
+    id:'rei', name:'鳴海 怜', route:'female', rarity:3, role:'支援型', tag:'貓系攝影師', element:'light', avatar:'📷', unlockMethod:'story',
+    image:'assets/narumi-rei-studio.jpg',
+    quote:'笑一個。你的答案，剛好落在我鏡頭裡。',
+    baseStats:{hp:108,attack:27,defense:19,speed:27}, growth:{hp:10,attack:4,defense:2,speed:3},
+    skills:[{id:'snapshot-focus',name:'瞬間對焦',description:'答對日語題目時，替隊伍穩定節奏並恢復少量生命。'}],
+    affectionLines:{0:'別躲，光線剛好。先陪我把這個日文暗號念清楚。',20:'你專心思考的表情，很適合留在今天的底片裡。',50:'這張照片……我只想留給你看。'}
   }
 ];
 

@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.28.0';
+const GAME_VERSION = 'v0.28.1';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -16,7 +16,7 @@ const CHARACTERS = {
     { id:'ami', name:'星野 亞美', tag:'元氣後輩', avatar:'🎤', quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
     { id:'mio', name:'水瀨 澪', tag:'冷靜班長', avatar:'◇', quote:'很好，正確率又提高了。請保持這份專注。', praise:'完璧です。', jpPraise:'完璧です。' },
     { id:'nana', name:'藤原 菜奈', tag:'甜點研究社', avatar:'🍓', quote:'答對的獎勵是……下課一起吃草莓蛋糕？', praise:'おいしい！じゃなくて、すごい！', jpPraise:'すごい！' },
-    { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', avatar:'♢', quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' },
+    { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', role:'支援型', element:'light', rarity:3, avatar:'📷', image:'assets/narumi-rei-studio.jpg', baseStats:{hp:108,attack:27,defense:19,speed:27},growth:{hp:10,attack:4,defense:2,speed:3}, quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' },
     { id:'akari', name:'水野 朱莉', tag:'機械社天才修理員', avatar:'🔧', baseStats:{hp:113,attack:21,defense:23,speed:23},growth:{hp:11,attack:2,defense:3,speed:2},quote:'我不太會說漂亮話……不過你卡住的問題，我一定能和你一起修好。', praise:'すごい、ちゃんと解けたね！', jpPraise:'すごい、ちゃんと解けたね！' },
     { id:'kotori', name:'七瀨 琴里', tag:'廣播社晨間主持', avatar:'🎙', image:'assets/nanase-kotori-radio.jpg', baseStats:{hp:100,attack:26,defense:18,speed:28},growth:{hp:10,attack:3,defense:2,speed:3},quote:'早安——今天的日文暗號，就由我用最好的聲音念給你聽。', praise:'とてもいい答えだったよ！', jpPraise:'とてもいい答えだったよ！' }
   ]
