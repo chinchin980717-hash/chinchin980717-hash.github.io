@@ -1,4 +1,4 @@
-// 《戀語解密 Flip!》角色資料 v0.25.0
+// 《戀語解密 Flip!》角色資料 v0.25.1
 // 先用資料模組管理，之後可替換成 API 或資料庫。
 window.CHARACTERS = [
   {
@@ -94,7 +94,7 @@ window.CHARACTERS = [
     affectionLines:{0:'今晚的星空很清楚。要不要一起找出北極星？',20:'你記住的每個單字，都像替夜空添了一顆星。',50:'下次觀星……我只想和你一起來。'}
   },
   {
-    id:'iori', name:'藤堂 伊織', route:'male', rarity:3, role:'防禦型', tag:'弓道部沉靜主將', element:'star', avatar:'🏹', unlockMethod:'story',
+    id:'iori', name:'桐生 律', route:'male', rarity:3, role:'防禦型', tag:'弓道部沉靜主將', element:'star', avatar:'🏹', unlockMethod:'story',
     quote:'呼吸放慢，先聽清楚，再把答案射中。',
     baseStats:{hp:132,attack:21,defense:29,speed:15}, growth:{hp:13,attack:2,defense:4,speed:1},
     skills:[{id:'still-water-guard',name:'靜水之勢',description:'答對日語題目時，為隊伍生成守護屏障。'}],

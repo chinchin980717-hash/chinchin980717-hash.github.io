@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.25.0';
+const GAME_VERSION = 'v0.25.1';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -8,7 +8,7 @@ const CHARACTERS = {
     { id:'kai', name:'神谷 海', tag:'陽光運動系', avatar:'⚡', quote:'答對了！下一球……不，下一張也一起來吧！', praise:'すごい！最高だね！', jpPraise:'すごい！最高だね！' },
     { id:'yuki', name:'月城 雪', tag:'神秘轉學生', avatar:'☾', quote:'你聽見了嗎？這是屬於我們的秘密暗號。', praise:'君なら、できると思った。', jpPraise:'君なら、できると思った。' },
     { id:'saku', name:'神崎 朔', tag:'天文社觀測者', avatar:'✦', baseStats:{hp:102,attack:22,defense:21,speed:27},growth:{hp:10,attack:3,defense:3,speed:3},quote:'星星會指路，但和你一起走的方向，我想自己選。', praise:'その答え、星よりきれいだ。', jpPraise:'その答え、星よりきれいだ。' },
-    { id:'iori', name:'藤堂 伊織', tag:'弓道部沉靜主將', avatar:'🏹', baseStats:{hp:132,attack:21,defense:29,speed:15},growth:{hp:13,attack:2,defense:4,speed:1},quote:'呼吸放慢，先聽清楚，再把答案射中。', praise:'いい射だ。答えも正確だった。', jpPraise:'いい射だ。答えも正確だった。' },
+    { id:'iori', name:'桐生 律', tag:'弓道部沉靜主將', avatar:'🏹', baseStats:{hp:132,attack:21,defense:29,speed:15},growth:{hp:13,attack:2,defense:4,speed:1},quote:'呼吸放慢，先聽清楚，再把答案射中。', praise:'いい射だ。答えも正確だった。', jpPraise:'いい射だ。答えも正確だった。' },
   ],
   female: [
     { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
