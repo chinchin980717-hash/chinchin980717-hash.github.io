@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.24.0';
+const GAME_VERSION = 'v0.25.0';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -6,7 +6,9 @@ const CHARACTERS = {
     { id:'rin', name:'黑羽 凜', tag:'霸道主唱', avatar:'♪', image:'assets/rin-stage.jpg', quote:'湊近一點，這句日文我只想唱給你聽。', praise:'もっと見せて。', jpPraise:'もっと見せて。' },
     { id:'haru', name:'白石 春', tag:'溫柔作家', avatar:'✒', image:'assets/haru-library.jpg', quote:'每個單字都是一封還沒寄出的情書。', praise:'君の言葉、好きだよ。', jpPraise:'君の言葉、好きだよ。' },
     { id:'kai', name:'神谷 海', tag:'陽光運動系', avatar:'⚡', quote:'答對了！下一球……不，下一張也一起來吧！', praise:'すごい！最高だね！', jpPraise:'すごい！最高だね！' },
-    { id:'yuki', name:'月城 雪', tag:'神秘轉學生', avatar:'☾', quote:'你聽見了嗎？這是屬於我們的秘密暗號。', praise:'君なら、できると思った。', jpPraise:'君なら、できると思った。' }
+    { id:'yuki', name:'月城 雪', tag:'神秘轉學生', avatar:'☾', quote:'你聽見了嗎？這是屬於我們的秘密暗號。', praise:'君なら、できると思った。', jpPraise:'君なら、できると思った。' },
+    { id:'saku', name:'神崎 朔', tag:'天文社觀測者', avatar:'✦', baseStats:{hp:102,attack:22,defense:21,speed:27},growth:{hp:10,attack:3,defense:3,speed:3},quote:'星星會指路，但和你一起走的方向，我想自己選。', praise:'その答え、星よりきれいだ。', jpPraise:'その答え、星よりきれいだ。' },
+    { id:'iori', name:'藤堂 伊織', tag:'弓道部沉靜主將', avatar:'🏹', baseStats:{hp:132,attack:21,defense:29,speed:15},growth:{hp:13,attack:2,defense:4,speed:1},quote:'呼吸放慢，先聽清楚，再把答案射中。', praise:'いい射だ。答えも正確だった。', jpPraise:'いい射だ。答えも正確だった。' },
   ],
   female: [
     { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
@@ -14,7 +16,9 @@ const CHARACTERS = {
     { id:'ami', name:'星野 亞美', tag:'元氣後輩', avatar:'🎤', quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
     { id:'mio', name:'水瀨 澪', tag:'冷靜班長', avatar:'◇', quote:'很好，正確率又提高了。請保持這份專注。', praise:'完璧です。', jpPraise:'完璧です。' },
     { id:'nana', name:'藤原 菜奈', tag:'甜點研究社', avatar:'🍓', quote:'答對的獎勵是……下課一起吃草莓蛋糕？', praise:'おいしい！じゃなくて、すごい！', jpPraise:'すごい！' },
-    { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', avatar:'♢', quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' }
+    { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', avatar:'♢', quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' },
+    { id:'akari', name:'水野 朱莉', tag:'機械社天才修理員', avatar:'🔧', baseStats:{hp:113,attack:21,defense:23,speed:23},growth:{hp:11,attack:2,defense:3,speed:2},quote:'我不太會說漂亮話……不過你卡住的問題，我一定能和你一起修好。', praise:'すごい、ちゃんと解けたね！', jpPraise:'すごい、ちゃんと解けたね！' },
+    { id:'kotori', name:'七瀨 琴里', tag:'廣播社晨間主持', avatar:'🎙', baseStats:{hp:100,attack:26,defense:18,speed:28},growth:{hp:10,attack:3,defense:2,speed:3},quote:'早安——今天的日文暗號，就由我用最好的聲音念給你聽。', praise:'とてもいい答えだったよ！', jpPraise:'とてもいい答えだったよ！' }
   ]
 };
 const vocabPairs = [
@@ -42,7 +46,7 @@ function renderFavoriteHome(){const grid=$('#favorite-grid');if(!grid)return;con
 
 function shuffle(list){return [...list].sort(()=>Math.random()-.5)}
 function speak(text){if(!soundOn||!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ja-JP';u.rate=.86;window.speechSynthesis.speak(u)}
-const CHARACTER_META={ren:['攻擊型','心動','⚔'],rin:['攻擊型','櫻花','♪'],kai:['攻擊型','星光','⚡'],souta:['支援型','星光','✦'],haru:['支援型','月光','✒'],nana:['支援型','櫻花','🍓'],yuki:['防禦型','月光','☾'],aoi:['防禦型','心動','🌸'],suzu:['防禦型','星光','⛩'],mio:['控制型','月光','◇'],rei:['控制型','櫻花','♢'],ami:['控制型','心動','🎤']};Object.values(CHARACTERS).flat().forEach(c=>{const meta=CHARACTER_META[c.id]||['攻擊型','心動','✦'];c.role=meta[0];c.element=meta[1];c.rarity=c.rarity||3;c.route=CHARACTERS.male.includes(c)?'male':'female';c.baseStats={hp:100,attack:20,defense:14,speed:18};c.growth={hp:10,attack:3,defense:2,speed:2};c.skills=[{name:meta[0]==='攻擊型'?'心動突擊':meta[0]==='防禦型'?'守護心意':meta[0]==='支援型'?'溫柔療癒':'迷惘干涉',description:meta[0]==='攻擊型'?'答對時對敵人造成強力傷害。':meta[0]==='防禦型'?'答對時生成護盾，降低敵人反擊。':meta[0]==='支援型'?'答對時回復隊伍生命。':'答對時削弱敵人下一回合攻擊。'}]});
+const CHARACTER_META={ren:['攻擊型','心動','⚔'],rin:['攻擊型','櫻花','♪'],kai:['攻擊型','星光','⚡'],souta:['支援型','星光','✦'],haru:['支援型','月光','✒'],nana:['支援型','櫻花','🍓'],yuki:['防禦型','月光','☾'],aoi:['防禦型','心動','🌸'],suzu:['防禦型','星光','⛩'],mio:['控制型','月光','◇'],rei:['控制型','櫻花','♢'],ami:['控制型','心動','🎤'],saku:['控制型','月光','✦','星軌推演','答對日語題後削弱敵人的下一次攻擊。'],iori:['防禦型','星光','🏹','靜水之勢','答對日語題時為隊伍生成守護屏障。'],akari:['支援型','心動','🔧','工具箱援護','答對日語題時替全隊恢復少量生命。'],kotori:['控制型','櫻花','🎙','早晨暗號','答對日語題後削弱敵人的下一次攻擊。']};Object.values(CHARACTERS).flat().forEach(c=>{const meta=CHARACTER_META[c.id]||['攻擊型','心動','✦'];c.role=meta[0];c.element=meta[1];c.rarity=c.rarity||3;c.route=CHARACTERS.male.includes(c)?'male':'female';c.baseStats=c.baseStats||{hp:100,attack:20,defense:14,speed:18};c.growth=c.growth||{hp:10,attack:3,defense:2,speed:2};c.skills=[{name:meta[3]||(meta[0]==='攻擊型'?'心動突擊':meta[0]==='防禦型'?'守護心意':meta[0]==='支援型'?'溫柔療癒':'迷惘干涉'),description:meta[4]||(meta[0]==='攻擊型'?'答對時對敵人造成強力傷害。':meta[0]==='防禦型'?'答對時生成護盾，降低敵人反擊。':meta[0]==='支援型'?'答對時回復隊伍生命。':'答對時削弱敵人下一回合攻擊。')}]});
 const RELIC_KEY='koiflip-relics-v0.12.0';
 const RELIC_CATALOG=window.RELIC_CATALOG||[];
 let relicState=JSON.parse(localStorage.getItem(RELIC_KEY)||'null')||{owned:['first-sakura-omamori'],equipped:['first-sakura-omamori']};

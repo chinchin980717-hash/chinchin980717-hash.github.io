@@ -1,4 +1,4 @@
-// 角色圖鑑頁 v0.15.0：讀取招募與養成共用存檔。
+// 角色圖鑑頁 v0.16.0：顯示招募持有角色與免費故事線角色。
 const $ = (selector) => document.querySelector(selector);
 const GACHA_KEY = 'koiflip-gacha-v0.13.0';
 const ROSTER_KEY = 'koiflip-roster-v0.7.0';
@@ -14,7 +14,8 @@ function saveFavorites(){localStorage.setItem(FAVORITES_KEY,JSON.stringify(favor
 function toggleFavorite(id){if(favoriteIds.includes(id)){favoriteIds=favoriteIds.filter(item=>item!==id)}else{favoriteIds.push(id)}saveFavorites();render()}
 function getCharacter(id){return characterList.find(character=>character.id===id)}
 function render(){
-  const ownedIds=gachaState.ownedCharacters||['ren','souta','aoi'];
+  const storyUnlockedIds=characterList.filter(character=>character.unlockMethod==='story').map(character=>character.id);
+  const ownedIds=[...new Set([...(gachaState.ownedCharacters||['ren','souta','aoi']),...storyUnlockedIds])];
   const owned=ownedIds.map(getCharacter).filter(Boolean);
   const visible=owned.filter(character=>currentFilter==='all'||character.route===currentFilter);
   $('#owned-count').textContent=String(owned.length);$('#total-count').textContent=String(characterList.length);$('#collection-rate').textContent=`${characterList.length?Math.round(owned.length/characterList.length*100):0}%`;
