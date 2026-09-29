@@ -8,7 +8,7 @@ window.GACHA_POOLS = [
     shortName: '角色大池',
     ticketKey: 'characterTickets',
     cost: { item: 'character-ticket', amount: 1 },
-    pity: { pulls: 10, minimumRarity: 3 },
+    pity: { pulls: 30, minimumRarity: 3 },
     entries: [
       { type: 'character', id: 'ren', rarity: 3, weight: 12 },
       { type: 'character', id: 'souta', rarity: 3, weight: 12 },
@@ -28,7 +28,7 @@ window.GACHA_POOLS = [
     shortName: '裝備大池',
     ticketKey: 'equipmentTickets',
     cost: { item: 'equipment-ticket', amount: 1 },
-    pity: { pulls: 10, minimumRarity: 3 },
+    pity: { pulls: 30, minimumRarity: 3 },
     entries: [
       { type: 'equipment', id: 'dictionary-pendant', rarity: 3, weight: 14 },
       { type: 'equipment', id: 'president-pen', rarity: 2, weight: 12 },
