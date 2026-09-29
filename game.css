@@ -149,3 +149,11 @@ body{background:radial-gradient(circle at 9% 8%,rgba(255,255,255,.95) 0 5%,trans
 .energy-recovery-track{height:6px;overflow:hidden;border-radius:99px;background:rgba(221,190,207,.3)}
 .energy-recovery-track span{display:block;width:100%;height:100%;border-radius:inherit;background:linear-gradient(90deg,#e988a8,#e7b36f);transition:width .35s ease}
 .energy-recovery small{display:block;margin-top:7px;color:#a17e96;font-size:10px;text-align:center}
+
+/* Two-banner recruitment */
+.recruit-banner-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:20px 0 11px;padding:4px;border:1px solid rgba(221,190,207,.62);border-radius:17px;background:rgba(255,255,255,.58)}
+.recruit-banner-tab{display:grid;grid-template-columns:30px 1fr;grid-template-rows:1fr 1fr;align-items:center;column-gap:8px;padding:9px 10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--muted);text-align:left;cursor:pointer;transition:.2s}
+.recruit-banner-tab>span{grid-row:1/3;display:grid;place-items:center;width:30px;height:30px;border-radius:10px;background:#f8e1ea;color:var(--pink-deep);font-size:17px}
+.recruit-banner-tab strong{font-size:12px;color:var(--ink)}.recruit-banner-tab small{font-size:9px;color:#a17e96}.recruit-banner-tab.active{border-color:#e194ae;background:linear-gradient(110deg,#fff0f5,#fff);box-shadow:0 5px 13px rgba(185,81,121,.12)}
+.recruit-banner-tab.active>span{background:linear-gradient(145deg,#e988a8,#9f6894);color:#fff}.recruit-banner-tab.active small{color:var(--pink-deep)}
+@media(max-width:520px){.recruit-banner-tab{grid-template-columns:24px 1fr;padding:8px 6px}.recruit-banner-tab>span{width:24px;height:24px;font-size:14px}.recruit-banner-tab strong{font-size:11px}}
