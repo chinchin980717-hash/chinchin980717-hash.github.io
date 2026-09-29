@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cindy's SPACE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #fdfaf5;
+            --card-white: #ffffff;
+            --text-main: #4a3f35;
+            --accent-brown: #c9a991;
+            --shadow: rgba(74, 63, 53, 0.05);
+        }
+
+        body {
+            font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            color: var(--text-main);
+            overflow-x: hidden; 
+        }
+
+        /* --- 封面層 --- */
+        .main-coverLayer {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--bg-color);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 1000;
+            cursor: pointer;
+            transition: transform 0.8s ease-out, opacity 0.8s;
+        }
+
+        .cover-content {
+            background-color: var(--card-white);
+            border-radius: 20px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 15px 40px var(--shadow);
+            width: 85%; max-width: 380px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            object-fit: cover;    
+        }
+
+        /* --- ✨ 兩行打字機：游標接力動畫 --- */
+        .typing-container {
+            display: block;
+            text-align: center;
+            margin: 15px auto;
+        }
+
+        .profile-text {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            margin: 0 auto 10px;
+            border-right: 2px solid transparent; 
+        }
+
+        .line1 {
+            animation: 
+                typing 2s steps(15) forwards, 
+                blink-hide 2s step-end forwards;
+        }
+
+        .line2 {
+            animation: 
+                typing 2s steps(15) 2.2s forwards, 
+                blink 0.8s step-end infinite 2.2s;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-hide {
+            0%, 99% { border-color: var(--accent-brown); }
+            100% { border-color: transparent; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--accent-brown); }
+        }
+
+        .bounce-text {
+            font-size: 12px;
+            color: var(--accent-brown);
+            margin-top: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .unlock-animation { transform: translateY(-100%); opacity: 0; }
+
+        /* --- 內頁選單層 --- */
+        .inner-page { padding: 60px 20px; text-align: center; opacity: 0; transition: opacity 0.8s; }
+        .show-inner { opacity: 1; }
+
+        .container { width: 100%; max-width: 400px; margin: 0 auto; }
+        .nav-links { display: flex; flex-direction: column; gap: 15px; }
+
+        .link-btn {
+            background-color: var(--card-white);
+            padding: 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 15px;
+            display: flex; align-items: center;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .link-btn:hover { transform: translateY(-3px); }
+        .icon { margin-right: 15px; color: var(--accent-brown); width: 25px; text-align: center; }
+
+        /* --- 聯絡我圖示 --- */
+        .contact-section { margin-top: 50px; }
+        .contact-title { font-size: 13px; color: var(--accent-brown); margin-bottom: 20px; letter-spacing: 2px; }
+        .social-icons { display: flex; justify-content: center; gap: 25px; align-items: center; }
+        
+        .social-icon-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .social-icon-link i {
+            font-size: 22px;
+            color: var(--accent-brown);
+        }
+        
+        .social-icon-link:hover { transform: scale(1.2); }
+
+        .footer { margin-top: 50px; font-size: 11px; color: #a3968b; }
+    </style>
+</head>
+<body>
+
+    <div class="main-coverLayer" id="coverLayer">
+        <div class="cover-content">
+            <img src="IMG_20260211_080039.jpg" class="avatar" alt="Avatar">
+            <div class="typing-container">
+                <div class="profile-text line1">歡迎來到 Cindy 的個人空間，</div>
+                <div class="profile-text line2">在這裡你可以了解到真正的我。</div>
+            </div>
+            <p class="bounce-text">點擊解鎖入口</p>
+        </div>
+    </div>
+
+    <div class="inner-page" id="innerPage">
+        <div class="container">
+            <h2 style="font-size: 14px; letter-spacing: 3px; color: var(--accent-brown);">CINDY'S SPACE</h2>
+            <p style="font-size: 12px; color: #a3968b; margin-bottom: 35px;">請選擇一個你想了解的Cindy</p>
+
+            <div class="nav-links">
+                <a href="game.html" class="link-btn">
+                    <i class="fas fa-heart icon"></i> 戀語解密 Flip!（日語學習遊戲）
+                </a>
+                <a href="about.html" class="link-btn">
+                    <i class="fas fa-folder icon"></i> 關於我
+                </a>
+                <a href="life.html" class="link-btn">
+                    <i class="fas fa-book icon"></i> 分享及生活記錄
+                </a>
+                <a href="code.html" class="link-btn">
+                    <i class="fas fa-code icon"></i> 小小程式
+                </a>
+                <a href="harmonica.html" class="link-btn">
+                    <i class="fas fa-music icon"></i> 口琴小世界
+                </a>
+            </div>
+
+            <div class="contact-section">
+                <p class="contact-title">聯絡我</p>
+                <div class="social-icons">
+                    <a href="https://github.com/chinchin980717-hash" target="_blank" class="social-icon-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/chen95cindy?igsh=ejFhZjN0bDdzZzZk" target="_blank" class="social-icon-link">
+                        <i class="fab fa-instagram" style="color: #c9a991 !important;"></i>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/share/1BQL6uLrkY/" target="_blank" class="social-icon-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    
+                    <a href="https://discord.gg/smmN4ddpU" target="_blank" class="social-icon-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    
+                    <a href="mailto:chinchin980717@gmail.com" class="social-icon-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer">© 2026 Cindy. Build with folder concept.</div>
+        </div>
+    </div>
+
+    <script>
+        const cover = document.getElementById('coverLayer');
+        const inner = document.getElementById('innerPage');
+
+        cover.addEventListener('click', () => {
+            cover.classList.add('unlock-animation');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => {
+                cover.style.display = 'none';
+                inner.classList.add('show-inner');
+            }, 800);
+        });
+    </script>
+</body>
+</html>

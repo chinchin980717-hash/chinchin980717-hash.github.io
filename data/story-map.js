@@ -25,14 +25,29 @@ window.STORY_CHAPTERS = [
     ]
   },
   {
-    id: 'chapter-02', order: 2, title: '圖書館的祕密', subtitle: '第二章 · 尚未開放', available: false,
-    description: '新的借閱紀錄與一封沒有寄件人的信，將帶出下一段故事。',
+    id: 'chapter-02', order: 2, title: '圖書館的祕密', subtitle: '第二章 · 沒有寄件人的信', available: true,
+    description: '新的借閱紀錄與一封沒有寄件人的信，把你們帶進深夜圖書館。',
     nodes: [
-      { id: 'c2-node-01', order: 1, title: '沒有署名的信', icon: '✉' },
-      { id: 'c2-node-02', order: 2, title: '借閱紀錄', icon: '📚' },
-      { id: 'c2-node-03', order: 3, title: '深夜自習室', icon: '☾' },
-      { id: 'c2-node-04', order: 4, title: '藏書室的腳步聲', icon: '🔎' },
-      { id: 'c2-node-05', order: 5, title: '書頁背面的名字', icon: '🔒' }
+      { id: 'c2-node-01', order: 1, title: '沒有署名的信', location: '舊圖書館 · 門廊', icon: '✉', type: 'story', description: '第二章的第一封信，寫著只有你們看得懂的暗號。', scenes: [
+        { location: '舊圖書館 · 門廊', speaker: '旁白', title: '門縫裡的信', text: '第一章結束後的隔天，你在圖書館門縫發現一封信。信封沒有姓名，只有「一緒」兩個字。' },
+        { location: '舊圖書館 · 門廊', speaker: '{{partner}}', title: '只寫給我們的暗號', text: '「這不是普通的邀請。」{{partner}}捏著信封，目光落到{{player}}手上的紙條。「有人知道我們正在追查這件事。」' }
+      ] },
+      { id: 'c2-node-02', order: 2, title: '借閱紀錄', location: '舊圖書館 · 櫃台', icon: '📚', type: 'story', description: '翻查借閱紀錄，找到與紙條相同的筆跡。', scenes: [
+        { location: '舊圖書館 · 櫃台', speaker: '旁白', title: '被塗掉的名字', text: '泛黃的借閱簿中，有一行名字被反覆塗黑。旁邊的日期，正好是第一張紙條出現的那一天。' },
+        { location: '舊圖書館 · 櫃台', speaker: '{{partner}}', title: '秘密不會消失', text: '「秘密不是被藏起來就不存在。」{{partner}}翻到下一頁，指著一個熟悉的字。「我們只差最後一個線索。」' }
+      ] },
+      { id: 'c2-node-03', order: 3, title: '深夜自習室', location: '舊圖書館 · 深夜', icon: '☾', type: 'story', description: '在熄燈前找到信中提到的座位。', scenes: [
+        { location: '舊圖書館 · 深夜', speaker: '旁白', title: '最後一盞燈', text: '整棟校舍只剩自習室亮著一盞燈。桌上攤開的字典，正好翻到「大切」這一頁。' },
+        { location: '舊圖書館 · 深夜', speaker: '{{partner}}', title: '重要的不是答案', text: '「也許寄信的人想知道的，不只是答案。」{{partner}}把字典推向{{player}}。「如果是你，你會把這份秘密交給誰？」' }
+      ] },
+      { id: 'c2-node-04', order: 4, title: '藏書室的腳步聲', location: '藏書室 · 無人區', icon: '🔎', type: 'story', description: '跟著腳步聲穿過無人使用的書架。', scenes: [
+        { location: '藏書室 · 無人區', speaker: '旁白', title: '誰在那裡？', text: '書架深處傳來腳步聲。你們追著聲音前進，卻只看見一張寫著「友達」的索引卡。' },
+        { location: '藏書室 · 無人區', speaker: '{{partner}}', title: '朋友的證明', text: '「友達，是朋友。」{{partner}}放慢腳步，和{{player}}並肩站在書架間。「所以這次，我不會讓你一個人追。」' }
+      ] },
+      { id: 'c2-node-05', order: 5, title: '書頁背面的名字', location: '圖書館 · 閉館前', icon: '🔒', type: 'story', description: '把所有線索拼起來，揭開寄信人的名字。', scenes: [
+        { location: '圖書館 · 閉館前', speaker: '旁白', title: '背面的名字', text: '五個日文單字拼成一個地址。你翻過最後一頁，紙張背面浮出一個熟悉又陌生的名字。' },
+        { location: '圖書館 · 閉館前', speaker: '{{partner}}', title: '下一個約定', text: '「原來是這樣。」{{partner}}看向{{player}}，將信摺好收進口袋。「明天放學後，我們一起去找這個人。約束，還算數吧？」' }
+      ] }
     ]
   },
   {

@@ -1,4 +1,4 @@
-// 雙大池招募頁 v0.28.5：角色池與裝備池分開計算券數及保底。
+// 雙大池招募頁 v0.29.0：角色池與裝備池分開計算券數及保底。
 const $ = (selector) => document.querySelector(selector);
 const GACHA_KEY = 'koiflip-gacha-v0.13.0';
 const MAP_KEY = 'koiflip-map-v0.11.0';

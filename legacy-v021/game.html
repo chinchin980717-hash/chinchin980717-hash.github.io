@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
+  <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+  <div class="petals" aria-hidden="true"></div>
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-label="遊戲開場">
+    <div class="intro-orbit orbit-one"></div><div class="intro-orbit orbit-two"></div>
+    <div class="intro-content">
+      <div class="intro-bloom">✦</div>
+      <p class="intro-kicker">A ROMANTIC JAPANESE LEARNING GAME</p>
+      <h1>戀語解密 <em>Flip!</em></h1>
+      <p>指尖輕翻，解讀他未說出口的真心</p>
+      <button id="enter-btn" class="primary-btn intro-btn">點擊解鎖心動入口 <span>→</span></button>
+      <small>建議開啟聲音，讓日文在心裡發芽</small>
+    </div>
+  </div>
+
+  <main class="app-shell">
+    <section id="title-screen" class="screen is-active" aria-labelledby="game-title">
+      <div class="dashboard-shell">
+        <header class="dashboard-header"><div class="title-mark">FLIP <span>恋</span></div><button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟遊戲選單">☰</button></header>
+        <div class="dashboard-heading"><p class="eyebrow">MY SCHOOL HEART · CHAPTER 01</p><h1 id="game-title">戀語解密<br /><em>Flip!</em></h1><p class="lead">今天也和最喜歡的角色一起，<br />把日文變成靠近彼此的語言。</p></div>
+        <section class="favorite-home" aria-labelledby="favorite-title"><div class="favorite-heading"><div><p class="eyebrow">FAVORITE PARTNERS</p><h2 id="favorite-title">我的最愛角色</h2></div><a href="characters.html" class="favorite-manage">管理圖鑑 →</a></div><div id="favorite-grid" class="favorite-grid"></div></section>
+        <button class="primary-btn dashboard-start" id="start-btn" type="button"><span>✦</span> 開始今天的邂逅 <b>→</b></button>
+        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p><p class="version-label" id="version-label">Version v0.21.0</p>
+      </div>
+    </section>
+
+    <section id="roster-screen" class="screen" aria-labelledby="roster-title">
+      <div class="panel roster-panel">
+        <button class="text-btn back-to-title" id="roster-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">BASE / CHARACTER ROSTER</p><h2 id="roster-title">角色養成</h2><p>每一位伴學夥伴都可以培養，陪你一起變強。</p></div>
+        <div class="roster-summary"><span>持有角色 <strong id="roster-count">0</strong></span><span>目前隊長 <strong id="roster-leader">涼宮 蓮</strong></span></div>
+        <div id="roster-grid" class="roster-grid"></div>
+      </div>
+    </section>
+
+    <section id="character-screen" class="screen" aria-labelledby="character-title">
+      <div class="panel character-panel">
+        <button class="text-btn" id="character-back-btn" type="button">← 返回角色列表</button>
+        <div class="character-hero"><div class="detail-avatar" id="detail-avatar">♛</div><div class="detail-heading"><p class="eyebrow" id="detail-route">OTOME ROUTE</p><h2 id="character-title">涼宮 蓮</h2><p id="detail-tag">傲嬌學霸 · 攻擊型</p><div class="rarity" id="detail-rarity">★★★</div></div></div>
+        <div class="affection-card"><div><span>Lv.<strong id="detail-level">1</strong></span><span id="detail-exp-label">經驗 0 / 100</span></div><div class="detail-progress"><i id="detail-exp-bar"></i></div><div><span>好感度</span><strong id="detail-affection">0</strong></div><div class="detail-progress affection-progress"><i id="detail-affection-bar"></i></div></div>
+        <p class="detail-quote" id="detail-quote">別誤會了，我只是順便幫你複習日文而已！</p>
+        <div class="stat-grid" id="detail-stats"></div>
+        <div class="skill-card"><span class="skill-icon">✦</span><div><small>專屬技能</small><strong id="detail-skill-name">犀利解答</strong><p id="detail-skill-description">答對日語題目後，下一次攻擊傷害提升。</p></div></div>
+        <div class="equipment-section">
+          <div class="equipment-heading"><div><p class="eyebrow">LOADOUT / EQUIPMENT</p><h3>裝備欄</h3></div><span id="equipment-power">戰力 0</span></div>
+          <p class="equipment-note" id="equipment-note">裝備會在答題戰鬥中立即生效。</p>
+          <div id="equipment-list" class="equipment-list"></div>
+          <div id="equipment-inventory" class="equipment-inventory"></div>
+        </div>
+        <button class="primary-btn wide" id="detail-train-btn" type="button">使用學習經驗升級 <span>＋</span></button>
+        <p class="detail-note" id="detail-train-note">完成日語課程後，就能獲得角色經驗。</p>
+      </div>
+    </section>
+
+    <section id="map-screen" class="screen" aria-labelledby="map-title">
+      <div class="panel map-panel">
+        <button class="text-btn" id="map-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">ADVENTURE / CHAPTER 01</p><h2 id="map-title">櫻花校舍</h2><p>沿著放學後的路線前進，完成日語挑戰。</p></div>
+        <div class="map-status"><span>出擊體力 <strong id="map-energy">10 / 10</strong></span><span>招募券 <strong id="map-tickets">0</strong></span></div>
+        <div class="relic-loadout-card"><div class="equipment-heading"><div><p class="eyebrow">PARTY PASSIVE</p><h3>隊伍聖物</h3></div><span>最多 2 個</span></div><p class="equipment-note">聖物效果會在整場戰鬥中生效。</p><div id="relic-loadout" class="relic-loadout"></div></div>
+        <div id="map-path" class="map-path"></div>
+        <div id="map-detail" class="map-detail"><strong>選擇一個關卡節點</strong><small>完成關卡後會解鎖下一段路線。</small></div>
+        <button class="primary-btn wide" id="map-enter-btn" type="button" disabled>選擇節點後出擊 <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="select-screen" class="screen" aria-labelledby="select-title">
+      <div class="panel select-panel">
+        <button class="text-btn back-to-title" type="button">← 返回首頁</button>
+        <div class="section-heading"><p class="eyebrow">STEP 01 / 選擇伴學路線</p><h2 id="select-title">今天想和誰一起學習？</h2><p>選一位伴學夥伴，開始你的日語心動路線。</p></div>
+        <div class="route-tabs" role="tablist" aria-label="角色路線">
+          <button class="route-tab active" data-route="male" role="tab">🌸 男神線 <small>Otome</small></button>
+          <button class="route-tab" data-route="female" role="tab">🌺 女神線 <small>Galgame</small></button>
+        </div>
+        <div id="character-grid" class="character-grid"></div>
+        <div class="selected-preview"><span id="selected-avatar">♛</span><div><strong id="selected-name">涼宮 蓮</strong><small id="selected-tag">傲嬌學霸 · 「別誤會，我只是順便教你。」</small></div></div>
+        <button class="primary-btn wide" id="practice-btn">確認伴學，開始解密 <span>→</span></button>
+      </div>
+    </section>
+
+    <section id="story-screen" class="screen" aria-labelledby="story-title">
+      <div class="panel story-panel">
+        <header class="story-header"><button class="text-btn" id="story-back-btn" type="button">← 返回選擇</button><span id="story-chapter-label">CHAPTER 01 · PROLOGUE</span></header>
+        <div class="story-progress"><i id="story-progress-bar"></i></div>
+        <div class="story-scene-meta"><span id="story-location">櫻花校舍 · 放學後</span><span id="story-progress-label">SCENE 01 / 05</span></div>
+        <div class="story-visual"><div class="story-orbit orbit-a">✦</div><div class="story-orbit orbit-b">✧</div><div class="story-portrait" id="story-portrait">✦</div><span class="story-petal">✿</span><span class="story-petal petal-two">✧</span></div>
+        <p class="eyebrow">CHAPTER 01 · FIRST SIGNAL</p><h2 id="story-title">放學後的第一個暗號</h2>
+        <div class="story-dialogue"><span class="story-speaker" id="story-speaker">旁白</span><p id="story-text"></p></div>
+        <div id="story-choices" class="story-choices"></div>
+        <button class="primary-btn wide story-next" id="story-next-btn" type="button" hidden>繼續 <span>→</span></button>
+        <p class="story-hint">你的選擇會影響心動值，也會改變對方記住你的方式。</p>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen" aria-labelledby="game-heading">
+      <div class="game-panel">
+        <header class="game-header"><button class="text-btn" id="quit-btn" type="button">← 離開</button><div class="progress-wrap"><span id="progress-label">解密進度 0 / 6</span><div class="progress"><i id="progress-bar"></i></div></div><div class="score-badge">Combo <strong id="combo">0</strong></div></header>
+        <div class="game-toolbar"><span id="mode-badge" class="mode-badge">📖 主線解密劇情</span><button class="mode-switch" id="mode-switch" type="button">切換模式</button><button class="sound-btn" id="sound-btn" type="button">🔊 <span>發音開</span></button></div>
+        <div class="scene-meta"><span id="scene-location">放學後的圖書館</span><span>好感度 <i id="affection-bar"><b></b></i><strong id="affection-value">0</strong></span></div>
+        <div class="dialogue-section"><div class="partner-portrait" id="partner-avatar">♛</div><div class="dialogue-box"><div class="partner-title" id="partner-title">涼宮 蓮 · 傲嬌學霸</div><div class="dialogue-text"><span id="dialogue-content">準備好了嗎？翻開卡牌，讓我看看你的日文實力吧！</span><button class="tts-icon" id="dialogue-sound" type="button" aria-label="播放對話">🔊</button></div></div></div>
+        <div id="choice-box" class="choice-box" aria-label="對話選項"><p>你會怎麼回應？</p><div><button type="button" data-choice="study">「那就請你教我吧。」</button><button type="button" data-choice="tease">「我才不會輸給你呢。」</button></div></div>
+        <div id="message" class="message" role="status" aria-live="polite">先翻開一張卡牌，找出命運中的另一半。</div>
+        <div id="card-grid" class="card-grid" aria-label="日語單字卡牌"></div>
+        <p class="game-tip">翻到日文卡會播放日語發音；配對成功時，伴學夥伴會給你一句鼓勵。</p>
+      </div>
+    </section>
+
+    <section id="battle-screen" class="screen" aria-labelledby="battle-title">
+      <div class="panel battle-panel">
+        <header class="battle-header"><button class="text-btn" id="battle-home-btn" type="button">← 返回地圖</button><span class="battle-stage" id="battle-stage-label">STAGE 01</span><span id="turn-label">TURN 1</span></header>
+        <div class="battle-arena" id="battle-arena"><div class="battle-vfx" id="battle-vfx" aria-hidden="true"></div><div class="enemy-side"><span class="enemy-sprite" id="enemy-sprite">🌫️</span><strong id="enemy-name">忘卻迷霧</strong><div class="hp-track"><i id="enemy-hp-bar"></i></div><small>HP <b id="enemy-hp">100</b> / <span id="enemy-max-hp">100</span></small></div><div class="vs-mark">VS</div><div class="party-side"><span class="party-sprite" id="battle-avatar">♛</span><strong id="battle-active-name">涼宮 蓮</strong><div class="hp-track ally"><i id="ally-hp-bar"></i></div><small>HP <b id="ally-hp">100</b> / <span id="ally-max-hp">100</span></small></div></div>
+        <div id="battle-log" class="battle-log" role="status" aria-live="polite">答對日語問題，就能發動角色能力！</div>
+        <div id="battle-relics" class="battle-relics"></div>
+        <div class="battle-question"><p class="eyebrow">日語戰鬥指令 · 請選擇正確意思</p><h2 id="battle-title">「好き」的意思是？</h2><div id="battle-answers" class="answer-grid"></div></div>
+        <div class="party-switch-title">選擇出戰角色</div><div class="party-switch" id="party-switch"></div>
+        <div class="battle-result" id="battle-result" hidden><strong id="battle-result-title">關卡勝利！</strong><small id="battle-result-copy">獲得角色經驗與獎勵。</small><button class="primary-btn wide" id="battle-result-btn" type="button">返回地圖 <span>→</span></button></div>
+      </div>
+    </section>
+
+    <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
+  </main>
+  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-glow"></div><div class="side-menu-header"><div class="side-menu-brand"><span>FLIP</span><b>恋</b><small>戀語解密</small></div><button class="menu-close" id="menu-close" type="button" aria-label="關閉選單">×</button></div><div class="side-menu-hero"><div class="side-menu-orb">✦</div><div><small>MY SCHOOL HEART</small><strong>放學後的秘密基地</strong><em>選一個目的地吧</em></div><i>✧</i></div><p class="side-menu-kicker"><span>✦</span> MAIN DESTINATIONS <span>✦</span></p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span><div><strong>開始邂逅</strong><small>Story / Encounter</small></div><b>›</b></button><button data-menu-action="characters" type="button"><span>♛</span><div><strong>角色養成</strong><small>Character Growth</small></div><b>›</b></button><a href="characters.html"><span>▦</span><div><strong>角色圖鑑</strong><small>Character Codex</small></div><b>›</b></a><button data-menu-action="learning" type="button"><span>言</span><div><strong>日語學習</strong><small>Japanese Lessons</small></div><b>›</b></button><button data-menu-action="map" type="button"><span>⚔</span><div><strong>出擊冒險</strong><small>Adventure Map</small></div><b>›</b></button><a href="recruit.html"><span>✧</span><div><strong>劇情招募</strong><small>Story Recruitment</small></div><b>›</b></a></nav><div class="side-menu-footer"><span>CHAPTER 01 · SCHOOL HEART</span><small>Version v0.21.0</small></div></aside>
+  <script src="data/map.js"></script>
+  <script src="data/equipment.js"></script>
+  <script src="game.js?v=0.21.0"></script>
+</body>
+</html>

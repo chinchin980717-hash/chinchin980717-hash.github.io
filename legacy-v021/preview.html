@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>戀語解密 Flip!｜完整介面預覽</title>
+  <link rel="stylesheet" href="preview.css" />
+</head>
+<body>
+  <main class="preview-shell">
+    <aside class="preview-sidebar">
+      <div class="preview-brand"><span>FLIP</span><b>恋</b><small>戀語解密 · UI SHOWCASE</small></div>
+      <div class="preview-label">SCREEN FLOW / v0.21.0</div>
+      <h1>完整介面預覽</h1>
+      <p class="preview-intro">用下方選單切換正式遊戲畫面，展示主頁、側邊選單、學習流程、地圖與戰鬥演出。</p>
+      <nav class="preview-nav" aria-label="預覽頁面選單">
+        <button class="preview-nav-item active" data-view="home"><i>✦</i><span><strong>遊戲主頁</strong><small>Home / Favorites</small></span><b>01</b></button>
+        <button class="preview-nav-item" data-view="menu"><i>☰</i><span><strong>側邊選單</strong><small>Navigation Drawer</small></span><b>02</b></button>
+        <button class="preview-nav-item" data-view="roster"><i>♛</i><span><strong>角色養成</strong><small>Character Roster</small></span><b>03</b></button>
+        <button class="preview-nav-item" data-view="map"><i>⚔</i><span><strong>冒險地圖</strong><small>Adventure Map</small></span><b>04</b></button>
+        <button class="preview-nav-item" data-view="select"><i>♡</i><span><strong>選擇角色</strong><small>Route Select</small></span><b>05</b></button>
+        <button class="preview-nav-item story-item" data-view="story"><i>✧</i><span><strong>序章劇情</strong><small>Otome Prologue</small></span><b>06</b></button>
+        <button class="preview-nav-item" data-view="learning"><i>言</i><span><strong>日語學習</strong><small>Flip Learning</small></span><b>07</b></button>
+        <button class="preview-nav-item battle-item" data-view="battle"><i>✦</i><span><strong>戰鬥畫面</strong><small>Battle / Skill VFX</small></span><b>08</b></button>
+        <button class="preview-nav-item" data-view="result"><i>✧</i><span><strong>結算畫面</strong><small>Chapter Clear</small></span><b>09</b></button>
+        <a class="preview-nav-item external-item" href="recruit.html"><i>✧</i><span><strong>劇情招募</strong><small>Recruitment Page</small></span><b>↗</b></a>
+      </nav>
+      <button class="flow-btn" id="flow-btn" type="button"><span>▶</span> 播放完整流程</button>
+      <p class="preview-note">預覽使用正式遊戲 iframe，所有畫面切換與戰鬥 VFX 都來自目前版本。</p>
+    </aside>
+    <section class="preview-stage">
+      <header class="stage-header"><div><span class="stage-kicker">LIVE INTERFACE PREVIEW</span><h2 id="stage-title">遊戲主頁</h2></div><div class="stage-status"><i></i> LIVE <span>v0.21.0</span></div></header>
+      <div class="device-wrap">
+        <div class="device-top"><span class="device-camera"></span><span>FLIP! · SCHOOL HEART</span><span>● ● ●</span></div>
+        <iframe id="game-frame" title="戀語解密 Flip! 正式遊戲介面預覽" src="game.html?preview=1"></iframe>
+        <div class="device-bottom"><span>◇</span><small>正式遊戲介面預覽</small><span>◇</span></div>
+      </div>
+      <div class="stage-caption"><span id="stage-index">01</span><strong id="stage-caption-title">主頁與最愛角色</strong><p id="stage-description">主頁儀表板、最愛角色卡與二次元手遊側邊選單入口。</p></div>
+    </section>
+  </main>
+  <script src="preview.js"></script>
+</body>
+</html>
