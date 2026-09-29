@@ -34,7 +34,7 @@ function displayName(entry) { if (entry.type === 'character') return CHARACTER_N
 function weightedPick(entries) { const total = entries.reduce((sum, item) => sum + (item.weight || 1), 0); let point = Math.random() * total; for (const item of entries) { point -= item.weight || 1; if (point <= 0) return item; } return entries[entries.length - 1]; }
 function render() {
   const pool = getPool(); const copy = POOL_COPY[pool.id] || POOL_COPY['character-banner']; const banner = getBannerState(pool); const tickets = mapState[pool.ticketKey] || 0;
-  $('#recruit-tickets').textContent = String(tickets); $('#ticket-label').firstChild.textContent = `${copy.label} `;
+  $('#recruit-tickets').textContent = String(tickets); $('#character-ticket-count').textContent = String(mapState.characterTickets || 0); $('#equipment-ticket-count').textContent = String(mapState.equipmentTickets || 0); $('#ticket-label').firstChild.textContent = `${copy.label} `;
   const until = Math.max(0, pool.pity.pulls - (banner.pullsSinceRare || 0)); $('#recruit-pity').textContent = until === 0 ? '下一抽保底' : String(until);
   $('#pull-one-btn').disabled = tickets < 1; $('#pull-ten-btn').disabled = tickets < 10;
   $('#pool-description').textContent = `${pool.name} · 使用對應招募券，尋找新的學習夥伴。`;
