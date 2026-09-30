@@ -103,6 +103,14 @@ window.CHARACTERS = [
     quote: '每個單字都是一封還沒寄出的情書。'
   },
   {
+    id:'kai', name:'神谷 海', route:'male', rarity:3, role:'攻擊型', tag:'陽光運動系', element:'star', avatar:'⚡', unlockMethod:'gacha',
+    image:'assets/kamiya-kai-basketball.jpg',
+    quote:'答對了！下一球……不，下一張也一起來吧！',
+    baseStats:{hp:118,attack:32,defense:18,speed:26}, growth:{hp:12,attack:5,defense:2,speed:3},
+    skills:[{id:'full-court-drive',name:'全場快攻',description:'答對日語題目後，對敵人造成強力傷害；連續答對時傷害進一步提升。'}],
+    affectionLines:{0:'準備好了嗎？先熱身，再一起把今天的日文題目拿下來！',20:'你的反應越來越快了。下一球，我可不會手下留情。',50:'比賽結束後……陪我在操場走一圈，好嗎？'}
+  },
+  {
     id:'saku', name:'神崎 朔', route:'male', rarity:3, role:'控制型', tag:'天文社觀測者', element:'moon', avatar:'✦', unlockMethod:'story',
     image:'assets/kanzaki-saku-observatory.jpg',
     quote:'星星會指路，但和你一起走的方向，我想自己選。',
