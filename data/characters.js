@@ -84,7 +84,7 @@ window.CHARACTERS = [
     route: 'male',
     rarity: 3,
     role: '主唱',
-    tag: '霸道主唱',
+    tag: '冷傲舞台王者',
     element: 'moon',
     avatar: '♪',
     image: 'assets/kuroha-rin-live.jpg',

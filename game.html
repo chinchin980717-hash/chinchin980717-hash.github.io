@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
   <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
-  <link rel="stylesheet" href="game.css?v=0.28.4-stamina" />
+  <link rel="stylesheet" href="game.css?v=0.30.0-home-r1" />
 </head>
 <body>
   <div class="petals" aria-hidden="true"></div>
@@ -52,27 +52,38 @@
       </div>
     </section>
 
-    <section id="title-screen" class="screen" aria-labelledby="game-title">
-      <div class="dashboard-shell">
-        <header class="dashboard-header"><div class="title-mark">FLIP <span>恋</span></div><span class="guest-status-badge" id="guest-status-badge" hidden>本機遊客 · 本機存檔</span><button class="menu-toggle" id="menu-toggle" type="button" aria-label="開啟遊戲選單">☰</button></header>
-        <section class="player-progress-card" aria-label="主角學習經驗">
+    <section id="title-screen" class="screen home-screen" aria-labelledby="game-title">
+      <div class="home-hub">
+        <header class="home-topbar">
+          <div class="home-player-info"><span class="home-avatar-mini" id="home-avatar-mini">♛</span><div><strong id="home-player-name">主角</strong><small id="guest-status-badge" class="guest-status-badge" hidden>本機遊客</small></div></div>
+          <div class="home-resources" aria-label="目前資源"><span title="星願幣">💎 <b id="home-coins">0</b></span><span title="冒險能量">⚡ <b id="home-energy">10</b></span><span title="角色抽獎券">♛ <b id="home-character-tickets">0</b></span><span title="裝備抽獎券">✉ <b id="home-equipment-tickets">0</b></span></div>
+          <div class="home-top-actions"><button class="home-icon-btn" id="home-checkin-btn" type="button" aria-label="每日簽到" title="每日簽到">🎁</button><button class="home-icon-btn" id="menu-toggle" type="button" aria-label="開啟遊戲選單" title="遊戲選單">☰</button></div>
+        </header>
+        <section class="player-progress-card home-progress-card" aria-label="主角學習經驗">
           <div class="player-progress-heading"><div><p class="eyebrow">YOUR LEARNING JOURNEY</p><strong id="player-progress-name">主角</strong></div><span class="player-progress-level" id="player-progress-level">Lv.1</span></div>
           <div class="player-progress-meta"><span>主角經驗</span><span id="player-progress-exp-label">0 / 100 EXP</span></div>
           <div class="player-progress-track" role="progressbar" aria-label="主角升級經驗進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="player-progress-exp-bar"></i></div>
           <div class="player-progress-footer"><small id="player-progress-total">累積 0 EXP</small><small>課程 +20 · 戰鬥勝利 +50</small></div>
           <p class="player-progress-note">主角經驗獨立保存，不影響伴學角色的戰鬥能力。</p>
         </section>
-        <section class="daily-login-card" id="daily-login-card" aria-labelledby="daily-login-title">
-          <div class="daily-login-heading"><div><p class="eyebrow">DAILY LOGIN / GACHA BOX</p><h2 id="daily-login-title">星之祈學園簽到</h2></div><span class="daily-coin-pill">星願幣 <strong id="daily-wish-coins">0</strong></span></div>
-          <p id="daily-status" class="daily-status">每天登入一次，開啟隨機獎勵箱。</p>
-          <div class="daily-login-rewards"><span>5% 命定之契</span><span>10% 星光信封</span><span>50% 心願碎片</span><span>35% 星願幣</span></div>
-          <button class="primary-btn wide daily-claim-btn" id="daily-claim-btn" type="button">領取今日獎勵</button>
+        <section class="home-companion-stage" aria-label="伴學角色">
+          <button class="home-speech-bubble" id="home-speech-bubble" type="button" aria-label="聽取伴學角色的話"><small id="home-companion-name">涼宮 蓮 · 傲嬌學霸</small><strong id="home-companion-speech">「哼，發呆什麼？今天也來複習日文吧。」</strong><span>點一下聽他說話</span></button>
+          <div class="home-portrait-wrap" id="home-portrait-wrap"><span class="home-portrait-fallback" id="home-portrait-fallback">♛</span><img class="home-companion-portrait" id="home-companion-portrait" alt="" hidden /></div>
+          <div class="home-stage-caption"><p class="eyebrow">MY SCHOOL HEART · AFTER CLASS</p><h1 id="game-title">放學後的秘密基地</h1><p>選一個目的地，和伴學夥伴一起出發。</p></div>
         </section>
-        <div class="dashboard-heading"><p class="eyebrow">MY SCHOOL HEART · CHAPTER 01</p><h1 id="game-title">戀語解密<br /><em>Flip!</em></h1><p class="lead">今天也和最喜歡的角色一起，<br />把日文變成靠近彼此的語言。</p></div>
-        <a class="release-spotlight" id="story-map-spotlight" href="#start-btn"><span class="release-spotlight-icon">✦</span><span><small>VERSION 0.29.0 · DAILY LOGIN</small><strong>主角經驗與伴學角色分開培養</strong></span><b aria-hidden="true">→</b></a>
-        <section class="favorite-home" aria-labelledby="favorite-title"><div class="favorite-heading"><div><p class="eyebrow">FAVORITE PARTNERS</p><h2 id="favorite-title">我的最愛角色</h2></div><a href="characters.html" class="favorite-manage">管理圖鑑 →</a></div><div id="favorite-grid" class="favorite-grid"></div></section>
-        <button class="primary-btn dashboard-start" id="start-btn" type="button"><span>✦</span> 開始今天的邂逅 <b>→</b></button>
-        <p class="hint">一場關於語言、記憶與悄悄靠近的練習</p><p class="version-label" id="version-label">Version v0.29.0</p>
+        <nav class="home-bottom-dock" aria-label="主選單">
+          <div class="home-main-ctas">
+            <button class="home-cta home-cta-story" id="home-story-btn" type="button">📖 劇情章節地圖<small>解鎖心動劇情與卡牌</small></button>
+            <button class="home-cta home-cta-learning" id="home-learning-btn" type="button">⚡ 純淨課程學習<small>專注翻牌練習日語</small></button>
+          </div>
+          <div class="home-submenu-grid">
+            <button class="home-submenu-item" type="button" data-menu-action="characters"><span>👥</span><small>角色養成</small></button>
+            <a class="home-submenu-item" href="characters.html"><span>🎴</span><small>角色圖鑑</small></a>
+            <a class="home-submenu-item" href="recruit.html"><span>🛍️</span><small>角色招募</small></a>
+            <button class="home-submenu-item" type="button" data-menu-action="mailbox"><span>✉️</span><small>郵箱</small></button>
+          </div>
+        </nav>
+        <p class="version-label home-version" id="version-label">Version v0.30.0</p>
       </div>
     </section>
 
@@ -200,12 +211,48 @@
     </section>
 
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="story-map-return-btn" type="button" hidden>回到章節地圖 →</button><button class="text-btn" id="result-character-btn" type="button">查看角色成長 →</button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
+    <section id="checkin-screen" class="screen" aria-labelledby="daily-login-title">
+      <div class="panel checkin-panel">
+        <button class="text-btn" id="checkin-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">WEEKLY CHECK-IN / LOCAL GUEST</p><h2>七日簽到</h2><p>週一固定為 Day 1、週日為 Day 7；每天只可領取當日獎勵，漏簽不補。週日會寄送隨機抽獎箱至郵箱。</p></div>
+        <div class="checkin-cycle-summary"><span>本週簽到進度</span><strong id="checkin-cycle-label">0 / 7</strong></div>
+        <div id="daily-login-days" class="daily-login-days" aria-label="七日簽到表"></div>
+        <section class="daily-login-card" id="daily-login-card" aria-labelledby="daily-login-title">
+          <div class="daily-login-heading"><div><p class="eyebrow">WEEKLY CHECK-IN / SUNDAY BOX</p><h2 id="daily-login-title">本週簽到獎勵</h2></div><span class="daily-coin-pill">星願幣 <strong id="daily-wish-coins">0</strong></span></div>
+          <p id="daily-status" class="daily-status" aria-live="polite">今日簽到獎勵會寄到郵箱。</p>
+          <p class="checkin-box-note">週日抽獎箱獎池（七種結果各 1/7）</p>
+          <div class="daily-login-rewards"><span>角色抽獎券 ×1 · 1/7</span><span>裝備抽獎券 ×1 · 1/7</span><span>能量飲料 ×1 · 1/7</span><span>能量飲料 ×2 · 1/7</span><span>能量飲料 ×3 · 1/7</span><span>能量飲料 ×4 · 1/7</span><span>能量飲料 ×5 · 1/7</span></div>
+          <button class="primary-btn wide daily-claim-btn" id="daily-claim-btn" type="button">簽到並寄送今日獎勵</button>
+          <small class="local-save-note">以此瀏覽器的本機日期計算，週一為 Day 1；漏簽不補簽，進度不會跨裝置同步。</small>
+        </section>
+      </div>
+    </section>
+    <section id="mailbox-screen" class="screen" aria-labelledby="mailbox-title">
+      <div class="panel mailbox-panel">
+        <button class="text-btn" id="mailbox-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">MAILBOX / REWARDS</p><h2 id="mailbox-title">郵箱</h2><p>每日簽到獎勵寄送至此；領取後會加入對應資源或背包。週日抽獎箱需到背包開啟。</p></div>
+        <div class="mailbox-toolbar"><span id="mailbox-pending-count">0 封待領 · 共 0 封</span><button class="secondary-btn" id="mailbox-claim-all-btn" type="button" disabled>全部領取</button></div>
+        <div id="mailbox-list" class="mailbox-list"></div>
+        <p class="local-save-note">郵件和獎勵只保存在這個瀏覽器。</p>
+      </div>
+    </section>
+    <section id="inventory-screen" class="screen" aria-labelledby="inventory-title">
+      <div class="panel inventory-panel">
+        <button class="text-btn" id="inventory-home-btn" type="button">← 返回主選單</button>
+        <div class="section-heading"><p class="eyebrow">PLAYER INVENTORY / LOCAL ITEMS</p><h2 id="inventory-title">背包</h2><p>查看週日隨機箱、能量飲料、兩種招募券、記憶碎片、星願幣及已收集裝備。</p></div>
+        <p id="inventory-result" class="inventory-result" role="status" aria-live="polite"></p>
+        <div id="inventory-grid" class="inventory-content"></div>
+        <p class="local-save-note">背包資料只保存在這個瀏覽器；招募券可前往「劇情招募」使用，能量飲料可恢復冒險能量。</p>
+      </div>
+    </section>
   </main>
-  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-glow"></div><div class="side-menu-header"><div class="side-menu-brand"><span>FLIP</span><b>恋</b><small>戀語解密</small></div><button class="menu-close" id="menu-close" type="button" aria-label="關閉選單">×</button></div><div class="side-menu-hero"><div class="side-menu-orb">✦</div><div><small>MY SCHOOL HEART</small><strong>放學後的秘密基地</strong><em>選一個目的地吧</em></div><i>✧</i></div><p class="side-menu-kicker"><span>✦</span> MAIN DESTINATIONS <span>✦</span></p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span><div><strong>開始邂逅</strong><small>Story / Encounter</small></div><b>›</b></button><button data-menu-action="characters" type="button"><span>♛</span><div><strong>角色養成</strong><small>Character Growth</small></div><b>›</b></button><a href="characters.html"><span>▦</span><div><strong>角色圖鑑</strong><small>Character Codex</small></div><b>›</b></a><button data-menu-action="learning" type="button"><span>言</span><div><strong>日語學習</strong><small>Japanese Lessons</small></div><b>›</b></button><button data-menu-action="map" type="button"><span>⚔</span><div><strong>出擊冒險</strong><small>Adventure Map</small></div><b>›</b></button><a href="recruit.html"><span>✧</span><div><strong>劇情招募</strong><small>Story Recruitment</small></div><b>›</b></a><button data-menu-action="daily" type="button"><span>🎁</span><div><strong>每日簽到</strong><small>Daily Login Box</small></div><b>›</b></button><a href="legacy-v021/preview.html"><span>◌</span><div><strong>v0.21 舊版預覽</strong><small>Legacy Interface Preview</small></div><b>›</b></a><button data-menu-action="start" type="button"><span>✧</span><div><strong>劇情章節地圖</strong><small>Story Chapter Map</small></div><b>›</b></button></nav><div class="side-menu-footer"><span>CHAPTER 01 · SCHOOL HEART</span><small>Version v0.29.0</small></div></aside>
+  <div class="side-menu-backdrop" id="side-menu-backdrop"></div><aside class="side-menu" id="side-menu" aria-label="遊戲選單"><div class="side-menu-glow"></div><div class="side-menu-header"><div class="side-menu-brand"><span>FLIP</span><b>恋</b><small>戀語解密</small></div><button class="menu-close" id="menu-close" type="button" aria-label="關閉選單">×</button></div><div class="side-menu-hero"><div class="side-menu-orb">✦</div><div><small>MY SCHOOL HEART</small><strong>放學後的秘密基地</strong><em>選一個目的地吧</em></div><i>✧</i></div><p class="side-menu-kicker"><span>✦</span> MAIN DESTINATIONS <span>✦</span></p><nav class="side-menu-nav"><button data-menu-action="start" type="button"><span>✦</span><div><strong>開始邂逅</strong><small>Story / Encounter</small></div><b>›</b></button><button data-menu-action="characters" type="button"><span>♛</span><div><strong>角色養成</strong><small>Character Growth</small></div><b>›</b></button><a href="characters.html"><span>▦</span><div><strong>角色圖鑑</strong><small>Character Codex</small></div><b>›</b></a><button data-menu-action="learning" type="button"><span>言</span><div><strong>日語學習</strong><small>Japanese Lessons</small></div><b>›</b></button><button data-menu-action="map" type="button"><span>⚔</span><div><strong>出擊冒險</strong><small>Adventure Map</small></div><b>›</b></button><a href="recruit.html"><span>✧</span><div><strong>劇情招募</strong><small>Story Recruitment</small></div><b>›</b></a><button data-menu-action="daily" type="button"><span>🎁</span><div><strong>每日簽到</strong><small>7-Day Check-In</small></div><b>›</b></button><button data-menu-action="mailbox" type="button"><span>✉</span><div><strong>郵箱</strong><small id="mailbox-menu-label">Mailbox</small></div><b>›</b></button><button data-menu-action="inventory" type="button"><span>🎒</span><div><strong>背包</strong><small>Inventory</small></div><b>›</b></button><a href="legacy-v021/preview.html"><span>◌</span><div><strong>v0.21 舊版預覽</strong><small>Legacy Interface Preview</small></div><b>›</b></a><button data-menu-action="start" type="button"><span>✧</span><div><strong>劇情章節地圖</strong><small>Story Chapter Map</small></div><b>›</b></button></nav><div class="side-menu-footer"><span>CHAPTER 01 · SCHOOL HEART</span><small>Version v0.30.0</small></div></aside>
   <script src="data/map.js?v=0.29.0"></script>
   <script src="data/equipment.js"></script>
   <script src="data/story-map.js?v=0.29.0"></script>
-  <script src="game.js?v=0.29.0"></script>
-  <script src="daily-login.js?v=0.29.0"></script>
+  <script src="mailbox-inventory.js?v=0.30.0-weekly-r3"></script>
+  <script src="stage-node-map.js?v=0.30.0"></script>
+  <script src="game.js?v=0.30.0-home-r2"></script>
+  <script src="daily-login.js?v=0.30.0-weekly-r2"></script>
 </body>
 </html>
