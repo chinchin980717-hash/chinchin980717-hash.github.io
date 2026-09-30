@@ -368,3 +368,17 @@ body{background:radial-gradient(circle at 9% 8%,rgba(255,255,255,.95) 0 5%,trans
 .settings-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px;border:1px solid rgba(221,190,207,.58);border-radius:16px;background:rgba(255,255,255,.68)}
 .settings-row strong,.settings-row small{display:block}.settings-row strong{color:#563a5c;font-size:14px}.settings-row small{margin-top:4px;color:#9a7d93;font-size:11px}.settings-value{color:#9a6685;font-size:12px;font-weight:800;white-space:nowrap}.settings-choice-btn{min-width:76px;padding:8px 11px;border:1px solid rgba(210,133,164,.45);border-radius:99px;background:#fff2f7;color:#a34f72;font-weight:800;cursor:pointer}
 @media(max-width:520px){.settings-panel{padding:28px 18px 20px}}
+
+/* v0.30.3: compact character avatar with embedded player EXP */
+.home-player-info{align-items:center;gap:7px;min-width:92px}
+.home-player-info>div:last-child{display:grid;align-content:center;gap:2px;min-width:0}
+.home-avatar-frame{position:relative;display:grid;place-items:center;flex:none;width:47px;height:47px;border:2px solid #e8799a;border-radius:50%;background:linear-gradient(145deg,#ffd5e1,#f2b9d1);box-shadow:0 3px 10px rgba(185,81,121,.18);overflow:hidden}
+.home-avatar-portrait,.home-avatar-fallback{position:absolute;inset:0;width:100%;height:100%}
+.home-avatar-portrait{object-fit:cover;object-position:center top}
+.home-avatar-fallback{display:grid;place-items:center;color:#9f4770;font-size:21px}
+.home-avatar-level{position:absolute;right:-1px;top:-1px;z-index:2;padding:2px 4px;border:1px solid rgba(255,255,255,.9);border-radius:8px;background:#fff3f7;color:#a84e72;font-size:7px;font-weight:900;line-height:1.1}
+.home-avatar-exp-track{position:absolute;z-index:3;right:3px;bottom:3px;left:3px;height:5px;overflow:hidden;border:1px solid rgba(255,255,255,.82);border-radius:99px;background:rgba(80,35,70,.25);box-shadow:0 1px 3px rgba(56,22,52,.18)}
+.home-avatar-exp-track i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ff6f9d,#f4bd5c);box-shadow:0 0 6px rgba(255,190,88,.72);transition:width .35s ease}
+.home-avatar-exp-label{color:#a16b8b;font-size:7px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.home-progress-card{display:none}
+@media(max-width:520px){.home-player-info{min-width:88px}.home-avatar-frame{width:45px;height:45px}.home-player-info strong{max-width:60px}.home-avatar-exp-label{font-size:6px}}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
   <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
-  <link rel="stylesheet" href="game.css?v=0.30.1-settings-r1" />
+  <link rel="stylesheet" href="game.css?v=0.30.3-avatar-exp-r1" />
 </head>
 <body>
   <div class="petals" aria-hidden="true"></div>
@@ -55,17 +55,18 @@
     <section id="title-screen" class="screen home-screen" aria-labelledby="game-title">
       <div class="home-hub">
         <header class="home-topbar">
-          <div class="home-player-info"><span class="home-avatar-mini" id="home-avatar-mini">♛</span><div><strong id="home-player-name">主角</strong><small id="guest-status-badge" class="guest-status-badge" hidden>本機遊客</small></div></div>
+          <div class="home-player-info">
+            <div class="home-avatar-frame" id="home-avatar-frame" aria-label="目前伴學角色與主角經驗">
+              <span class="home-avatar-fallback" id="home-avatar-fallback">♛</span>
+              <img class="home-avatar-portrait" id="home-avatar-portrait" alt="" hidden />
+              <span class="home-avatar-level" id="home-avatar-level">Lv.1</span>
+              <span class="home-avatar-exp-track" role="progressbar" aria-label="主角升級經驗進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="home-avatar-exp-bar"></i></span>
+            </div>
+            <div><strong id="home-player-name">主角</strong><small id="guest-status-badge" class="guest-status-badge" hidden>本機遊客</small><small class="home-avatar-exp-label" id="home-avatar-exp-label">0 / 100 EXP</small></div>
+          </div>
           <div class="home-resources" aria-label="目前資源"><span title="星願幣">💎 <b id="home-coins">0</b></span><span title="冒險能量">⚡ <b id="home-energy">10</b></span><span title="角色抽獎券">♛ <b id="home-character-tickets">0</b></span><span title="裝備抽獎券">✉ <b id="home-equipment-tickets">0</b></span></div>
           <div class="home-top-actions"><button class="home-icon-btn" id="home-checkin-btn" type="button" aria-label="每日簽到" title="每日簽到">🎁</button><button class="home-icon-btn" id="settings-toggle" type="button" aria-label="開啟設定" title="設定">⚙</button></div>
         </header>
-        <section class="player-progress-card home-progress-card" aria-label="主角學習經驗">
-          <div class="player-progress-heading"><div><p class="eyebrow">YOUR LEARNING JOURNEY</p><strong id="player-progress-name">主角</strong></div><span class="player-progress-level" id="player-progress-level">Lv.1</span></div>
-          <div class="player-progress-meta"><span>主角經驗</span><span id="player-progress-exp-label">0 / 100 EXP</span></div>
-          <div class="player-progress-track" role="progressbar" aria-label="主角升級經驗進度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="player-progress-exp-bar"></i></div>
-          <div class="player-progress-footer"><small id="player-progress-total">累積 0 EXP</small><small>課程 +20 · 戰鬥勝利 +50</small></div>
-          <p class="player-progress-note">主角經驗獨立保存，不影響伴學角色的戰鬥能力。</p>
-        </section>
         <section class="home-companion-stage" aria-label="伴學角色">
           <button class="home-speech-bubble" id="home-speech-bubble" type="button" aria-label="聽取伴學角色的話"><small id="home-companion-name">涼宮 蓮 · 傲嬌學霸</small><strong id="home-companion-speech">「哼，發呆什麼？今天也來複習日文吧。」</strong><span>點一下聽他說話</span></button>
           <div class="home-portrait-wrap" id="home-portrait-wrap"><span class="home-portrait-fallback" id="home-portrait-fallback">♛</span><img class="home-companion-portrait" id="home-companion-portrait" alt="" hidden /></div>
@@ -83,13 +84,13 @@
             <button class="home-submenu-item" type="button" data-menu-action="mailbox"><span>✉️</span><small>郵箱</small></button>
           </div>
         </nav>
-        <p class="version-label home-version" id="version-label">Version v0.30.2</p>
+        <p class="version-label home-version" id="version-label">Version v0.30.4</p>
       </div>
     </section>
 
     <section id="roster-screen" class="screen" aria-labelledby="roster-title">
       <div class="panel roster-panel">
-        <button class="text-btn back-to-title" id="roster-home-btn" type="button">← 返回主選單</button>
+        <button class="text-btn back-to-title" id="roster-home-btn" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">BASE / CHARACTER ROSTER</p><h2 id="roster-title">角色養成</h2><p>每一位伴學夥伴都可以培養，陪你一起變強。</p></div>
         <div class="roster-summary"><span>持有角色 <strong id="roster-count">0</strong></span><span>目前隊長 <strong id="roster-leader">涼宮 蓮</strong></span></div>
         <div id="roster-grid" class="roster-grid"></div>
@@ -118,7 +119,7 @@
 
     <section id="map-screen" class="screen" aria-labelledby="map-title">
       <div class="panel map-panel">
-        <button class="text-btn" id="map-home-btn" type="button">← 返回主選單</button>
+        <button class="text-btn" id="map-home-btn" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">ADVENTURE / CHAPTER 01</p><h2 id="map-title">櫻花校舍</h2><p>沿著放學後的路線前進，完成日語挑戰。</p></div>
         <div class="map-status"><span>出擊體力 <strong id="map-energy">10 / 10</strong></span><span>下次恢復 <strong id="map-energy-timer" aria-label="下一點體力恢復倒數">已滿</strong></span><span>角色券 / 裝備券 <strong id="map-tickets">0 / 0</strong></span></div><div class="energy-recovery" aria-live="polite"><div class="energy-recovery-track"><span id="map-energy-progress"></span></div><small id="map-energy-note">體力已滿，可繼續出擊</small></div>
         <div class="relic-loadout-card"><div class="equipment-heading"><div><p class="eyebrow">PARTY PASSIVE</p><h3>隊伍聖物</h3></div><span>最多 2 個</span></div><p class="equipment-note">聖物效果會在整場戰鬥中生效。</p><div id="relic-loadout" class="relic-loadout"></div></div>
@@ -130,7 +131,7 @@
 
     <section id="select-screen" class="screen" aria-labelledby="select-title">
       <div class="panel select-panel">
-        <button class="text-btn back-to-title" type="button">← 返回首頁</button>
+        <button class="text-btn back-to-title" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">STEP 01 / 選擇伴學路線</p><h2 id="select-title">今天想和誰一起學習？</h2><p>選一位伴學夥伴，開始你的日語心動路線。</p></div>
         <div class="route-tabs" role="tablist" aria-label="角色路線">
           <button class="route-tab active" data-route="male" role="tab">🌸 男神線 <small>Otome</small></button>
@@ -213,7 +214,7 @@
     <section id="result-screen" class="screen" aria-labelledby="result-title"><div class="panel result-panel"><div class="result-sparkle">✦</div><p class="eyebrow">CHAPTER CLEAR · 心動解密完成</p><h2 id="result-title">他（她）的心意，聽見了嗎？</h2><p class="result-copy" id="result-copy">這一輪的單字都配對完成了。把剛剛遇到的詞再念一次吧。</p><div class="result-stats"><span><strong id="final-combo">0</strong><small>最高連續</small></span><span><strong id="final-time">0</strong><small>秒完成</small></span><span><strong id="final-affection">+0</strong><small>心動值</small></span></div><button class="primary-btn wide" id="again-btn">再解密一次 <span>↻</span></button><button class="text-btn" id="story-map-return-btn" type="button" hidden>回到章節地圖 →</button><button class="text-btn" id="result-character-btn" type="button">查看角色成長 →</button><button class="text-btn" id="result-home-btn" type="button">回到首頁</button></div></section>
     <section id="checkin-screen" class="screen" aria-labelledby="daily-login-title">
       <div class="panel checkin-panel">
-        <button class="text-btn" id="checkin-home-btn" type="button">← 返回主選單</button>
+        <button class="text-btn" id="checkin-home-btn" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">WEEKLY CHECK-IN / LOCAL GUEST</p><h2>七日簽到</h2><p>週一固定為 Day 1、週日為 Day 7；每天只可領取當日獎勵，漏簽不補。週日會寄送隨機抽獎箱至郵箱。</p></div>
         <div class="checkin-cycle-summary"><span>本週簽到進度</span><strong id="checkin-cycle-label">0 / 7</strong></div>
         <div id="daily-login-days" class="daily-login-days" aria-label="七日簽到表"></div>
@@ -229,7 +230,7 @@
     </section>
     <section id="mailbox-screen" class="screen" aria-labelledby="mailbox-title">
       <div class="panel mailbox-panel">
-        <button class="text-btn" id="mailbox-home-btn" type="button">← 返回主選單</button>
+        <button class="text-btn" id="mailbox-home-btn" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">MAILBOX / REWARDS</p><h2 id="mailbox-title">郵箱</h2><p>每日簽到獎勵寄送至此；領取後會加入對應資源或背包。週日抽獎箱需到背包開啟。</p></div>
         <div class="mailbox-toolbar"><span id="mailbox-pending-count">0 封待領 · 共 0 封</span><button class="secondary-btn" id="mailbox-claim-all-btn" type="button" disabled>全部領取</button></div>
         <div id="mailbox-list" class="mailbox-list"></div>
@@ -238,7 +239,7 @@
     </section>
     <section id="inventory-screen" class="screen" aria-labelledby="inventory-title">
       <div class="panel inventory-panel">
-        <button class="text-btn" id="inventory-home-btn" type="button">← 返回主選單</button>
+        <button class="text-btn" id="inventory-home-btn" type="button">← 返回主畫面</button>
         <div class="section-heading"><p class="eyebrow">PLAYER INVENTORY / LOCAL ITEMS</p><h2 id="inventory-title">背包</h2><p>查看週日隨機箱、能量飲料、兩種招募券、記憶碎片、星願幣及已收集裝備。</p></div>
         <p id="inventory-result" class="inventory-result" role="status" aria-live="polite"></p>
         <div id="inventory-grid" class="inventory-content"></div>
@@ -265,7 +266,7 @@
   <script src="data/story-map.js?v=0.29.0"></script>
   <script src="mailbox-inventory.js?v=0.30.1-settings-r1"></script>
   <script src="stage-node-map.js?v=0.30.1-settings-r1"></script>
-  <script src="game.js?v=0.30.1-settings-r1"></script>
+  <script src="game.js?v=0.30.3-avatar-exp-r1"></script>
   <script src="daily-login.js?v=0.30.1-settings-r1"></script>
 </body>
 </html>
