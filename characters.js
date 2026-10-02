@@ -87,6 +87,6 @@ document.querySelectorAll('.codex-tab').forEach(tab => {
   });
 });
 
-$('#back-button').addEventListener('click', () => location.href='game.html');
+$('#back-button').addEventListener('click', () => location.href='game.html#home');
 window.addEventListener('storage', event => { if (event.key === GACHA_KEY) render(); });
 render();
