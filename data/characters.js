@@ -30,6 +30,7 @@ window.CHARACTERS = [
     role: '支援型',
     element: 'light',
     avatar: '✦',
+    image: 'assets/tachibana-souta-campus.jpg',
     quote: '別太勉強自己，你的努力我一直看在眼裡。',
     baseStats: { hp: 105, attack: 23, defense: 22, speed: 20 },
     growth: { hp: 10, attack: 3, defense: 4, speed: 2 },
@@ -50,6 +51,7 @@ window.CHARACTERS = [
     role: '均衡型',
     element: 'sakura',
     avatar: '🌸',
+    image: 'assets/sakurai-aoi-library.jpg',
     quote: '笨蛋！過來我教你啦，才不是因為在意你。',
     baseStats: { hp: 110, attack: 28, defense: 20, speed: 25 },
     growth: { hp: 11, attack: 4, defense: 3, speed: 3 },
@@ -126,7 +128,7 @@ window.CHARACTERS = [
     affectionLines:{0:'弓道講究專注，學日文也是。準備好就開始吧。',20:'你的發音比上次穩多了，值得肯定。',50:'練習結束後……願意陪我走一段回家的路嗎？'}
   },
   {
-    id:'akari', name:'水野 朱莉', route:'female', rarity:3, role:'支援型', tag:'機械社天才修理員', element:'heart', avatar:'🔧', unlockMethod:'story',
+    id:'akari', name:'水野 朱莉', route:'female', rarity:3, role:'支援型', tag:'機械社天才修理員', element:'heart', avatar:'🔧', image:'assets/mizuno-akari-workshop.jpg', unlockMethod:'story',
     quote:'我不太會說漂亮話……不過你卡住的問題，我一定能和你一起修好。',
     baseStats:{hp:113,attack:21,defense:23,speed:23}, growth:{hp:11,attack:2,defense:3,speed:2},
     skills:[{id:'toolbox-support',name:'工具箱援護',description:'答對日語題目時，替全隊恢復少量生命。'}],

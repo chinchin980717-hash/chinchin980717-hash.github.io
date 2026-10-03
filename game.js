@@ -1,8 +1,8 @@
-const GAME_VERSION = 'v0.31.1';
+const GAME_VERSION = 'v0.31.2';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
-    { id:'souta', name:'橘 奏太', tag:'溫柔會長', avatar:'✦', quote:'別太勉強自己，你的努力我一直看在眼裡。', praise:'素晴らしいですね！', jpPraise:'素晴らしいですね！' },
+    { id:'souta', name:'橘 奏太', tag:'溫柔會長', avatar:'✦', image:'assets/tachibana-souta-campus.jpg', quote:'別太勉強自己，你的努力我一直看在眼裡。', praise:'素晴らしいですね！', jpPraise:'素晴らしいですね！' },
     { id:'rin', name:'黑羽 凜', tag:'霸道主唱', avatar:'♪', image:'assets/kuroha-rin-live.jpg', quote:'湊近一點，這句日文我只想唱給你聽。', praise:'もっと見せて。', jpPraise:'もっと見せて。' },
     { id:'haru', name:'白石 春', tag:'溫柔作家', avatar:'✒', image:'assets/haru-library.jpg', quote:'每個單字都是一封還沒寄出的情書。', praise:'君の言葉、好きだよ。', jpPraise:'君の言葉、好きだよ。' },
     { id:'kai', name:'神谷 海', tag:'陽光運動系', avatar:'⚡', quote:'答對了！下一球……不，下一張也一起來吧！', praise:'すごい！最高だね！', jpPraise:'すごい！最高だね！' },
@@ -11,13 +11,13 @@ const CHARACTERS = {
     { id:'iori', name:'桐生 律', tag:'弓道部沉靜主將', avatar:'🏹', baseStats:{hp:132,attack:21,defense:29,speed:15},growth:{hp:13,attack:2,defense:4,speed:1},quote:'呼吸放慢，先聽清楚，再把答案射中。', praise:'いい射だ。答えも正確だった。', jpPraise:'いい射だ。答えも正確だった。' },
   ],
   female: [
-    { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
+    { id:'aoi', name:'櫻井 葵', tag:'傲嬌青梅', avatar:'🌸', image:'assets/sakurai-aoi-library.jpg', quote:'笨蛋！過來我教你啦，才不是因為在意你。', praise:'調子に乗らないでよ！', jpPraise:'調子に乗らないでよ！' },
     { id:'suzu', name:'神樂 鈴', tag:'神秘巫女', role:'支援型', element:'sakura', rarity:3, avatar:'⛩', image:'assets/kagura-suzu-shrine.jpg', baseStats:{hp:112,attack:24,defense:23,speed:21},growth:{hp:11,attack:3,defense:3,speed:2}, quote:'願神明的祝福，伴隨你的日語學習之旅。', praise:'見事な解密です。', jpPraise:'見事な解密です。' },
     { id:'ami', name:'星野 亞美', tag:'元氣後輩', role:'支援型', element:'light', rarity:3, avatar:'🎤', image:'assets/hoshino-ami-stage.jpg', baseStats:{hp:100,attack:26,defense:18,speed:28},growth:{hp:10,attack:3,defense:2,speed:3}, quote:'學長學長！快聽我剛寫好的日文新歌！', praise:'先輩最高ー！', jpPraise:'先輩最高ー！' },
     { id:'mio', name:'水瀨 澪', tag:'冷靜班長', avatar:'◇', quote:'很好，正確率又提高了。請保持這份專注。', praise:'完璧です。', jpPraise:'完璧です。' },
     { id:'nana', name:'藤原 菜奈', tag:'甜點研究社', avatar:'🍓', quote:'答對的獎勵是……下課一起吃草莓蛋糕？', praise:'おいしい！じゃなくて、すごい！', jpPraise:'すごい！' },
     { id:'rei', name:'鳴海 怜', tag:'貓系攝影師', role:'支援型', element:'light', rarity:3, avatar:'📷', image:'assets/narumi-rei-studio.jpg', baseStats:{hp:108,attack:27,defense:19,speed:27},growth:{hp:10,attack:4,defense:2,speed:3}, quote:'笑一個。你的答案，剛好落在我鏡頭裡。', praise:'きれいに決まったね。', jpPraise:'きれいに決まったね。' },
-    { id:'akari', name:'水野 朱莉', tag:'機械社天才修理員', avatar:'🔧', baseStats:{hp:113,attack:21,defense:23,speed:23},growth:{hp:11,attack:2,defense:3,speed:2},quote:'我不太會說漂亮話……不過你卡住的問題，我一定能和你一起修好。', praise:'すごい、ちゃんと解けたね！', jpPraise:'すごい、ちゃんと解けたね！' },
+    { id:'akari', name:'水野 朱莉', tag:'機械社天才修理員', avatar:'🔧', image:'assets/mizuno-akari-workshop.jpg', baseStats:{hp:113,attack:21,defense:23,speed:23},growth:{hp:11,attack:2,defense:3,speed:2},quote:'我不太會說漂亮話……不過你卡住的問題，我一定能和你一起修好。', praise:'すごい、ちゃんと解けたね！', jpPraise:'すごい、ちゃんと解けたね！' },
     { id:'kotori', name:'七瀨 琴里', tag:'廣播社晨間主持', avatar:'🎙', image:'assets/nanase-kotori-radio.jpg', baseStats:{hp:100,attack:26,defense:18,speed:28},growth:{hp:10,attack:3,defense:2,speed:3},quote:'早安——今天的日文暗號，就由我用最好的聲音念給你聽。', praise:'とてもいい答えだったよ！', jpPraise:'とてもいい答えだったよ！' }
   ]
 };
