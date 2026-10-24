@@ -19,6 +19,42 @@ gachaState.ownedCharacters ||= ['ren','souta','aoi'];
 gachaState.ownedEquipment ||= [];
 gachaState.memoryShards ||= {};
 gachaState.bannerState ||= {};
+
+let carouselIndex = 0;
+let carouselTimer = null;
+const carouselCharacters = () => {
+  const ids = (POOLS.find(pool => pool.id === 'character-banner')?.entries || []).map(entry => entry.id);
+  return ids.map(id => (window.CHARACTERS || []).find(character => character.id === id)).filter(character => character?.image);
+};
+function renderCarousel() {
+  const list = carouselCharacters();
+  const image = $('#recruit-carousel-image');
+  const dots = $('#recruit-carousel-dots');
+  if (!image || !dots || !list.length) return;
+  carouselIndex = (carouselIndex + list.length) % list.length;
+  const character = list[carouselIndex];
+  image.src = character.image;
+  image.alt = `${character.name}角色立繪`;
+  $('#recruit-carousel-name').textContent = character.name;
+  $('#recruit-carousel-role').textContent = `${character.role} · ${'★'.repeat(character.rarity)}`;
+  dots.innerHTML = list.map((item, index) => `<button type="button" class="recruit-carousel-dot${index === carouselIndex ? ' active' : ''}" data-carousel-index="${index}" aria-label="查看${item.name}"></button>`).join('');
+  dots.querySelectorAll('button').forEach(dot => dot.addEventListener('click', () => {
+    carouselIndex = Number(dot.dataset.carouselIndex);
+    renderCarousel();
+    restartCarousel();
+  }));
+}
+function rotateCarousel(step) {
+  const list = carouselCharacters();
+  if (!list.length) return;
+  carouselIndex = (carouselIndex + step + list.length) % list.length;
+  renderCarousel();
+}
+function restartCarousel() {
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(() => rotateCarousel(1), 5000);
+}
+
 const activePoolId = () => document.querySelector('.recruit-banner-tab.active')?.dataset.pool || 'character-banner';
 const getPool = () => POOLS.find(pool => pool.id === activePoolId()) || POOLS[0];
 const getBannerState = pool => {
@@ -38,7 +74,7 @@ function render() {
   const until = Math.max(0, pool.pity.pulls - (banner.pullsSinceRare || 0)); $('#recruit-pity').textContent = until === 0 ? '下一抽保底' : String(until);
   $('#pull-one-btn').disabled = tickets < 1; $('#pull-ten-btn').disabled = tickets < 10;
   $('#pool-description').textContent = `${pool.name} · 使用對應招募券，尋找新的學習夥伴。`;
-  $('#machine-title').textContent = copy.title; $('#machine-note').textContent = copy.note; $('#recruit-orbit').textContent = copy.icon;
+  $('#machine-title').textContent = copy.title; $('#machine-note').textContent = copy.note; $('#recruit-orbit').textContent = copy.icon; const characterPool = pool.id === 'character-banner'; $('#recruit-carousel').hidden = !characterPool; $('#recruit-orbit').hidden = characterPool; if (characterPool) renderCarousel();
   $('#recruit-pity-note').textContent = `十連招募至少包含 1 件稀有以上物品；連續 ${pool.pity.pulls - 1} 抽未出現稀有時，下一抽必定稀有。`;
   document.title = `${pool.name}｜戀語解密 Flip!`;
 }
@@ -71,5 +107,6 @@ function pull(count) {
   saveAll(); render();
   $('#recruit-results').innerHTML = `<div class="recruit-result-heading"><strong>${count === 10 ? '十連招募完成' : '招募完成'}</strong><small>${pool.name} · 消耗 ${POOL_COPY[pool.id].label} ×${count}</small></div><div class="recruit-result-grid">${results.map(result => `<div class="recruit-result-card rarity-${result.entry.rarity}">${resultPortraitMarkup(result)}<div><strong>${result.name}</strong><small>${result.entry.type === 'character' ? '角色' : result.entry.type === 'relic' ? '聖物' : '裝備'} · ${'★'.repeat(result.entry.rarity)}</small><em>${result.duplicate ? '記憶碎片 ×1' : result.detail}</em></div></div>`).join('')}</div>`;
 }
+$('#recruit-carousel-prev').addEventListener('click', () => { rotateCarousel(-1); restartCarousel(); }); $('#recruit-carousel-next').addEventListener('click', () => { rotateCarousel(1); restartCarousel(); }); renderCarousel(); restartCarousel();
 document.querySelectorAll('.recruit-banner-tab').forEach(tab => tab.addEventListener('click', () => { document.querySelectorAll('.recruit-banner-tab').forEach(item => item.classList.toggle('active', item === tab)); $('#recruit-results').innerHTML = '<p class="empty-recruit">招募結果會在這裡出現。</p>'; render(); }));
 $('#back-button').addEventListener('click', () => location.href='game.html#home'); $('#pull-one-btn').addEventListener('click', () => pull(1)); $('#pull-ten-btn').addEventListener('click', () => pull(10)); render();
