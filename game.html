@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
   <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
-  <link rel="stylesheet" href="game.css?v=0.31.7-mobile-fullscreen-r2" />
+  <link rel="stylesheet" href="game.css?v=0.32.0-study-book-r1" />
   <meta name="theme-color" content="#f2e9f4" />
 </head>
 <body>
@@ -83,9 +83,10 @@
             <a class="home-submenu-item" href="characters.html"><span>🎴</span><small>角色圖鑑</small></a>
             <a class="home-submenu-item" href="recruit.html"><span>🛍️</span><small>角色招募</small></a>
             <button class="home-submenu-item" type="button" data-menu-action="mailbox"><span>✉️</span><small>郵箱</small></button>
+            <button class="home-submenu-item" type="button" data-menu-action="study-book"><span>📖</span><small>錯題本</small></button>
           </div>
         </nav>
-        <p class="version-label home-version" id="version-label">Version v0.31.9</p>
+        <p class="version-label home-version" id="version-label">Version v0.32.0</p>
       </div>
     </section>
 
@@ -221,7 +222,7 @@
         <div class="battle-arena" id="battle-arena"><div class="battle-vfx" id="battle-vfx" aria-hidden="true"></div><div class="enemy-side"><span class="enemy-sprite" id="enemy-sprite">🌫️</span><strong id="enemy-name">忘卻迷霧</strong><div class="hp-track"><i id="enemy-hp-bar"></i></div><small>HP <b id="enemy-hp">100</b> / <span id="enemy-max-hp">100</span></small></div><div class="vs-mark">VS</div><div class="party-side"><span class="party-sprite" id="battle-avatar">♛</span><strong id="battle-active-name">涼宮 蓮</strong><div class="hp-track ally"><i id="ally-hp-bar"></i></div><small>HP <b id="ally-hp">100</b> / <span id="ally-max-hp">100</span></small></div></div>
         <div id="battle-log" class="battle-log" role="status" aria-live="polite">答對日語問題，就能發動角色能力！</div>
         <div id="battle-relics" class="battle-relics"></div>
-        <div class="battle-question"><p class="eyebrow">日語戰鬥指令 · 請選擇正確意思</p><h2 id="battle-title">「好き」的意思是？</h2><div id="battle-answers" class="answer-grid"></div></div>
+        <div class="battle-question"><p class="eyebrow">日語戰鬥指令 · 請選擇正確答案</p><h2 id="battle-title">「好き」的意思是？</h2><p id="battle-study-note" class="battle-study-note">題型：單字意思 · 熟練度 0%</p><button id="battle-question-speak" class="question-speak-btn" type="button" hidden>🔊 重播日語</button><div id="battle-answers" class="answer-grid"></div></div>
         <div class="party-switch-title">選擇出戰角色</div><div class="party-switch" id="party-switch"></div>
         <div class="battle-result" id="battle-result" hidden><strong id="battle-result-title">關卡勝利！</strong><small id="battle-result-copy">獲得角色經驗與獎勵。</small><button class="primary-btn wide" id="battle-result-btn" type="button">返回地圖 <span>→</span></button></div>
       </div>
@@ -262,6 +263,15 @@
         <p class="local-save-note">背包資料只保存在這個瀏覽器；招募券可前往「劇情招募」使用，能量飲料可恢復冒險能量。</p>
       </div>
     </section>
+    <section id="study-book-screen" class="screen" aria-labelledby="study-book-title">
+      <div class="panel inventory-panel study-book-panel">
+        <button class="text-btn" id="study-book-home-btn" type="button">← 返回主畫面</button>
+        <div class="section-heading"><p class="eyebrow">STUDY REVIEW / LOCAL PROGRESS</p><h2 id="study-book-title">錯題本</h2><p>查看答錯過的題目、熟練度與題型學習紀錄。資料只保存在這個瀏覽器。</p></div>
+        <div class="study-book-summary" id="study-book-summary">尚未作答任何戰鬥題目。</div>
+        <div id="study-book-list" class="study-book-list"></div>
+        <button class="secondary-btn wide" id="study-book-clear-btn" type="button">清除錯題紀錄</button>
+      </div>
+    </section>
   </main>
   <div class="settings-overlay" id="settings-overlay" hidden>
     <section class="settings-panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
@@ -273,18 +283,18 @@
         <div class="settings-row"><div><strong>日語發音</strong><small>答題與劇情中的日語語音</small></div><button class="settings-choice-btn" id="settings-sound-btn" type="button" aria-pressed="true">🔊 開啟</button></div>
         <div class="settings-row"><div><strong>顯示模式</strong><small>讓遊戲佔滿螢幕，沉浸式遊玩</small></div><button class="settings-choice-btn" id="settings-fullscreen-btn" type="button">⛶ 全螢幕</button></div>
         <div class="settings-row"><div><strong>存檔模式</strong><small id="settings-guest-status">本機遊客存檔</small></div><span class="settings-value">localStorage</span></div>
-        <div class="settings-row"><div><strong>目前版本</strong><small>戀語解密 Flip!</small></div><span class="settings-value">v0.31.9</span></div>
+        <div class="settings-row"><div><strong>目前版本</strong><small>戀語解密 Flip!</small></div><span class="settings-value">v0.32.0</span></div>
       </div>
       <button class="primary-btn wide" id="settings-done-btn" type="button">完成</button>
     </section>
   </div>
-  <script src="data/battle-questions.js?v=0.31.9"></script>
-  <script src="data/map.js?v=0.31.9"></script>
+  <script src="data/battle-questions.js?v=0.32.0"></script>
+  <script src="data/map.js?v=0.32.0"></script>
   <script src="data/equipment.js"></script>
-  <script src="data/story-map.js?v=0.31.9"></script>
-  <script src="mailbox-inventory.js?v=0.31.9"></script>
-  <script src="stage-node-map.js?v=0.31.9"></script>
-  <script src="game.js?v=0.31.9-question-bank-r1"></script>
-  <script src="daily-login.js?v=0.31.9"></script>
+  <script src="data/story-map.js?v=0.32.0"></script>
+  <script src="mailbox-inventory.js?v=0.32.0"></script>
+  <script src="stage-node-map.js?v=0.32.0"></script>
+  <script src="game.js?v=0.32.0-question-types-r2"></script>
+  <script src="daily-login.js?v=0.32.0"></script>
 </body>
 </html>
