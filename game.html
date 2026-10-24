@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="戀語解密 Flip! 日語乙女學習遊戲" />
   <title>戀語解密 Flip!｜日語乙女學習遊戲</title>
-  <link rel="stylesheet" href="game.css?v=0.33.0-study-book-r1" />
+  <link rel="stylesheet" href="game.css?v=0.33.0-navigation-r4" />
   <meta name="theme-color" content="#f2e9f4" />
 </head>
 <body>
@@ -66,7 +66,7 @@
             <div><strong id="home-player-name">主角</strong><small id="guest-status-badge" class="guest-status-badge" hidden>本機遊客</small><small class="home-avatar-exp-label" id="home-avatar-exp-label">0 / 100 EXP</small></div>
           </div>
           <div class="home-resources" aria-label="目前資源"><span title="星願幣">💎 <b id="home-coins">0</b></span><span title="冒險能量">⚡ <b id="home-energy">10</b></span><span title="角色抽獎券">♛ <b id="home-character-tickets">0</b></span><span title="裝備抽獎券">✉ <b id="home-equipment-tickets">0</b></span></div>
-          <div class="home-top-actions"><button class="home-icon-btn" id="home-checkin-btn" type="button" aria-label="每日簽到" title="每日簽到">🎁</button><button class="home-icon-btn" id="settings-toggle" type="button" aria-label="開啟設定" title="設定">⚙</button></div>
+          <div class="home-top-actions"><a class="home-icon-btn home-codex-shortcut" href="characters.html" aria-label="角色圖鑑" title="角色圖鑑">🎴<span>角色圖鑑</span></a><button class="home-icon-btn" id="home-checkin-btn" type="button" aria-label="每日簽到" title="每日簽到">🎁</button><button class="home-icon-btn" id="settings-toggle" type="button" aria-label="開啟設定" title="設定">⚙</button></div>
         </header>
         <section class="home-companion-stage" aria-label="伴學角色">
           <button class="home-speech-bubble" id="home-speech-bubble" type="button" aria-label="聽取伴學角色的話"><small id="home-companion-name">涼宮 蓮 · 傲嬌學霸</small><strong id="home-companion-speech">「哼，發呆什麼？今天也來複習日文吧。」</strong><span>點一下聽他說話</span></button>
@@ -80,7 +80,6 @@
           </div>
           <div class="home-submenu-grid">
             <button class="home-submenu-item" type="button" data-menu-action="characters"><span>👥</span><small>角色養成</small></button>
-            <a class="home-submenu-item" href="characters.html"><span>🎴</span><small>角色圖鑑</small></a>
             <a class="home-submenu-item" href="recruit.html"><span>🛍️</span><small>角色招募</small></a>
             <button class="home-submenu-item" type="button" data-menu-action="mailbox"><span>✉️</span><small>郵箱</small></button>
             <button class="home-submenu-item" type="button" data-menu-action="study-book"><span>📖</span><small>錯題本</small></button>
