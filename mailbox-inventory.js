@@ -339,8 +339,15 @@
     });
     renderMailbox();
   }
+  function addEnergyDrinks(amount = 1) {
+    const state = loadEconomy();
+    state.inventory.energyDrinks += number(amount);
+    const saved = saveEconomy(state);
+    if (saved) renderInventory();
+    return saved;
+  }
   const api = {
-    addDailyCheckinMail, prepareCheckinReward, renderMailbox, renderInventory, claimMail, claimAllMail,
+    addDailyCheckinMail, prepareCheckinReward, renderMailbox, renderInventory, claimMail, claimAllMail, addEnergyDrinks,
     getUnclaimedCount: () => unclaimedMailCount(), hasMail: id => loadEconomy().mailbox.some(mail => mail.id === id),
     rewardLabel
   };
