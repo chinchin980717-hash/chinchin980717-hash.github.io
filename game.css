@@ -475,3 +475,83 @@ body {
 /* v0.33.0: battle loot reveal and rarity VFX */
 .battle-loot{display:grid;gap:7px;margin:12px 0 14px;text-align:left}.battle-loot-card{position:relative;display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:8px;min-height:48px;padding:7px 9px;overflow:hidden;border:1px solid rgba(221,190,207,.7);border-radius:13px;background:rgba(255,255,255,.82);opacity:0;transform:translateY(9px) scale(.97)}.loot-reveal .battle-loot-card{animation:loot-card-in .42s cubic-bezier(.23,1,.32,1) var(--loot-delay) both}.battle-loot-card .loot-icon{display:grid;place-items:center;width:28px;height:28px;border-radius:9px;background:linear-gradient(145deg,#fff5d9,#f2d6a5);font-size:17px}.battle-loot-card strong{display:block;color:#4b3153;font-size:10px}.battle-loot-card strong b{color:#b86a87;font-size:10px}.battle-loot-card small{display:block;margin-top:2px;color:#987f99;font-size:8px;line-height:1.3}.battle-loot-card em{font-size:7px;font-style:normal;letter-spacing:1px;color:#b18a58}.loot-rarity-3{border-color:rgba(188,120,180,.65);background:linear-gradient(105deg,rgba(255,248,255,.95),rgba(242,231,250,.8));box-shadow:0 0 18px rgba(177,116,189,.16)}.loot-rarity-3 .loot-icon{background:linear-gradient(145deg,#f4e4ff,#c99ddb);box-shadow:0 0 13px rgba(174,104,192,.35)}.loot-rarity-3 em{color:#8d61aa}.loot-rarity-4{border-color:rgba(224,164,81,.8);background:linear-gradient(105deg,rgba(255,252,232,.98),rgba(255,230,184,.78));box-shadow:0 0 22px rgba(224,164,81,.3)}.loot-rarity-4 .loot-icon{background:linear-gradient(145deg,#fff4b9,#e6a44e);box-shadow:0 0 17px rgba(224,164,81,.62)}.loot-rarity-4 em{color:#b27722}.loot-burst{position:absolute;right:42px;top:4px;color:#e8b15c;font-size:10px;opacity:.55}.loot-vfx{position:absolute;inset:0;z-index:5;display:grid;place-items:center;pointer-events:none;animation:loot-vfx-fade 1.4s ease both}.loot-vfx strong{color:#fff;font:900 12px Georgia,serif;letter-spacing:4px;text-shadow:0 2px 8px rgba(70,35,80,.75);animation:loot-title-pop 1.1s ease both}.loot-vfx i{position:absolute;left:50%;top:50%;width:5px;height:18px;border-radius:99px;background:#ffd889;box-shadow:0 0 12px #fff;transform:rotate(calc(var(--i) * 22.5deg)) translateY(-12px);animation:loot-particle 1.2s cubic-bezier(.23,1,.32,1) both}.loot-vfx[data-rarity="3"] i{background:#dca8f4}.loot-vfx[data-rarity="4"] i{background:#ffe28c;width:7px;height:25px;box-shadow:0 0 18px #fff0af}.loot-vfx[data-rarity="4"]:before{content:'';position:absolute;width:150px;height:150px;border-radius:50%;border:2px solid rgba(255,225,139,.8);box-shadow:0 0 30px rgba(235,171,74,.6);animation:loot-ring 1.1s ease-out both}@keyframes loot-card-in{0%{opacity:0;transform:translateY(9px) scale(.97)}100%{opacity:1;transform:none}}@keyframes loot-vfx-fade{0%{opacity:0}12%{opacity:1}72%{opacity:1}100%{opacity:0}}@keyframes loot-title-pop{0%{opacity:0;transform:scale(.72)}22%{opacity:1;transform:scale(1.12)}100%{opacity:0;transform:scale(1)}}@keyframes loot-particle{0%{opacity:0;transform:rotate(calc(var(--i) * 22.5deg)) translateY(0) scale(.3)}20%{opacity:1}100%{opacity:0;transform:rotate(calc(var(--i) * 22.5deg)) translateY(-95px) scale(1)}}@keyframes loot-ring{0%{opacity:0;transform:scale(.35)}25%{opacity:1}100%{opacity:0;transform:scale(1.3)}}
 @media(prefers-reduced-motion:reduce){.loot-reveal .battle-loot-card,.loot-vfx,.loot-vfx i,.loot-vfx:before{animation:none;opacity:1;transform:none}}
+
+/* Recruit page: keep the escape-to-home action visible while the gacha screen scrolls. */
+.recruit-page .screen {
+  padding-bottom: calc(108px + env(safe-area-inset-bottom, 0px));
+}
+.recruit-page #back-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  margin: 0 0 18px;
+  padding: 9px 16px;
+  border: 1px solid rgba(189, 86, 126, .32);
+  border-radius: 999px;
+  background: linear-gradient(110deg, #fff2f6, #fff);
+  color: #a64269;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(189, 86, 126, .12);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.recruit-page #back-button:hover,
+.recruit-page #back-button:focus-visible {
+  border-color: #bd567e;
+  background: #fff;
+  outline: 3px solid rgba(189, 86, 126, .18);
+  outline-offset: 2px;
+}
+.recruit-return-dock {
+  position: fixed;
+  z-index: 30;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding: 10px max(16px, env(safe-area-inset-left, 0px)) calc(12px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(0deg, rgba(255, 249, 252, .98) 65%, rgba(255, 249, 252, .82) 82%, rgba(255, 249, 252, 0));
+  pointer-events: none;
+}
+.recruit-return-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: min(100%, 430px);
+  min-height: 50px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, .8);
+  border-radius: 999px;
+  background: linear-gradient(110deg, #e8799a, #a95583);
+  color: #fff;
+  font: 800 15px/1.2 'Noto Sans TC', 'PingFang TC', sans-serif;
+  letter-spacing: .04em;
+  box-shadow: 0 8px 22px rgba(145, 65, 105, .3);
+  cursor: pointer;
+  touch-action: manipulation;
+  pointer-events: auto;
+  transition: transform .16s ease-out, box-shadow .16s ease-out;
+}
+.recruit-return-button:hover,
+.recruit-return-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 26px rgba(145, 65, 105, .38);
+  outline: 3px solid rgba(189, 86, 126, .2);
+  outline-offset: 3px;
+}
+.recruit-return-button:active { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  .recruit-return-button { transition: none; }
+}
+
+/* Tall recruit panels must start at the top of short/mobile viewports instead of centering off-screen. */
+.recruit-page .screen {
+  align-items: flex-start;
+}
+.recruit-page .recruit-panel {
+  margin: 0 auto;
+}

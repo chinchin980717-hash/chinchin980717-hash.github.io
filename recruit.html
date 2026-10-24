@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="description" content="戀語解密 Flip! 角色與裝備招募大池" />
   <title>角色與裝備招募｜戀語解密 Flip!</title>
-  <link rel="stylesheet" href="game.css?v=0.32.3-recruit-carousel-r1" />
+  <link rel="stylesheet" href="game.css?v=0.33.0-recruit-home-r2" />
   <meta name="theme-color" content="#f2e9f4" />
 </head>
-<body>
+<body class="recruit-page">
   <div class="petals" aria-hidden="true"></div>
   <main class="app-shell">
     <section class="screen is-active" aria-labelledby="recruit-title">
@@ -43,9 +43,12 @@
       </div>
     </section>
   </main>
+  <nav class="recruit-return-dock" aria-label="返回主畫面">
+    <button class="recruit-return-button" id="back-home-dock" type="button">⌂ <span>回到主畫面</span></button>
+  </nav>
   <script src="data/characters.js?v=0.32.3"></script>
   <script src="data/equipment.js"></script>
   <script src="data/gacha.js?v=0.32.3"></script>
-  <script src="recruit.js?v=0.32.3"></script>
+  <script src="recruit.js?v=0.33.0-recruit-home-r1"></script>
 </body>
 </html>

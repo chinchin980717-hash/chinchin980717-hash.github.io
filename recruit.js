@@ -109,4 +109,4 @@ function pull(count) {
 }
 $('#recruit-carousel-prev').addEventListener('click', () => { rotateCarousel(-1); restartCarousel(); }); $('#recruit-carousel-next').addEventListener('click', () => { rotateCarousel(1); restartCarousel(); }); renderCarousel(); restartCarousel();
 document.querySelectorAll('.recruit-banner-tab').forEach(tab => tab.addEventListener('click', () => { document.querySelectorAll('.recruit-banner-tab').forEach(item => item.classList.toggle('active', item === tab)); $('#recruit-results').innerHTML = '<p class="empty-recruit">招募結果會在這裡出現。</p>'; render(); }));
-$('#back-button').addEventListener('click', () => location.href='game.html#home'); $('#pull-one-btn').addEventListener('click', () => pull(1)); $('#pull-ten-btn').addEventListener('click', () => pull(10)); render();
+const returnToHome = () => { window.location.href = 'game.html#home'; }; ['#back-button', '#back-home-dock'].forEach(selector => $(selector).addEventListener('click', returnToHome)); $('#pull-one-btn').addEventListener('click', () => pull(1)); $('#pull-ten-btn').addEventListener('click', () => pull(10)); render();
