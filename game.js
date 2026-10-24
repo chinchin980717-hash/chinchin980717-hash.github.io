@@ -1,4 +1,4 @@
-const GAME_VERSION = 'v0.32.1';
+const GAME_VERSION = 'v0.32.2';
 const CHARACTERS = {
   male: [
     { id:'ren', name:'涼宮 蓮', tag:'傲嬌學霸', avatar:'♛', image:'assets/ren-library.jpg', quote:'別誤會了，我只是順便幫你複習日文而已！', praise:'ふん、まあまあじゃない。', jpPraise:'ふん、まあまあじゃない。' },
@@ -137,7 +137,7 @@ function getBattleQuestions(node){
   if(selected.length<count)shuffle(pool.filter(q=>!selected.some(item=>item.id===q.id))).slice(0,count-selected.length).forEach(q=>selected.push(q));
   return selected.slice(0,count);
 }
-const QUESTION_PROGRESS_KEY='koiflip-question-progress-v0.32.1';
+const QUESTION_PROGRESS_KEY='koiflip-question-progress-v0.32.2';
 const QUESTION_TYPE_LABELS={meaning:'單字意思',reverse:'反向單字',kana:'假名辨識',listening:'日語聽力',sentence:'句子理解'};
 function loadQuestionProgress(){try{const saved=JSON.parse(localStorage.getItem(QUESTION_PROGRESS_KEY)||'null');return saved&&typeof saved==='object'?saved:{}}catch{return{}}}
 let questionProgress=loadQuestionProgress();
